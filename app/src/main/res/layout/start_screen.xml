@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/Start_screen_img_bg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/tittle_screen_image"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/wallpaper_cave"
+        tools:ignore="ImageContrastCheck" />
+
+    <ImageView
+        android:id="@+id/Start_screen_rope1"
+        android:layout_width="280dp"
+        android:layout_height="251dp"
+        android:layout_marginEnd="136dp"
+        android:contentDescription="Rope"
+        android:rotation="90"
+        android:rotationX="8"
+        app:layout_constraintBottom_toBottomOf="@+id/Start_screen_img_bg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/png_wing_cuerda"
+        tools:ignore="HardcodedText,ImageContrastCheck,MissingConstraints,VisualLintBounds" />
+
+    <ImageView
+        android:id="@+id/Start_screen_rope2"
+        android:layout_width="291dp"
+        android:layout_height="251dp"
+        android:rotation="90"
+        android:rotationX="8"
+        android:rotationY="8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/Start_screen_img_bg"
+        app:srcCompat="@drawable/png_wing_cuerda"
+        tools:ignore="ContentDescription,ImageContrastCheck,MissingConstraints,VisualLintBounds" />
+
+    <TextView
+        android:id="@+id/Start_screen_tittle"
+        android:layout_width="359dp"
+        android:layout_height="77dp"
+        android:layout_marginTop="212dp"
+        android:background="#FFFFFF"
+        android:fontFamily="@font/finger_paint"
+        android:gravity="center"
+        android:text="@string/global_app_name"
+        android:textColor="#4096BF"
+        android:textSize="39sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/Start_screen_img_bg"
+        tools:ignore="VisualLintOverlap,TextSizeCheck" />
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/Start_screen_button_decoration"
+        android:layout_width="368dp"
+        android:layout_height="61dp"
+        android:layout_marginBottom="8dp"
+        app:chipSurfaceColor="#A89BE3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="VisualLintOverlap,VisualLintButtonSize" />
+
+    <Button
+        android:id="@+id/Start_screen_button"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fontFamily="casual"
+        android:gravity="bottom|center"
+        android:onClick="accion"
+        android:shadowColor="#020202"
+        android:shadowDx="4"
+        android:shadowDy="3"
+        android:shadowRadius="2"
+        android:text="@string/Start_screen_button_text"
+        android:textColor="#FFFFFF"
+        android:textColorHighlight="#FFFFFF"
+        android:textColorHint="#00FFFFFF"
+        android:textColorLink="#00FFFFFF"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="@+id/Start_screen_img_bg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:rippleColor="#00FFFFFF"
+        tools:ignore="VisualLintButtonSize,TextContrastCheck" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="313dp"
+        android:layout_height="318dp"
+        app:layout_constraintBottom_toBottomOf="@+id/Start_screen_img_bg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/Start_screen_img_bg"
+        app:layout_constraintVertical_bias="0.74"
+        app:srcCompat="@drawable/perritofelis2" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

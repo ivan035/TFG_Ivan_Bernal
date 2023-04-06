@@ -1,6 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Aprende Jugando</string>
     <string name="tittle_screen_image">Tittle screen image</string>
     <string name="global_app_name">Aprende Jugando</string>
-    <string name="Start_screen_button_text">Pulsa la pantalla</string>
 </resources>
