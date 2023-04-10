@@ -48,7 +48,7 @@
         android:layout_height="0dp"
         android:layout_marginTop="80dp"
         android:textColor="#000000"
-        android:textSize="24sp"
+        android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -60,7 +60,7 @@
         android:layout_height="65dp"
         android:fontFamily="sans-serif-condensed"
         android:gravity="center"
-        android:text="@string/main_menu_default_dialogue"
+        android:text="@string/difficulty_selection_default_dialogue"
         android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="@+id/difficulty_selection_img_chatbox"
         app:layout_constraintEnd_toEndOf="@+id/difficulty_selection_img_chatbox"
@@ -69,36 +69,62 @@
         app:layout_constraintTop_toTopOf="@+id/difficulty_selection_img_chatbox"
         app:layout_constraintVertical_bias="0.337" />
 
-    <Button
-        android:id="@+id/difficulty_selection_easy_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="68dp"
-        android:text="facil"
+    <TextView
+        android:id="@+id/difficulty_selection_easy_option"
+        android:layout_width="160dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="64dp"
+        android:background="#FFFFFF"
+        android:gravity="center|center_vertical"
+        android:onClick="easy_mode"
+        android:text="modo facil"
+        android:textColor="#000000"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="@+id/difficulty_selection_game_name"
         app:layout_constraintStart_toStartOf="@+id/difficulty_selection_game_name"
         app:layout_constraintTop_toBottomOf="@+id/difficulty_selection_game_name" />
 
+    <TextView
+        android:id="@+id/difficulty_selection_normal_option"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="40dp"
+        android:background="#FFFFFF"
+        android:gravity="center|center_vertical"
+        android:onClick="normal_mode"
+        android:text="modo normal"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/difficulty_selection_easy_option"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/difficulty_selection_easy_option"
+        app:layout_constraintTop_toBottomOf="@+id/difficulty_selection_easy_option" />
+
+    <TextView
+        android:id="@+id/difficulty_selection_expert_option"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="52dp"
+        android:background="#FFFFFF"
+        android:gravity="center|center_vertical"
+        android:onClick="expert_mode"
+        android:text="modo dificil"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/difficulty_selection_normal_option"
+        app:layout_constraintStart_toStartOf="@+id/difficulty_selection_normal_option"
+        app:layout_constraintTop_toBottomOf="@+id/difficulty_selection_normal_option" />
+
     <Button
-        android:id="@+id/difficulty_selection_normal_button"
+        android:id="@+id/difficulty_selection_start_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="52dp"
-        android:text="normal"
-        app:layout_constraintEnd_toEndOf="@+id/difficulty_selection_easy_button"
-        app:layout_constraintHorizontal_bias="0.6"
-        app:layout_constraintStart_toStartOf="@+id/difficulty_selection_easy_button"
-        app:layout_constraintTop_toBottomOf="@+id/difficulty_selection_easy_button" />
-
-    <Button
-        android:id="@+id/difficulty_selection_expert_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
-        android:text="experto"
-        app:layout_constraintEnd_toEndOf="@+id/difficulty_selection_normal_button"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/difficulty_selection_normal_button"
-        app:layout_constraintTop_toBottomOf="@+id/difficulty_selection_normal_button" />
+        android:onClick="start_game"
+        android:text="Comenzar juego"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="@+id/difficulty_selection_expert_option"
+        app:layout_constraintStart_toStartOf="@+id/difficulty_selection_expert_option"
+        app:layout_constraintTop_toBottomOf="@+id/difficulty_selection_expert_option" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

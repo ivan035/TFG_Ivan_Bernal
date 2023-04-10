@@ -5,4 +5,5 @@
     <string name="start_screen_button_text">Pulsa la pantalla</string>
     <string name="main_menu_img_chatbox_context">chat_image</string>
     <string name="empty_activity_name">Actividad:</string>
+    <string name="main_menu_memory_name">memoria</string>
 </resources>

@@ -71,7 +71,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:onClick="startMemoryGame"
-        android:text="memoria"
+        android:text="@string/main_menu_memory_name"
         android:textColor="#4E342E"
         app:layout_constraintEnd_toEndOf="@+id/main_menu_tittle_txt"
         app:layout_constraintHorizontal_bias="0.497"
