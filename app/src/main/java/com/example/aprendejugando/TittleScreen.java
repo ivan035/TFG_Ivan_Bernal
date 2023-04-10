@@ -2,20 +2,21 @@ package com.example.aprendejugando;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class TittleScreen extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.start_screen);
+        setContentView(R.layout.tittle_screen);
     }
 
     public void accion(View view) {
-        Toast t = Toast.makeText(this,"Iniciando...",Toast.LENGTH_SHORT);
-        t.show();
+        Intent intent = new Intent(this, MainMenu.class);
+        startActivity(intent);
+        finish();
     }
 }

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainMenu">
+
+    <ImageView
+        android:id="@+id/main_menu_img"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:cropToPadding="true"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/main_menu_bg_img"
+        tools:ignore="ContentDescription,ImageContrastCheck" />
+
+    <ImageView
+        android:id="@+id/main_menu_img_chatbox"
+        android:layout_width="276dp"
+        android:layout_height="148dp"
+        android:layout_marginEnd="84dp"
+        android:layout_marginBottom="48dp"
+        android:contentDescription="@string/main_menu_img_chatbox_context"
+        android:rotationY="-176"
+        android:scaleX="2"
+        android:scaleY="1.5"
+        app:layout_constraintBottom_toBottomOf="@+id/main_menu_img_dog"
+        app:layout_constraintEnd_toEndOf="@+id/main_menu_img_dog"
+        app:srcCompat="@drawable/pngwing_chat_box"
+        tools:ignore="ImageContrastCheck" />
+
+    <ImageView
+        android:id="@+id/main_menu_img_dog"
+        android:layout_width="203dp"
+        android:layout_height="113dp"
+        android:contentDescription="@string/blackie_content_description"
+        android:onClick="pet_blackie"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/blackie_talking"
+        tools:ignore="ImageContrastCheck" />
+
+    <TextView
+        android:id="@+id/main_menu_dog_dialogue"
+        android:layout_width="199dp"
+        android:layout_height="65dp"
+        android:fontFamily="sans-serif-condensed"
+        android:gravity="center"
+        android:text="@string/main_menu_default_dialogue"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toBottomOf="@+id/main_menu_img_chatbox"
+        app:layout_constraintEnd_toEndOf="@+id/main_menu_img_chatbox"
+        app:layout_constraintHorizontal_bias="0.389"
+        app:layout_constraintStart_toStartOf="@+id/main_menu_img_chatbox"
+        app:layout_constraintTop_toTopOf="@+id/main_menu_img_chatbox"
+        app:layout_constraintVertical_bias="0.333"
+        tools:ignore="TextSizeCheck" />
+
+    <Button
+        android:id="@+id/main_menu_memory_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:onClick="startMemoryGame"
+        android:text="memoria"
+        android:textColor="#4E342E"
+        app:layout_constraintEnd_toEndOf="@+id/main_menu_tittle_txt"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="@+id/main_menu_tittle_txt"
+        app:layout_constraintTop_toBottomOf="@+id/main_menu_tittle_txt" />
+
+    <TextView
+        android:id="@+id/main_menu_tittle_txt"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="92dp"
+        android:background="#6DB4F3"
+        android:fontFamily="casual"
+        android:gravity="center"
+        android:shadowColor="#E6653A"
+        android:shadowDx="3"
+        android:shadowDy="2"
+        android:shadowRadius="5"
+        android:text="SELECCIONA UNA ACTIVIDAD"
+        android:textColor="#455A64"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TextSizeCheck" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="112dp"
+        android:text="atcividad 2"
+        android:textColor="#4E342E"
+        app:layout_constraintEnd_toEndOf="@+id/main_menu_tittle_txt"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="@+id/main_menu_tittle_txt"
+        app:layout_constraintTop_toBottomOf="@+id/main_menu_tittle_txt" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

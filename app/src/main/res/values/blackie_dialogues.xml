@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="blackie_content_description">dog image</string>
+    <string name="main_menu_default_dialogue">Hola, me llamo Blackie, te acompañare en esta aventura!\nA que jugamos hoy ?</string>
+</resources>
