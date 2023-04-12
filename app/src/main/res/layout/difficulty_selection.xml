@@ -108,7 +108,7 @@
         android:background="#FFFFFF"
         android:gravity="center|center_vertical"
         android:onClick="expert_mode"
-        android:text="modo dificil"
+        android:text="modo experto"
         android:textColor="#000000"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="@+id/difficulty_selection_normal_option"

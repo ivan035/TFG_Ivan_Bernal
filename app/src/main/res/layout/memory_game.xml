@@ -6,4 +6,181 @@
     android:layout_height="match_parent"
     tools:context=".MemoryGame">
 
+    <ImageView
+        android:id="@+id/memory_card1"
+        android:layout_width="112dp"
+        android:layout_height="109dp"
+        android:layout_marginTop="100dp"
+        android:onClick="flip"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.053"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/default_memory_image"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageView
+        android:id="@+id/memory_card2"
+        android:layout_width="112dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:onClick="flip"
+        app:layout_constraintBottom_toBottomOf="@+id/memory_card1"
+        app:layout_constraintStart_toEndOf="@+id/memory_card1"
+        app:layout_constraintTop_toTopOf="@+id/memory_card1"
+        app:srcCompat="@drawable/default_memory_image"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageView
+        android:id="@+id/memory_card3"
+        android:layout_width="112dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:onClick="flip"
+        app:layout_constraintBottom_toBottomOf="@+id/memory_card2"
+        app:layout_constraintStart_toEndOf="@+id/memory_card2"
+        app:layout_constraintTop_toTopOf="@+id/memory_card2"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/default_memory_image"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageView
+        android:id="@+id/memory_card4"
+        android:layout_width="0dp"
+        android:layout_height="109dp"
+        android:layout_marginTop="16dp"
+        android:onClick="flip"
+        app:layout_constraintEnd_toEndOf="@+id/memory_card1"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/memory_card1"
+        app:layout_constraintTop_toBottomOf="@+id/memory_card1"
+        app:srcCompat="@drawable/default_memory_image"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageView
+        android:id="@+id/memory_card5"
+        android:layout_width="112dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:onClick="flip"
+        app:layout_constraintBottom_toBottomOf="@+id/memory_card4"
+        app:layout_constraintStart_toEndOf="@+id/memory_card4"
+        app:layout_constraintTop_toTopOf="@+id/memory_card4"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/default_memory_image"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageView
+        android:id="@+id/memory_card6"
+        android:layout_width="112dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:onClick="flip"
+        app:layout_constraintBottom_toBottomOf="@+id/memory_card5"
+        app:layout_constraintStart_toEndOf="@+id/memory_card5"
+        app:layout_constraintTop_toTopOf="@+id/memory_card5"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/default_memory_image"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageView
+        android:id="@+id/memory_card7"
+        android:layout_width="0dp"
+        android:layout_height="109dp"
+        android:layout_marginTop="16dp"
+        android:onClick="flip"
+        app:layout_constraintEnd_toEndOf="@+id/memory_card4"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/memory_card4"
+        app:layout_constraintTop_toBottomOf="@+id/memory_card4"
+        app:srcCompat="@drawable/default_memory_image"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageView
+        android:id="@+id/memory_card8"
+        android:layout_width="112dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:onClick="flip"
+        app:layout_constraintBottom_toBottomOf="@+id/memory_card7"
+        app:layout_constraintStart_toEndOf="@+id/memory_card7"
+        app:layout_constraintTop_toTopOf="@+id/memory_card7"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/default_memory_image"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageView
+        android:id="@+id/memory_card9"
+        android:layout_width="112dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:onClick="flip"
+        app:layout_constraintBottom_toBottomOf="@+id/memory_card8"
+        app:layout_constraintStart_toEndOf="@+id/memory_card8"
+        app:layout_constraintTop_toTopOf="@+id/memory_card8"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/default_memory_image"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageView
+        android:id="@+id/main_menu_img_dog2"
+        android:layout_width="203dp"
+        android:layout_height="113dp"
+        android:contentDescription="@string/blackie_content_description"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/blackie_talking"
+        tools:ignore="ImageContrastCheck" />
+
+    <ImageView
+        android:id="@+id/main_menu_img_chatbox2"
+        android:layout_width="276dp"
+        android:layout_height="148dp"
+        android:layout_marginEnd="84dp"
+        android:layout_marginBottom="56dp"
+        android:contentDescription="@string/main_menu_img_chatbox_context"
+        android:rotationY="-176"
+        android:scaleX="2"
+        android:scaleY="1.5"
+        app:layout_constraintBottom_toBottomOf="@+id/main_menu_img_dog2"
+        app:layout_constraintEnd_toEndOf="@+id/main_menu_img_dog2"
+        app:srcCompat="@drawable/pngwing_chat_box"
+        tools:ignore="ImageContrastCheck" />
+
+    <TextView
+        android:id="@+id/main_menu_dog_dialogue2"
+        android:layout_width="199dp"
+        android:layout_height="65dp"
+        android:fontFamily="sans-serif-condensed"
+        android:gravity="center"
+        android:text="@string/memory_game_default_dialogue"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toBottomOf="@+id/main_menu_img_chatbox2"
+        app:layout_constraintEnd_toEndOf="@+id/main_menu_img_chatbox2"
+        app:layout_constraintHorizontal_bias="0.363"
+        app:layout_constraintStart_toStartOf="@+id/main_menu_img_chatbox2"
+        app:layout_constraintTop_toTopOf="@+id/main_menu_img_chatbox2"
+        app:layout_constraintVertical_bias="0.349"
+        tools:ignore="TextSizeCheck" />
+
+    <TextView
+        android:id="@+id/memory_difficulty_text"
+        android:layout_width="131dp"
+        android:layout_height="35dp"
+        android:gravity="center"
+        android:text="Dificultad:"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/memory_game_score"
+        android:layout_width="139dp"
+        android:layout_height="31dp"
+        android:gravity="center"
+        android:text="Puntuacion:"
+        android:textColor="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

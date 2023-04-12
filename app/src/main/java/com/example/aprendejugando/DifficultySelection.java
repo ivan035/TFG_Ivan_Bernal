@@ -14,7 +14,7 @@ public class DifficultySelection extends AppCompatActivity {
     private TextView easy_option;
     private TextView normal_option;
     private TextView expert_option;
-    private String DIFFICULTY_SELECTED = "com.example.aprendejugando.MemoryGame.difficulty";
+    public static String DIFFICULTY_SELECTED = "com.example.aprendejugando.MemoryGame.difficulty";
     private String game_name;
 
     //We set the default difficulty level to easy
@@ -42,18 +42,21 @@ public class DifficultySelection extends AppCompatActivity {
 
     public void easy_mode(View view) {
         difficulty=1;
+        System.out.println(difficulty);
         easy_option.setBackgroundColor(getResources().getColor(R.color.selected, null));
         normal_option.setBackgroundColor(getResources().getColor(R.color.white, null));
         expert_option.setBackgroundColor(getResources().getColor(R.color.white, null));
     }
     public void normal_mode(View view) {
         difficulty=2;
+        System.out.println(difficulty);
         normal_option.setBackgroundColor(getResources().getColor(R.color.selected, null));
         easy_option.setBackgroundColor(getResources().getColor(R.color.white, null));
         expert_option.setBackgroundColor(getResources().getColor(R.color.white, null));
     }
     public void expert_mode(View view) {
         difficulty=3;
+        System.out.println(difficulty);
         expert_option.setBackgroundColor(getResources().getColor(R.color.selected, null));
         easy_option.setBackgroundColor(getResources().getColor(R.color.white, null));
         normal_option.setBackgroundColor(getResources().getColor(R.color.white, null));

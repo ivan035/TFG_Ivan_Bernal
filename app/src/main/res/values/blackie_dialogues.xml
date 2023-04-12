@@ -3,4 +3,5 @@
     <string name="blackie_content_description">dog image</string>
     <string name="main_menu_default_dialogue">Hola, me llamo Blackie, te acompañare en esta aventura!\nA que jugamos hoy ?</string>
     <string name="difficulty_selection_default_dialogue">Elige la dificultad del juego</string>
+    <string name="memory_game_default_dialogue">Pulsa una carta para revelarla. Al encontrar dos iguales ganaras puntos, buena suerte!</string>
 </resources>
