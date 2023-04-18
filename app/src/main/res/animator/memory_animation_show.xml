@@ -4,7 +4,6 @@
     android:valueTo="180"
     android:duration="1000"
     android:propertyName="rotationY">
-
 </objectAnimator>
 
     <!--    Esto va en ANIM folder-->

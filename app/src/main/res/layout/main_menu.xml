@@ -72,7 +72,7 @@
         android:layout_marginTop="16dp"
         android:onClick="startMemoryGame"
         android:text="@string/main_menu_memory_name"
-        android:textColor="#4E342E"
+        android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="@+id/main_menu_tittle_txt"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="@+id/main_menu_tittle_txt"
@@ -100,12 +100,13 @@
         tools:ignore="TextSizeCheck" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/main_menu_sauce_invasion_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="112dp"
-        android:text="atcividad 2"
-        android:textColor="#4E342E"
+        android:onClick="startSauceGame"
+        android:text="invasion de salsa"
+        android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="@+id/main_menu_tittle_txt"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="@+id/main_menu_tittle_txt"

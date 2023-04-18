@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".games.SauceGame">
+
+    <ImageView
+        android:id="@+id/sauce_game_img_chatbox"
+        android:layout_width="276dp"
+        android:layout_height="148dp"
+        android:layout_marginEnd="84dp"
+        android:layout_marginBottom="56dp"
+        android:contentDescription="@string/main_menu_img_chatbox_context"
+        android:rotationY="-176"
+        android:scaleX="2"
+        android:scaleY="1.5"
+        app:layout_constraintBottom_toBottomOf="@+id/sauce_game_img_dog"
+        app:layout_constraintEnd_toEndOf="@+id/sauce_game_img_dog"
+        app:srcCompat="@drawable/pngwing_chat_box"
+        tools:ignore="ImageContrastCheck" />
+
+    <TextView
+        android:id="@+id/sauce_game_dog_dialogue"
+        android:layout_width="219dp"
+        android:layout_height="62dp"
+        android:fontFamily="sans-serif-condensed"
+        android:gravity="center"
+        android:text="@string/sauce_game_default_dialogue"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toBottomOf="@+id/sauce_game_img_chatbox"
+        app:layout_constraintEnd_toEndOf="@+id/sauce_game_img_chatbox"
+        app:layout_constraintHorizontal_bias="0.298"
+        app:layout_constraintStart_toStartOf="@+id/sauce_game_img_chatbox"
+        app:layout_constraintTop_toTopOf="@+id/sauce_game_img_chatbox"
+        app:layout_constraintVertical_bias="0.313"
+        tools:ignore="TextSizeCheck" />
+
+    <ImageView
+        android:id="@+id/sauce_game_img_dog"
+        android:layout_width="203dp"
+        android:layout_height="113dp"
+        android:contentDescription="@string/blackie_content_description"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/blackie_talking"
+        tools:ignore="ImageContrastCheck" />
+
+    <TextView
+        android:id="@+id/sauce_game_score"
+        android:layout_width="139dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:gravity="center"
+        android:text="Puntuacion:"
+        android:textColor="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/sauce_difficulty_text"
+        android:layout_width="211dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="8dp"
+        android:gravity="center"
+        android:text="Dificultad:"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/sauce_game_blob1"
+        android:layout_width="131dp"
+        android:layout_height="100dp"
+        android:alpha="1"
+        android:onClick="clean"
+        app:srcCompat="@drawable/mancha_morada"
+        tools:ignore="SpeakableTextPresentCheck"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="97dp" />
+
+    <ImageView
+        android:id="@+id/sauce_game_blob10"
+        android:layout_width="131dp"
+        android:layout_height="100dp"
+        android:alpha="1"
+        android:onClick="clean"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/mancha_verde"
+        tools:ignore="SpeakableTextPresentCheck"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="422dp" />
+
+    <ImageView
+        android:id="@+id/sauce_game_blob11"
+        android:layout_width="131dp"
+        android:layout_height="100dp"
+        android:alpha="1"
+        android:onClick="clean"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/mancha_verde"
+        tools:ignore="SpeakableTextPresentCheck"
+        tools:layout_editor_absoluteX="140dp"
+        tools:layout_editor_absoluteY="422dp" />
+
+    <ImageView
+        android:id="@+id/sauce_game_blob12"
+        android:layout_width="131dp"
+        android:layout_height="100dp"
+        android:alpha="1"
+        android:onClick="clean"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/mancha_roja"
+        tools:ignore="SpeakableTextPresentCheck"
+        tools:layout_editor_absoluteX="270dp"
+        tools:layout_editor_absoluteY="422dp" />
+
+    <ImageView
+        android:id="@+id/sauce_game_blob9"
+        android:layout_width="131dp"
+        android:layout_height="100dp"
+        android:alpha="1"
+        android:onClick="clean"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/mancha_roja"
+        tools:ignore="SpeakableTextPresentCheck"
+        tools:layout_editor_absoluteX="271dp"
+        tools:layout_editor_absoluteY="312dp" />
+
+    <ImageView
+        android:id="@+id/sauce_game_blob8"
+        android:layout_width="131dp"
+        android:layout_height="100dp"
+        android:alpha="1"
+        android:onClick="clean"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/mancha_azul"
+        tools:ignore="SpeakableTextPresentCheck"
+        tools:layout_editor_absoluteX="139dp"
+        tools:layout_editor_absoluteY="312dp" />
+
+    <ImageView
+        android:id="@+id/sauce_game_blob7"
+        android:layout_width="131dp"
+        android:layout_height="100dp"
+        android:alpha="1"
+        android:onClick="clean"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/mancha_azul"
+        tools:ignore="SpeakableTextPresentCheck"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="312dp" />
+
+    <ImageView
+        android:id="@+id/sauce_game_blob5"
+        android:layout_width="131dp"
+        android:layout_height="100dp"
+        android:alpha="1"
+        android:onClick="clean"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/mancha_amarilla"
+        tools:ignore="SpeakableTextPresentCheck"
+        tools:layout_editor_absoluteX="140dp"
+        tools:layout_editor_absoluteY="204dp" />
+
+    <ImageView
+        android:id="@+id/sauce_game_blob6"
+        android:layout_width="131dp"
+        android:layout_height="100dp"
+        android:alpha="1"
+        android:onClick="clean"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/mancha_morada"
+        tools:ignore="SpeakableTextPresentCheck"
+        tools:layout_editor_absoluteX="271dp"
+        tools:layout_editor_absoluteY="204dp" />
+
+    <ImageView
+        android:id="@+id/sauce_game_blob3"
+        android:layout_width="131dp"
+        android:layout_height="100dp"
+        android:alpha="1"
+        android:onClick="clean"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/mancha_morada"
+        tools:ignore="SpeakableTextPresentCheck"
+        tools:layout_editor_absoluteX="271dp"
+        tools:layout_editor_absoluteY="97dp" />
+
+    <ImageView
+        android:id="@+id/sauce_game_blob2"
+        android:layout_width="131dp"
+        android:layout_height="100dp"
+        android:alpha="1"
+        android:onClick="clean"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/mancha_morada"
+        tools:ignore="SpeakableTextPresentCheck"
+        tools:layout_editor_absoluteX="140dp"
+        tools:layout_editor_absoluteY="97dp" />
+
+    <ImageView
+        android:id="@+id/sauce_game_blob4"
+        android:layout_width="131dp"
+        android:layout_height="100dp"
+        android:alpha="1"
+        android:onClick="clean"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/mancha_amarilla"
+        tools:ignore="SpeakableTextPresentCheck"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="204dp" />
+
+    <TextView
+        android:id="@+id/sauce_game_timer_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Tiempo:"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="@+id/sauce_game_score"
+        app:layout_constraintStart_toStartOf="@+id/sauce_game_score"
+        app:layout_constraintTop_toBottomOf="@+id/sauce_game_score" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Manchas acumuladas: "
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="@+id/sauce_difficulty_text"
+        app:layout_constraintStart_toStartOf="@+id/sauce_difficulty_text"
+        app:layout_constraintTop_toBottomOf="@+id/sauce_difficulty_text" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

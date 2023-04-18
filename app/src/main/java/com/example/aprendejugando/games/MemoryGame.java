@@ -1,19 +1,18 @@
-package com.example.aprendejugando;
+package com.example.aprendejugando.games;
 
 import static java.lang.Thread.sleep;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.animation.AnimatorInflater;
-import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.aprendejugando.DifficultySelection;
+import com.example.aprendejugando.R;
+import com.example.aprendejugando.memory.stage_value;
 import com.example.aprendejugando.memory.cards_managment;
-
-import java.util.ArrayList;
 
 public class MemoryGame extends AppCompatActivity {
 
@@ -22,8 +21,8 @@ public class MemoryGame extends AppCompatActivity {
     private TextView score_text;
     private Integer difficulty_level=1;
     private Integer score=0;
-    private ArrayList<Integer> flipped_card_id= new ArrayList<Integer>();
-    private Integer flipped_cards_count=0;
+
+    private stage_value table;
     private cards_managment card_manager= null;
 
     @Override
@@ -38,6 +37,7 @@ public class MemoryGame extends AppCompatActivity {
         }
         if(difficulty_level==2){
             difficulty_text.setText("Dificultad: Normal");
+
         }
         else if(difficulty_level==3){
             difficulty_text.setText("Dificultad: Experto");
@@ -45,10 +45,13 @@ public class MemoryGame extends AppCompatActivity {
         else{
             difficulty_text.setText("Dificultad: Facil");
         }
-
+        table=new stage_value();
+        System.out.println(table.cards.get(0).getId());
         score_text.setText("Puntuacion: "+ score);
         card_manager= new cards_managment(null, null, getApplicationContext());
     }
+
+
 
     public void flip(View card){
         System.out.println(card.getId());

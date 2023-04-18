@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.aprendejugando.games.MemoryGame;
+import com.example.aprendejugando.games.SauceGame;
+
 public class DifficultySelection extends AppCompatActivity {
 
     private TextView game_tittle;
@@ -14,7 +17,7 @@ public class DifficultySelection extends AppCompatActivity {
     private TextView easy_option;
     private TextView normal_option;
     private TextView expert_option;
-    public static String DIFFICULTY_SELECTED = "com.example.aprendejugando.MemoryGame.difficulty";
+    public static String DIFFICULTY_SELECTED = "com.example.aprendejugando.games.MemoryGame.difficulty";
     private String game_name;
 
     //We set the default difficulty level to easy
@@ -64,6 +67,12 @@ public class DifficultySelection extends AppCompatActivity {
     public void start_game(View view) {
         if(game_name.equalsIgnoreCase(getResources().getString(R.string.main_menu_memory_name))){
             Intent intent = new Intent(this, MemoryGame.class);
+            intent.putExtra(DIFFICULTY_SELECTED, difficulty);
+            startActivity(intent);
+            finish();
+        }
+        if(game_name.equalsIgnoreCase(getResources().getString(R.string.main_menu_sauce_invasion_name))){
+            Intent intent = new Intent(this, SauceGame.class);
             intent.putExtra(DIFFICULTY_SELECTED, difficulty);
             startActivity(intent);
             finish();

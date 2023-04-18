@@ -38,4 +38,9 @@ public class MainMenu extends AppCompatActivity {
         intent.putExtra(ACTIVITY_NAME,"Memoria");
         startActivity(intent);
     }
+    public void startSauceGame(View view) {
+        Intent intent = new Intent(this, DifficultySelection.class);
+        intent.putExtra(ACTIVITY_NAME,"Invasion de salsa");
+        startActivity(intent);
+    }
 }
