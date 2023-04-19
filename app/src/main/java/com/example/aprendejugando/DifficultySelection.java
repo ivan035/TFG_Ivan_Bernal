@@ -52,14 +52,12 @@ public class DifficultySelection extends AppCompatActivity {
     }
     public void normal_mode(View view) {
         difficulty=2;
-        System.out.println(difficulty);
         normal_option.setBackgroundColor(getResources().getColor(R.color.selected, null));
         easy_option.setBackgroundColor(getResources().getColor(R.color.white, null));
         expert_option.setBackgroundColor(getResources().getColor(R.color.white, null));
     }
     public void expert_mode(View view) {
         difficulty=3;
-        System.out.println(difficulty);
         expert_option.setBackgroundColor(getResources().getColor(R.color.selected, null));
         easy_option.setBackgroundColor(getResources().getColor(R.color.white, null));
         normal_option.setBackgroundColor(getResources().getColor(R.color.white, null));
