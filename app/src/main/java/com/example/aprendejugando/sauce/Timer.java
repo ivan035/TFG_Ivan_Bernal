@@ -2,22 +2,20 @@ package com.example.aprendejugando.sauce;
 
 import android.widget.TextView;
 
-import com.example.aprendejugando.games.SauceGame;
+import com.example.aprendejugando.games.BlobGame;
 
 import java.util.TimerTask;
 
 public class Timer implements Runnable{
 
-    private TextView timer_text;
-    private SauceGame game;
+    private BlobGame game;
     private Thread service;
     private int time;
     private double add_blob_time=0;
     private Integer count_to_increase_blob_time_spawn=0;
     private Integer difficulty;
 
-    public Timer(int time, TextView timer,SauceGame game, double starter_add_blob_time, Integer difficulty) {
-        this.timer_text= timer;
+    public Timer(int time, BlobGame game, double starter_add_blob_time, Integer difficulty) {
         this.time = time;
         this.game=game;
         this.add_blob_time=starter_add_blob_time;
@@ -43,17 +41,16 @@ public class Timer implements Runnable{
 
     @Override
     public void run() {
-
+        game.add_new_blob();
         java.util.Timer timer = new java.util.Timer();
         timer.schedule(new TimerTask() {
             double add_blob_count=0.0;
             @Override
             public void run() {
                 synchronized (this){
+                    game.set_timer_text(time);
 
-                    timer_text.setText("Quedan " + time + " segundos");
                     add_blob_count=add_blob_count+add_blob_time;
-                    time--;
                     count_to_increase_blob_time_spawn++;
                     if(add_blob_count>=6.0){
                         game.add_new_blob();
@@ -72,11 +69,13 @@ public class Timer implements Runnable{
                         count_to_increase_blob_time_spawn=0;
                     }
                     if(time<=0) {
-                        timer.cancel();
+
                         time=0;
-                        timer_text.setText("Quedan " + time + " segundos");
+                        game.set_timer_text(time);
                         game.finish_game();
+                        timer.cancel();
                     }
+                    time--;
                 }
             }
         }, 0, 1000);//wait 0 ms before doing the action and do it evry 1000ms (1second)

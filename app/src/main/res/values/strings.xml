@@ -7,4 +7,6 @@
     <string name="empty_activity_name">Actividad:</string>
     <string name="main_menu_memory_name">memoria</string>
     <string name="main_menu_sauce_invasion_name">invasion de salsa</string>
+    <string name="blob_game_end_text">JUEGO ACABADO</string>
+    <string name="blob_game_start_text">Pulsa la pantalla para comenzar el juego</string>
 </resources>

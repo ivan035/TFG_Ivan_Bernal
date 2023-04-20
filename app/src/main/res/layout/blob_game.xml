@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".games.BlobGame">
+
+    <ImageView
+        android:id="@+id/blob_game_img_bg"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:alpha="0.85"
+        android:scaleType="fitXY"
+        android:src="@drawable/blob_game_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/blob_game_img_chatbox"
+        android:layout_width="300dp"
+        android:layout_height="155dp"
+        android:layout_marginEnd="84dp"
+        android:layout_marginBottom="48dp"
+        android:contentDescription="@string/main_menu_img_chatbox_context"
+        android:rotationY="-176"
+        android:scaleX="2"
+        android:scaleY="1.5"
+        app:layout_constraintBottom_toBottomOf="@+id/blob_game_img_dog"
+        app:layout_constraintEnd_toEndOf="@+id/blob_game_img_dog"
+        app:srcCompat="@drawable/pngwing_chat_box"
+        tools:ignore="ImageContrastCheck" />
+
+    <TextView
+        android:id="@+id/blob_game_dog_dialogue"
+        android:layout_width="219dp"
+        android:layout_height="62dp"
+        android:fontFamily="sans-serif-condensed"
+        android:gravity="center"
+        android:text="@string/sauce_game_default_dialogue"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toBottomOf="@+id/blob_game_img_chatbox"
+        app:layout_constraintEnd_toEndOf="@+id/blob_game_img_chatbox"
+        app:layout_constraintHorizontal_bias="0.407"
+        app:layout_constraintStart_toStartOf="@+id/blob_game_img_chatbox"
+        app:layout_constraintTop_toTopOf="@+id/blob_game_img_chatbox"
+        app:layout_constraintVertical_bias="0.311"
+        tools:ignore="TextSizeCheck" />
+
+    <ImageView
+        android:id="@+id/blob_game_img_dog"
+        android:layout_width="203dp"
+        android:layout_height="113dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="4dp"
+        android:contentDescription="@string/blackie_content_description"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/blackie_talking"
+        tools:ignore="ImageContrastCheck" />
+
+    <TextView
+        android:id="@+id/blob_game_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/finger_paint"
+        android:gravity="center"
+        android:shadowColor="#FFFFFF"
+        android:shadowDx="3"
+        android:shadowDy="3"
+        android:shadowRadius="2"
+        android:text="Puntuacion:"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/blob_game_blob_counter"
+        app:layout_constraintStart_toEndOf="@+id/blob_game_blob_counter"
+        app:layout_constraintTop_toTopOf="@+id/blob_game_blob_counter" />
+
+    <TextView
+        android:id="@+id/blob_difficulty_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/finger_paint"
+        android:gravity="end"
+        android:shadowColor="#FFFFFF"
+        android:shadowDx="3"
+        android:shadowDy="3"
+        android:shadowRadius="2"
+        android:text="Dificultad:"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/blob_game_blob1"
+        android:layout_width="131dp"
+        android:layout_height="100dp"
+        android:alpha="1"
+        android:onClick="clean"
+        app:srcCompat="@drawable/mancha_morada"
+        tools:ignore="MissingConstraints,SpeakableTextPresentCheck"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="97dp"
+        tools:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/blob_game_blob2"
+        android:layout_width="131dp"
+        android:layout_height="100dp"
+        android:alpha="1"
+        android:onClick="clean"
+        app:srcCompat="@drawable/mancha_verde"
+        tools:ignore="MissingConstraints,SpeakableTextPresentCheck,ImageContrastCheck"
+        tools:layout_editor_absoluteX="140dp"
+        tools:layout_editor_absoluteY="97dp"
+        tools:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/blob_game_blob3"
+        android:layout_width="131dp"
+        android:layout_height="100dp"
+        android:alpha="1"
+        android:onClick="clean"
+        app:srcCompat="@drawable/mancha_azul"
+        tools:ignore="MissingConstraints,SpeakableTextPresentCheck,ImageContrastCheck"
+        tools:layout_editor_absoluteX="271dp"
+        tools:layout_editor_absoluteY="97dp"
+        tools:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/blob_game_blob4"
+        android:layout_width="131dp"
+        android:layout_height="100dp"
+        android:alpha="1"
+        android:onClick="clean"
+        app:srcCompat="@drawable/mancha_amarilla"
+        tools:ignore="MissingConstraints,SpeakableTextPresentCheck,ImageContrastCheck"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="204dp"
+        tools:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/blob_game_blob5"
+        android:layout_width="131dp"
+        android:layout_height="100dp"
+        android:alpha="1"
+        android:onClick="clean"
+        app:srcCompat="@drawable/mancha_roja"
+        tools:ignore="MissingConstraints,SpeakableTextPresentCheck"
+        tools:layout_editor_absoluteX="140dp"
+        tools:layout_editor_absoluteY="204dp"
+        tools:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/blob_game_blob6"
+        android:layout_width="131dp"
+        android:layout_height="100dp"
+        android:alpha="1"
+        android:onClick="clean"
+        app:srcCompat="@drawable/mancha_morada"
+        tools:ignore="MissingConstraints,SpeakableTextPresentCheck"
+        tools:layout_editor_absoluteX="271dp"
+        tools:layout_editor_absoluteY="204dp"
+        tools:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/blob_game_blob7"
+        android:layout_width="131dp"
+        android:layout_height="100dp"
+        android:alpha="1"
+        android:onClick="clean"
+        app:srcCompat="@drawable/mancha_azul"
+        tools:ignore="MissingConstraints,SpeakableTextPresentCheck"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="312dp"
+        tools:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/blob_game_blob8"
+        android:layout_width="131dp"
+        android:layout_height="100dp"
+        android:alpha="1"
+        android:onClick="clean"
+        app:srcCompat="@drawable/mancha_roja"
+        tools:ignore="MissingConstraints,SpeakableTextPresentCheck"
+        tools:layout_editor_absoluteX="139dp"
+        tools:layout_editor_absoluteY="312dp"
+        tools:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/blob_game_blob9"
+        android:layout_width="131dp"
+        android:layout_height="100dp"
+        android:alpha="1"
+        android:onClick="clean"
+        app:srcCompat="@drawable/mancha_amarilla"
+        tools:ignore="MissingConstraints,SpeakableTextPresentCheck,ImageContrastCheck"
+        tools:layout_editor_absoluteX="271dp"
+        tools:layout_editor_absoluteY="312dp"
+        tools:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/blob_game_blob10"
+        android:layout_width="131dp"
+        android:layout_height="100dp"
+        android:alpha="1"
+        android:onClick="clean"
+        app:srcCompat="@drawable/mancha_verde"
+        tools:ignore="MissingConstraints,SpeakableTextPresentCheck,ImageContrastCheck"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="422dp"
+        tools:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/blob_game_blob11"
+        android:layout_width="131dp"
+        android:layout_height="100dp"
+        android:alpha="1"
+        android:onClick="clean"
+        app:srcCompat="@drawable/mancha_verde"
+        tools:ignore="MissingConstraints,SpeakableTextPresentCheck,ImageContrastCheck"
+        tools:layout_editor_absoluteX="140dp"
+        tools:layout_editor_absoluteY="422dp" />
+
+    <ImageView
+        android:id="@+id/blob_game_blob12"
+        android:layout_width="131dp"
+        android:layout_height="100dp"
+        android:alpha="1"
+        android:onClick="clean"
+        app:srcCompat="@drawable/mancha_roja"
+        tools:ignore="MissingConstraints,SpeakableTextPresentCheck"
+        tools:layout_editor_absoluteX="270dp"
+        tools:layout_editor_absoluteY="422dp" />
+
+    <TextView
+        android:id="@+id/blob_game_timer_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:fontFamily="@font/finger_paint"
+        android:gravity="center"
+        android:shadowColor="#FFFFFF"
+        android:shadowDx="3"
+        android:shadowDy="3"
+        android:shadowRadius="2"
+        android:text="Tiempo:"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/blob_difficulty_text"
+        app:layout_constraintStart_toEndOf="@+id/blob_difficulty_text"
+        app:layout_constraintTop_toTopOf="@+id/blob_difficulty_text"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/blob_game_blob_counter_text"
+        android:layout_width="wrap_content"
+        android:layout_height="22dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/finger_paint"
+        android:shadowColor="#FFFFFF"
+        android:shadowDx="3"
+        android:shadowDy="3"
+        android:shadowRadius="2"
+        android:text="Manchas acumuladas: "
+        android:textColor="#000000"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="@+id/blob_difficulty_text"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/blob_difficulty_text"
+        app:layout_constraintTop_toBottomOf="@+id/blob_difficulty_text" />
+
+    <TextView
+        android:id="@+id/blob_game_blob_counter"
+        android:layout_width="44dp"
+        android:layout_height="22dp"
+        android:fontFamily="@font/finger_paint"
+        android:gravity="center"
+        android:shadowColor="#FFFFFF"
+        android:shadowDx="3"
+        android:shadowDy="3"
+        android:shadowRadius="2"
+        android:text="0/0"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/blob_game_blob_counter_text"
+        app:layout_constraintStart_toEndOf="@+id/blob_game_blob_counter_text"
+        app:layout_constraintTop_toTopOf="@+id/blob_game_blob_counter_text" />
+
+    <TextView
+        android:id="@+id/blob_game_end_text"
+        android:layout_width="0dp"
+        android:layout_height="33dp"
+        android:fontFamily="@font/finger_paint"
+        android:gravity="center"
+        android:text="@string/blob_game_end_text"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.695"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.292" />
+
+    <TextView
+        android:id="@+id/blob_game_end_score"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/finger_paint"
+        android:gravity="center"
+        android:text="@string/blob_game_end_text"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/blob_game_end_text"
+        app:layout_constraintStart_toStartOf="@+id/blob_game_end_text"
+        app:layout_constraintTop_toBottomOf="@+id/blob_game_end_text" />
+
+    <TextView
+        android:id="@+id/blob_game_start_game"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fontFamily="@font/finger_paint"
+        android:gravity="center"
+        android:onClick="start_game"
+        android:shadowDx="2"
+        android:text="@string/blob_game_start_text"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:visibility="gone" />
+
+    <Button
+        android:id="@+id/blob_game_tomenu_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:onClick="finish_game"
+        android:text="volver al menu"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

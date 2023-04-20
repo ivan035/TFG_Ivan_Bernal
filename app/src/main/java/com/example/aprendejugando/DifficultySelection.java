@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.aprendejugando.games.MemoryGame;
-import com.example.aprendejugando.games.SauceGame;
+import com.example.aprendejugando.games.BlobGame;
 
 public class DifficultySelection extends AppCompatActivity {
 
@@ -70,7 +70,7 @@ public class DifficultySelection extends AppCompatActivity {
             finish();
         }
         if(game_name.equalsIgnoreCase(getResources().getString(R.string.main_menu_sauce_invasion_name))){
-            Intent intent = new Intent(this, SauceGame.class);
+            Intent intent = new Intent(this, BlobGame.class);
             intent.putExtra(DIFFICULTY_SELECTED, difficulty);
             startActivity(intent);
             finish();
