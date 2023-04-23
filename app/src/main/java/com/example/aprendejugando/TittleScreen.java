@@ -15,6 +15,8 @@ public class TittleScreen extends AppCompatActivity {
     }
 
     public void accion(View view) {
+        //When the user click the screen it will strat a MainMenu Activity and finish this one
+        //so the user cant go back to the start screen
         Intent intent = new Intent(this, MainMenu.class);
         startActivity(intent);
         finish();

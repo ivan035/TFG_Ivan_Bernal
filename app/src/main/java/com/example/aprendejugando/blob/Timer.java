@@ -1,6 +1,4 @@
-package com.example.aprendejugando.sauce;
-
-import android.widget.TextView;
+package com.example.aprendejugando.blob;
 
 import com.example.aprendejugando.games.BlobGame;
 
@@ -8,17 +6,20 @@ import java.util.TimerTask;
 
 public class Timer implements Runnable{
 
+    //This will be the timer of the game, it will also care to add more blobs every X seconds
+
     private BlobGame game;
     private Thread service;
     private int time;
-    private double add_blob_time=0;
+    private double time_to_add_new_blob;
     private Integer count_to_increase_blob_time_spawn=0;
     private Integer difficulty;
+    private final double needed_spawn_time=6.0;
 
     public Timer(int time, BlobGame game, double starter_add_blob_time, Integer difficulty) {
         this.time = time;
         this.game=game;
-        this.add_blob_time=starter_add_blob_time;
+        this.time_to_add_new_blob=starter_add_blob_time;
         this.difficulty=difficulty;
         this.service=new Thread(this);
     }
@@ -27,61 +28,65 @@ public class Timer implements Runnable{
         return service;
     }
 
-    public void setService(Thread service) {
-        this.service = service;
-    }
-
     public int getTime() {
         return time;
     }
 
-    public void setTime(int time) {
-        this.time = time;
-    }
-
     @Override
     public void run() {
+        //This will start a timer, wich will run every second
         game.add_new_blob();
         java.util.Timer timer = new java.util.Timer();
         timer.schedule(new TimerTask() {
-            double add_blob_count=0.0;
+            double add_blob_timer=0.0;
             @Override
             public void run() {
                 synchronized (this){
+                    //Set the time in the text so the player can see it
                     game.set_timer_text(time);
 
-                    add_blob_count=add_blob_count+add_blob_time;
-                    count_to_increase_blob_time_spawn++;
-                    if(add_blob_count>=6.0){
+                    //Increase the add_blob_timer with the time we want ( time_to_add_new_blob )
+                    add_blob_timer += time_to_add_new_blob;
+
+                    //If the timer reaches the spawn time it spawns a blob
+                    if(add_blob_timer >=needed_spawn_time){
                         game.add_new_blob();
-                        add_blob_count=0;
+                        add_blob_timer=0;
                     }
-                    if(count_to_increase_blob_time_spawn==5 && add_blob_time<=6.0){
+
+                    //Every spawn increases the time it takes to spawn ( time_to_add_new_blob )
+                    if(count_to_increase_blob_time_spawn==5 && time_to_add_new_blob<=needed_spawn_time){
                         if(difficulty==1){
-                            add_blob_time=add_blob_time+0.6;
+                            time_to_add_new_blob+=0.6;
                         }
                         else if(difficulty==2){
-                            add_blob_time=add_blob_time+0.9;
+                            time_to_add_new_blob+=0.9;
                         }
                         else if(difficulty==3){
-                            add_blob_time=add_blob_time+0.80;
+                            time_to_add_new_blob+=0.80;
                         }
                         count_to_increase_blob_time_spawn=0;
                     }
-                    if(time<=0) {
 
+                    //If the time is 0 it will finish the game and finish the runnable
+                    if(time<=0) {
                         time=0;
                         game.set_timer_text(time);
                         game.finish_game();
                         timer.cancel();
                     }
+
+                    //Every loop we increase the counter to spawn a blob and decrease the time by 1
+
+                    count_to_increase_blob_time_spawn++;
                     time--;
                 }
             }
-        }, 0, 1000);//wait 0 ms before doing the action and do it evry 1000ms (1second)
+        }, 0, 1000);//wait 0 ms before doing the action and do it every 1000ms (1second)
     }
 
     public void finish_game(){
+        //If the game finish the time will be set to 0
         synchronized (this){
             time=0;
         }

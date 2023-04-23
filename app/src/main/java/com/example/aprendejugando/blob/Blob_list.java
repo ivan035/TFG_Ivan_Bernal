@@ -1,6 +1,7 @@
-package com.example.aprendejugando.sauce;
+package com.example.aprendejugando.blob;
 
 public class Blob_list {
+    //We need this class to instance the blob and see if its already show in the screen
 
     private Integer blob_number;
     private Boolean added_already;
@@ -9,15 +10,6 @@ public class Blob_list {
         this.blob_number = blob_number;
         this.added_already = false;
     }
-
-    public Integer getBlob_number() {
-        return blob_number;
-    }
-
-    public void setBlob_number(Integer blob_number) {
-        this.blob_number = blob_number;
-    }
-
     public Boolean isAdded_already() {
         return added_already;
     }

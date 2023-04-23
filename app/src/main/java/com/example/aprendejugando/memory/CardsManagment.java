@@ -1,28 +1,29 @@
 package com.example.aprendejugando.memory;
 
-import static java.lang.Thread.interrupted;
 import static java.lang.Thread.sleep;
 
 import android.animation.AnimatorInflater;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.view.View;
-import android.widget.ImageView;
 
 import com.example.aprendejugando.R;
+import com.example.aprendejugando.games.MemoryGame;
 
-import java.util.ArrayList;
-
-public class cards_managment implements Runnable{
+public class CardsManagment implements Runnable{
+    private MemoryGame memorygame;
     private View card1;
     private View card2;
 
+    private int card1_value;
+    private int card2_value;
     private Context context;
     private Thread service;
 
-    public cards_managment(View card1, View card2,Context context) {
+    public CardsManagment(View card1, View card2, Context context, MemoryGame memorygame) {
         this.card1 = card1;
         this.card2 = card2;
+        this.memorygame=memorygame;
         this.context=context;
     }
 
@@ -50,6 +51,22 @@ public class cards_managment implements Runnable{
         if(card2!=null){
             showCard2();
         }
+    }
+
+    public int getCard1_value() {
+        return card1_value;
+    }
+
+    public void setCard1_value(int card1_value) {
+        this.card1_value = card1_value;
+    }
+
+    public int getCard2_value() {
+        return card2_value;
+    }
+
+    public void setCard2_value(int card2_value) {
+        this.card2_value = card2_value;
     }
 
     public void showCard1(){
@@ -82,7 +99,11 @@ public class cards_managment implements Runnable{
         hide_card.setDuration(1000);
         hide_card.setTarget(card2);
         hide_card.start();
+    }
 
+    public void makeCardsInvisible(){
+        card1.setVisibility(View.INVISIBLE);
+        card2.setVisibility(View.INVISIBLE);
     }
 
     @Override
@@ -101,11 +122,30 @@ public class cards_managment implements Runnable{
                 }
             });
             sleep(200);
-            setCard1(null);
-            setCard2(null);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+        if(cardPairs()) {
+            memorygame.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    makeCardsInvisible();
+                    setCard1(null);
+                    setCard2(null);
+                }
+            });
+        }
+        else{
+            setCard1(null);
+            setCard2(null);
+        }
 
+    }
+
+    private boolean cardPairs() {
+        if(card1_value==card2_value){
+            return true;
+        }
+        return false;
     }
 }

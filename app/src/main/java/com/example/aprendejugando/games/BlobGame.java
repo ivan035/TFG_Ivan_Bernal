@@ -13,8 +13,8 @@ import android.widget.TextView;
 
 import com.example.aprendejugando.DifficultySelection;
 import com.example.aprendejugando.R;
-import com.example.aprendejugando.sauce.Blob_list;
-import com.example.aprendejugando.sauce.Timer;
+import com.example.aprendejugando.blob.Blob_list;
+import com.example.aprendejugando.blob.Timer;
 
 import java.util.ArrayList;
 
@@ -42,21 +42,24 @@ public class BlobGame extends AppCompatActivity {
     private ImageView blob11;
     private ImageView blob12;
     private Button to_menu;
+
+    //This array will contain a list of all blobs and if they are show
     private ArrayList<Blob_list> list_of_blobs = new ArrayList<Blob_list>();
+    //The Timer will be the timer for the game
     private Timer timer;
+    private final Integer GAME_TIME = 40;
     private Integer difficulty_level = 1;
     private Integer max_blob_cuantity;
     private Integer actual_blobs = 0;
     private Integer score = 0;
     private BlobGame this_game;
-    private final Integer GAME_TIME = 55;
     private double starter_blob_add_ammount;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.blob_game);
+        //We match the views needed with our variables
         dog_dialogue = findViewById(R.id.blob_game_dog_dialogue);
         dog_image = findViewById(R.id.blob_game_img_dog);
         difficulty_text = findViewById(R.id.blob_difficulty_text);
@@ -67,6 +70,9 @@ public class BlobGame extends AppCompatActivity {
         game_end_text = findViewById(R.id.blob_game_end_text);
         to_menu=findViewById(R.id.blob_game_tomenu_button);
         background_image = findViewById(R.id.blob_game_img_bg);
+
+        //Depending on the difficulty chosen we set the limit of the shown blobs and the
+        // starter add_time amount to spawn the blobs ( blob.Timer >> time_to_add_new_blob )
         Intent intent = getIntent();
         if (intent != null) {
             difficulty_level = intent.getIntExtra(DifficultySelection.DIFFICULTY_SELECTED, 0);
@@ -87,13 +93,15 @@ public class BlobGame extends AppCompatActivity {
             starter_blob_add_ammount = 0.5;
         }
         initalizeblobs();
-        score_text.setText("Puntuacion: " + score);
 
+        //Display the actual score to the user and starts the background image animation
+        score_text.setText("Puntuacion: " + score);
         Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.scale);
         background_image.startAnimation(animation);
     }
 
     private void initalizeblobs() {
+        //it matches the views with the blobs and makes them all invisible
         blob1 = findViewById(R.id.blob_game_blob1);
         blob2 = findViewById(R.id.blob_game_blob2);
         blob3 = findViewById(R.id.blob_game_blob3);
@@ -114,6 +122,7 @@ public class BlobGame extends AppCompatActivity {
     }
 
     private void hide_all_blobs() {
+        //It makes all blobs invisible
         blob1.setVisibility(View.INVISIBLE);
         blob2.setVisibility(View.INVISIBLE);
         blob3.setVisibility(View.INVISIBLE);
@@ -129,19 +138,29 @@ public class BlobGame extends AppCompatActivity {
     }
 
     public void add_new_blob() {
+        //Depending on the difficulty we take from the blob list the desired amount
+        // EASY = Position 0 to 11 in the array
+        // NORMAL = Position 0 to 7 in the array
+        // EXTREME = Position 0 to 4 in the array
+
+        //In a loop we retrieve numbers which will be the array position and check if its shown
+        // until we find one that is not shown, then we will make that blob visible
+
         if (difficulty_level == 3) {
             Integer blob;
             do {
                 blob = (int) (Math.random() * 5 + 1);
             } while (list_of_blobs.get(blob - 1).isAdded_already());
             make_blob_visible(blob);
-        } else if (difficulty_level == 2) {
+        }
+        else if (difficulty_level == 2) {
             Integer blob;
             do {
                 blob = (int) (Math.random() * 8 + 1);
             } while (list_of_blobs.get(blob - 1).isAdded_already());
             make_blob_visible(blob);
-        } else {
+        }
+        else {
             Integer blob;
             do {
                 blob = (int) (Math.random() * 12 + 1);
@@ -151,6 +170,11 @@ public class BlobGame extends AppCompatActivity {
     }
 
     private void make_blob_visible(int blob_id) {
+
+        //It will give the desired blob a random position and make it visible.
+        //Will also be set as show in the blob list
+        //Since this will be executed from the Timer Thread it needs to be a runnableUI Thread
+
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -270,6 +294,9 @@ public class BlobGame extends AppCompatActivity {
                     default:
                         break;
                 }
+
+                //It shows the user how many blobs are actually.
+                //If the showed blobs reaches the max ( set by difficulty ) will end the game
                 blob_count_text.setText(actual_blobs + "/" + max_blob_cuantity);
                 if (actual_blobs == max_blob_cuantity) {
                     finish_game();
@@ -279,12 +306,19 @@ public class BlobGame extends AppCompatActivity {
     }
 
     private void blackie_action_lose() {
+        //When the game ends, it changes dog image and text
         dog_dialogue.setText("!Oh no!, se acabo la partida, no te procupes, has conseguido " + score + " puntos, lo hiciste muy bien");
         dog_image.setImageResource(R.drawable.blackie_sleep);
     }
 
     public void clean(View view) {
+        //When a blob get clicked it will get their view ID name
         String view_id = getResources().getResourceEntryName(view.getId());
+
+        //If the timer is not over it will make the bloab opacity lower
+        //If the opacity is lower than 0.2 it will add a point an set the score text so player sees it
+        // then it compare the ID name with the blobs in the list until it find their position to set
+        // show to false
         if (timer.getTime() > 0) {
             float alpha = view.getAlpha();
             alpha = (float) (alpha - 0.2);
@@ -294,8 +328,6 @@ public class BlobGame extends AppCompatActivity {
                 score++;
                 score_text.setText("Puntuacion: " + score);
                 view.setVisibility(View.INVISIBLE);
-                view.setTranslationX((int) (Math.random() * 700 + 1));
-                view.setTranslationY((int) (Math.random() * 1000 + 30));
                 if (view_id.equalsIgnoreCase(getResources().getResourceEntryName(blob1.getId()))) {
                     list_of_blobs.get(0).setAdded_already(false);
                 } else if (view_id.equalsIgnoreCase(getResources().getResourceEntryName(blob2.getId()))) {
@@ -322,14 +354,21 @@ public class BlobGame extends AppCompatActivity {
                     list_of_blobs.get(11).setAdded_already(false);
                 }
 
+                //It decrease the actual blobs number by 1 and updates the count text
                 actual_blobs--;
                 blob_count_text.setText(actual_blobs + "/" + max_blob_cuantity);
+
+                //Trigger a dog action
                 blackie_action();
             }
         }
     }
 
     private void blackie_action() {
+        //Whenever you clean a blob it will throw a random number to change the text and
+        //image of the dog
+        //Action has a larger range that it should, so it will change sometimes you clean a blob
+        // and not always
         int action = (int) (Math.random() * 7 + 1);
         if (action == 1) {
             dog_dialogue.setText("!! Bien hecho !!");
@@ -354,6 +393,8 @@ public class BlobGame extends AppCompatActivity {
     }
 
     public void set_timer_text(Integer time) {
+        //It sets the timer text, this will be used for the Timer thread, so it will need a
+        // runnableUI
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -363,11 +404,13 @@ public class BlobGame extends AppCompatActivity {
     }
 
     public void finish_game() {
-        timer.getService().interrupt();
+        //Interrupts the timer Thread and makes visible game over texts and button to main menu
+        synchronized (timer){
+            timer.getService().interrupt();
+        }
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                timer.finish_game();
                 blackie_action_lose();
                 hide_all_blobs();
                 to_menu.setVisibility(View.VISIBLE);
@@ -379,6 +422,7 @@ public class BlobGame extends AppCompatActivity {
     }
 
     public void start_game(View view) {
+        //Start the Timer and makes "tap screen" invisible
         this_game = this;
         timer = new Timer(GAME_TIME, this_game, starter_blob_add_ammount, difficulty_level);
         timer.getService().start();
@@ -387,6 +431,7 @@ public class BlobGame extends AppCompatActivity {
 
 
     public void finish_game(View view) {
+        //Ends this activity
         finish();
     }
 }
