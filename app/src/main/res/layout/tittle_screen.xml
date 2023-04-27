@@ -92,7 +92,7 @@
         android:layout_height="0dp"
         android:fontFamily="casual"
         android:gravity="bottom|center"
-        android:onClick="accion"
+        android:onClick="StartGame"
         android:shadowColor="#020202"
         android:shadowDx="4"
         android:shadowDy="3"

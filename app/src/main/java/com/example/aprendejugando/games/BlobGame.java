@@ -14,7 +14,7 @@ import android.widget.TextView;
 import com.example.aprendejugando.DifficultySelection;
 import com.example.aprendejugando.R;
 import com.example.aprendejugando.blob.Blob_list;
-import com.example.aprendejugando.blob.Timer;
+import com.example.aprendejugando.blob.BlobTimer;
 
 import java.util.ArrayList;
 
@@ -46,7 +46,7 @@ public class BlobGame extends AppCompatActivity {
     //This array will contain a list of all blobs and if they are show
     private ArrayList<Blob_list> list_of_blobs = new ArrayList<Blob_list>();
     //The Timer will be the timer for the game
-    private Timer timer;
+    private BlobTimer blobTimer;
     private final Integer GAME_TIME = 40;
     private Integer difficulty_level = 1;
     private Integer max_blob_cuantity;
@@ -319,7 +319,7 @@ public class BlobGame extends AppCompatActivity {
         //If the opacity is lower than 0.2 it will add a point an set the score text so player sees it
         // then it compare the ID name with the blobs in the list until it find their position to set
         // show to false
-        if (timer.getTime() > 0) {
+        if (blobTimer.getTime() > 0) {
             float alpha = view.getAlpha();
             alpha = (float) (alpha - 0.2);
             view.setAlpha(alpha);
@@ -405,8 +405,8 @@ public class BlobGame extends AppCompatActivity {
 
     public void finish_game() {
         //Interrupts the timer Thread and makes visible game over texts and button to main menu
-        synchronized (timer){
-            timer.getService().interrupt();
+        synchronized (blobTimer){
+            blobTimer.getService().interrupt();
         }
         runOnUiThread(new Runnable() {
             @Override
@@ -424,8 +424,8 @@ public class BlobGame extends AppCompatActivity {
     public void start_game(View view) {
         //Start the Timer and makes "tap screen" invisible
         this_game = this;
-        timer = new Timer(GAME_TIME, this_game, starter_blob_add_ammount, difficulty_level);
-        timer.getService().start();
+        blobTimer = new BlobTimer(GAME_TIME, this_game, starter_blob_add_ammount, difficulty_level);
+        blobTimer.getService().start();
         view.setVisibility(View.INVISIBLE);
     }
 

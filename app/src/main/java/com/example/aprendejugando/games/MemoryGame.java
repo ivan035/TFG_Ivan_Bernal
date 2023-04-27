@@ -8,27 +8,40 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.aprendejugando.DifficultySelection;
 import com.example.aprendejugando.R;
 import com.example.aprendejugando.memory.Card;
+import com.example.aprendejugando.memory.MemoryTimer;
 import com.example.aprendejugando.memory.StageValue;
 import com.example.aprendejugando.memory.CardsManagment;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class MemoryGame extends AppCompatActivity {
 
     private TextView difficulty_text;
     private TextView score_text;
+
+    private TextView dog_dialogue;
+    private ImageView dog_image;
+    private ProgressBar time_bar;
+    private TextView time_text;
+
     private Integer difficulty_level=1;
-    private Integer score=0;
+    public Integer score=0;
     private ArrayList<ImageView> cards_view;
     private StageValue table;
     private ArrayList<Card> currentStage;
+    public Integer pairs_found=0;
     private CardsManagment card_manager= null;
+    private MemoryTimer timer;
+    private final Integer GAME_TIME=60;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +50,12 @@ public class MemoryGame extends AppCompatActivity {
         //We match the views needed with our variables
         difficulty_text=findViewById(R.id.memory_difficulty_text);
         score_text=findViewById(R.id.memory_game_score);
+        time_text=findViewById(R.id.memory_game_time_text);
+        time_bar=findViewById(R.id.memory_game_time_bar);
+        dog_dialogue=findViewById(R.id.memory_game_dog_dialogue);
+        dog_image=findViewById(R.id.memory_game_img_dog);
+        time_bar.setMax(GAME_TIME);
+        time_bar.setProgress(GAME_TIME,true);
         Intent intent = getIntent();
         if(intent!=null){
             difficulty_level=intent.getIntExtra(DifficultySelection.DIFFICULTY_SELECTED,0);
@@ -50,11 +69,11 @@ public class MemoryGame extends AppCompatActivity {
         else{
             difficulty_text.setText("Dificultad: Facil");
         }
-        cards_view=getCurrentCardsView();
-        table=new StageValue(cards_view);
-        currentStage=table.create_stage();
+        createNewStage();
         score_text.setText("Puntuacion: "+ score);
         card_manager= new CardsManagment(null, null, getApplicationContext(),this);
+        timer=new MemoryTimer(GAME_TIME,difficulty_level,this);
+        timer.getService().start();
     }
 
     private ArrayList<ImageView> getCurrentCardsView() {
@@ -95,6 +114,7 @@ public class MemoryGame extends AppCompatActivity {
                 cards.add(card2);
                 cards.add(card3);
                 cards.add(card4);
+                cards.add(card5);
                 cards.add(card6);
                 cards.add(card7);
                 cards.add(card8);
@@ -105,9 +125,11 @@ public class MemoryGame extends AppCompatActivity {
 
 
     public void flip(View card){
+        if(timer.getTime()<=0){
+            return;
+        }
         for (Card card_1:currentStage) {
             System.out.println(card_1.toString());
-
         }
         Integer value= 0;
         if(card_manager.getCard1()==null){
@@ -133,11 +155,72 @@ public class MemoryGame extends AppCompatActivity {
             card_manager.setCard2_value(value);
             card_manager.setCard2(card);
         }
+    }
 
+    public void updateScore() {
+        score_text.setText("Puntuacion: "+score);
+        pairs_found++;
+        blackie_action();
+    }
 
+    public void updateTimer(Integer time){
+
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                time_bar.setProgress(time);
+                time_text.setText(String.valueOf(time));
+            }
+        });
     }
 
 
+    private void blackie_action() {
+        //Whenever you match a pair it will throw a random number to change the text and
+        //image of the dog
+        //Action has a larger range that it should, so it will change sometimes you clean a blob
+        // and not always
+        int action = (int) (Math.random() * 7 + 1);
+        if (action == 1) {
+            dog_dialogue.setText("!! Bien hecho !!");
+            dog_image.setImageResource(R.drawable.blackie_impressed);
+        }
+        if (action == 2) {
+            dog_dialogue.setText("Dos cartas menos");
+            dog_image.setImageResource(R.drawable.blackie_happy);
+        }
+        if (action == 3) {
+            dog_dialogue.setText("Lo tienes todo controlado");
+            dog_image.setImageResource(R.drawable.blackie_front);
+        }
+        if (action == 4) {
+            dog_dialogue.setText("! Animo, sigue asi !");
+            dog_image.setImageResource(R.drawable.blackie_happy);
+        }
+        if (action == 5) {
+            dog_dialogue.setText("Wow, ya tienes " + score + " puntos");
+            dog_image.setImageResource(R.drawable.blackie_howl);
+        }
+    }
 
-
+    public void createNewStage() {
+        cards_view=getCurrentCardsView();
+        table=new StageValue(cards_view);
+        currentStage=table.create_stage();
+        if(difficulty_level==1){
+            for (ImageView card_view: cards_view) {
+                card_view.setVisibility(View.VISIBLE);
+            }
+        }
+        if(difficulty_level==2){
+            for (ImageView card_view: cards_view) {
+                card_view.setVisibility(View.VISIBLE);
+            }
+        }
+        if(difficulty_level==3){
+            for (ImageView card_view: cards_view) {
+                card_view.setVisibility(View.VISIBLE);
+            }
+        }
+    }
 }

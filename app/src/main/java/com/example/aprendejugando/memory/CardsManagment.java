@@ -5,10 +5,14 @@ import static java.lang.Thread.sleep;
 import android.animation.AnimatorInflater;
 import android.animation.ObjectAnimator;
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.example.aprendejugando.R;
 import com.example.aprendejugando.games.MemoryGame;
+
+import java.util.TimerTask;
 
 public class CardsManagment implements Runnable{
     private MemoryGame memorygame;
@@ -25,10 +29,6 @@ public class CardsManagment implements Runnable{
         this.card2 = card2;
         this.memorygame=memorygame;
         this.context=context;
-    }
-
-    public Thread getService() {
-        return service;
     }
 
     public View getCard1() {
@@ -53,16 +53,8 @@ public class CardsManagment implements Runnable{
         }
     }
 
-    public int getCard1_value() {
-        return card1_value;
-    }
-
     public void setCard1_value(int card1_value) {
         this.card1_value = card1_value;
-    }
-
-    public int getCard2_value() {
-        return card2_value;
     }
 
     public void setCard2_value(int card2_value) {
@@ -72,74 +64,69 @@ public class CardsManagment implements Runnable{
     public void showCard1(){
         ObjectAnimator show_card = (ObjectAnimator) AnimatorInflater.loadAnimator(context, R.animator.memory_animation_show);
         show_card.setTarget(card1);
-        show_card.setDuration(1000);
+        show_card.setDuration(800);
         show_card.start();
+        showImageAnimation(card1,card1_value);
     }
 
     public void showCard2(){
         ObjectAnimator show_card = (ObjectAnimator) AnimatorInflater.loadAnimator(context, R.animator.memory_animation_show);
         show_card.setTarget(card2);
-        show_card.setDuration(1000);
+        show_card.setDuration(800);
         show_card.start();
+        showImageAnimation(card2,card2_value);
         this.service=new Thread(this);
         service.start();
 
     }
 
-    public void hideCard1(){
-        ObjectAnimator hide_card = (ObjectAnimator) AnimatorInflater.loadAnimator(context, R.animator.memory_animation_hide);
-        hide_card.setDuration(1000);
-        hide_card.setTarget(card1);
-        hide_card.start();
+    public void hideCards(){
+        ObjectAnimator hide_card1 = (ObjectAnimator) AnimatorInflater.loadAnimator(context, R.animator.memory_animation_hide);
+        hide_card1.setDuration(800);
+        hide_card1.setTarget(card1);
 
-    }
+        ObjectAnimator hide_card2 = (ObjectAnimator) AnimatorInflater.loadAnimator(context, R.animator.memory_animation_hide);
+        hide_card2.setDuration(800);
+        hide_card2.setTarget(card2);
 
-    public void hideCard2(){
-        ObjectAnimator hide_card = (ObjectAnimator) AnimatorInflater.loadAnimator(context, R.animator.memory_animation_hide);
-        hide_card.setDuration(1000);
-        hide_card.setTarget(card2);
-        hide_card.start();
-    }
-
-    public void makeCardsInvisible(){
-        card1.setVisibility(View.INVISIBLE);
-        card2.setVisibility(View.INVISIBLE);
-    }
-
-    @Override
-    public void run() {
-
-        try {
-            sleep(1000);
-            card1.post(new Runnable() {
-                public void run() {
-                    hideCard1();
-                }
-            });
-            card2.post(new Runnable() {
-                public void run() {
-                    hideCard2();
-                }
-            });
-            sleep(200);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        hide_card1.start();
+        hide_card2.start();
         if(cardPairs()) {
             memorygame.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    makeCardsInvisible();
-                    setCard1(null);
-                    setCard2(null);
+                    card1.setVisibility(View.INVISIBLE);
+                    card2.setVisibility(View.INVISIBLE);
+                    memorygame.score+=2;
+                    memorygame.updateScore();
+                    if(memorygame.pairs_found==4){
+                        memorygame.createNewStage();
+                        memorygame.pairs_found=0;
+                    }
                 }
             });
         }
-        else{
-            setCard1(null);
-            setCard2(null);
-        }
+        hideImageAnimation(card1);
+        hideImageAnimation(card2);
+        setCard1(null);
+        setCard2(null);
+    }
 
+    @Override
+    public void run() {
+        try {
+            sleep(1000);
+            memorygame.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    hideCards();
+                }
+            });
+            sleep(180);
+
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private boolean cardPairs() {
@@ -147,5 +134,74 @@ public class CardsManagment implements Runnable{
             return true;
         }
         return false;
+    }
+
+    private Drawable getImageValue(Integer value){
+        Drawable img=null;
+        switch (value){
+            case 0:
+                img=memorygame.getDrawable(R.drawable.mancha_amarilla);
+                break;
+            case 1:
+                img=memorygame.getDrawable(R.drawable.mancha_roja);
+                break;
+            case 2:
+                img=memorygame.getDrawable(R.drawable.mancha_azul);
+                break;
+            case 3:
+                img=memorygame.getDrawable(R.drawable.mancha_morada);
+                break;
+            case 4:
+                img=memorygame.getDrawable(R.drawable.mancha_verde);
+                break;
+            default:
+                break;
+        }
+
+        return img;
+    }
+
+    private void showImageAnimation(View card, Integer card_value){
+
+        java.util.Timer timer = new java.util.Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                try {
+                    sleep(400);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                memorygame.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Drawable img = getImageValue(card_value);
+                        card.setForeground(img);
+                    }
+                });
+                timer.cancel();
+            }
+        }, 0, 1000);
+    }
+
+    private void hideImageAnimation(View card){
+        java.util.Timer timer = new java.util.Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                try {
+                    sleep(400);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                memorygame.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        card.setForeground(null);
+                    }
+                });
+                timer.cancel();
+            }
+        }, 0, 1000);
     }
 }

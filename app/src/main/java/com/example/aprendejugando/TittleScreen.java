@@ -14,8 +14,8 @@ public class TittleScreen extends AppCompatActivity {
         setContentView(R.layout.tittle_screen);
     }
 
-    public void accion(View view) {
-        //When the user click the screen it will strat a MainMenu Activity and finish this one
+    public void StartGame(View view) {
+        //When the user click the screen it will start a MainMenu Activity and finish this activity
         //so the user cant go back to the start screen
         Intent intent = new Intent(this, MainMenu.class);
         startActivity(intent);

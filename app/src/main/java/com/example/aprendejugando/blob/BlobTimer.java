@@ -4,7 +4,7 @@ import com.example.aprendejugando.games.BlobGame;
 
 import java.util.TimerTask;
 
-public class Timer implements Runnable{
+public class BlobTimer implements Runnable{
 
     //This will be the timer of the game, it will also care to add more blobs every X seconds
 
@@ -16,7 +16,7 @@ public class Timer implements Runnable{
     private Integer difficulty;
     private final double needed_spawn_time=6.0;
 
-    public Timer(int time, BlobGame game, double starter_add_blob_time, Integer difficulty) {
+    public BlobTimer(int time, BlobGame game, double starter_add_blob_time, Integer difficulty) {
         this.time = time;
         this.game=game;
         this.time_to_add_new_blob=starter_add_blob_time;
@@ -75,21 +75,12 @@ public class Timer implements Runnable{
                         game.finish_game();
                         timer.cancel();
                     }
-
                     //Every loop we increase the counter to spawn a blob and decrease the time by 1
-
                     count_to_increase_blob_time_spawn++;
                     time--;
                 }
             }
         }, 0, 1000);//wait 0 ms before doing the action and do it every 1000ms (1second)
-    }
-
-    public void finish_game(){
-        //If the game finish the time will be set to 0
-        synchronized (this){
-            time=0;
-        }
     }
 
 }

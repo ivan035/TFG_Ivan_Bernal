@@ -41,10 +41,10 @@ public class MainMenu extends AppCompatActivity {
         intent.putExtra(ACTIVITY_NAME,"Memoria");
         startActivity(intent);
     }
-    public void startSauceGame(View view) {
+    public void startBlobGame(View view) {
         //We start "DifficultySelection" and give the name as an argument to start that activity
         Intent intent = new Intent(this, DifficultySelection.class);
-        intent.putExtra(ACTIVITY_NAME,"Invasion de salsa");
+        intent.putExtra(ACTIVITY_NAME,"Invasion de Manchas");
         startActivity(intent);
     }
 }
