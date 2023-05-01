@@ -3,6 +3,7 @@ package com.example.aprendejugando;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -18,6 +19,7 @@ public class DifficultySelection extends AppCompatActivity {
     private TextView normal_option;
     private TextView expert_option;
     public static String DIFFICULTY_SELECTED = "com.example.aprendejugando.games.MemoryGame.difficulty";
+    private MediaPlayer mediaPlayer;
     private String game_name;
 
     //We set the default difficulty level to easy
@@ -44,41 +46,77 @@ public class DifficultySelection extends AppCompatActivity {
         dog_dialogue.setText(getString(R.string.difficulty_selection_default_dialogue));
     }
 
+
     public void easy_mode(View view) {
         //If user select easy mode, the "difficulty" variable will be set to 1
         //It will also change the easy button color and set the others to the starter color
+        sound();
         difficulty=1;
-        System.out.println(difficulty);
-        easy_option.setBackgroundColor(getResources().getColor(R.color.selected, null));
-        normal_option.setBackgroundColor(getResources().getColor(R.color.white, null));
-        expert_option.setBackgroundColor(getResources().getColor(R.color.white, null));
+        easy_option.setBackgroundResource(R.drawable.shape_rectangle_option_selected);
+        normal_option.setBackgroundResource(R.drawable.shape_rectangle_option);
+        expert_option.setBackgroundResource(R.drawable.shape_rectangle_option);
+
+        easy_option.setTextColor(getColor(R.color.white));
+        normal_option.setTextColor(getColor(R.color.carolina_blue_elbueno));
+        expert_option.setTextColor(getColor(R.color.carolina_blue_elbueno));
     }
     public void normal_mode(View view) {
         //If user select easy mode, the "difficulty" variable will be set to 2
         //It will also change the easy button color and set the others to the starter color
+        sound();
         difficulty=2;
-        normal_option.setBackgroundColor(getResources().getColor(R.color.selected, null));
-        easy_option.setBackgroundColor(getResources().getColor(R.color.white, null));
-        expert_option.setBackgroundColor(getResources().getColor(R.color.white, null));
+        normal_option.setBackgroundResource(R.drawable.shape_rectangle_option_selected);
+        normal_option.setTextColor(getColor(R.color.white));
+        easy_option.setBackgroundResource(R.drawable.shape_rectangle_option);
+        expert_option.setBackgroundResource(R.drawable.shape_rectangle_option);
+
+        normal_option.setTextColor(getColor(R.color.white));
+        easy_option.setTextColor(getColor(R.color.carolina_blue_elbueno));
+        expert_option.setTextColor(getColor(R.color.carolina_blue_elbueno));
     }
     public void expert_mode(View view) {
         //If user select easy mode, the "difficulty" variable will be set to 3
         //It will also change the easy button color and set the others to the starter color
+        sound();
         difficulty=3;
-        expert_option.setBackgroundColor(getResources().getColor(R.color.selected, null));
-        easy_option.setBackgroundColor(getResources().getColor(R.color.white, null));
-        normal_option.setBackgroundColor(getResources().getColor(R.color.white, null));
+        expert_option.setBackgroundResource(R.drawable.shape_rectangle_option_selected);
+        expert_option.setTextColor(getColor(R.color.white));
+        easy_option.setBackgroundResource(R.drawable.shape_rectangle_option);
+        normal_option.setBackgroundResource(R.drawable.shape_rectangle_option);
+
+        expert_option.setTextColor(getColor(R.color.white));
+        easy_option.setTextColor(getColor(R.color.carolina_blue_elbueno));
+        normal_option.setTextColor(getColor(R.color.carolina_blue_elbueno));
     }
+
+    public void sound(){
+        if(mediaPlayer==null){
+            mediaPlayer = MediaPlayer.create(this, R.raw.menu_sound);
+            mediaPlayer.start();
+        }
+        else{
+            mediaPlayer.release();
+            mediaPlayer = MediaPlayer.create(this, R.raw.menu_sound);
+            mediaPlayer.start();
+        }
+    }
+
     public void start_game(View view) {
         //When the user start the game we check wich activity it will start by the name and
         // pass the difficulty value
+        MainMenu.menu_music.release();
+        if(mediaPlayer!=null){
+            mediaPlayer.release();
+        }
+        mediaPlayer = MediaPlayer.create(this, R.raw.start_game_sound);
+        mediaPlayer.start();
         if(game_name.equalsIgnoreCase(getResources().getString(R.string.main_menu_memory_name))){
             Intent intent = new Intent(this, MemoryGame.class);
             intent.putExtra(DIFFICULTY_SELECTED, difficulty);
             startActivity(intent);
             finish();
         }
-        if(game_name.equalsIgnoreCase(getResources().getString(R.string.main_menu_sauce_invasion_name))){
+        if(game_name.equalsIgnoreCase(getResources().getString(R.string.main_menu_blob_name))){
             Intent intent = new Intent(this, BlobGame.class);
             intent.putExtra(DIFFICULTY_SELECTED, difficulty);
             startActivity(intent);

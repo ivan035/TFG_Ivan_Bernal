@@ -1,11 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="white">#fffffb</color>
     <color name="selected">#61CC94</color>
+    <color name="sound_enabled">#3BF44D</color>
+    <color name="sound_disabled">#F4513B</color>
+    <color name="black">#0f1108</color>
+
+    <!-- COLOR PALETTE GEN PAGE ->  https://coolors.co/ -->
+
+    <!-- Pack 1 BLUE-GREEN -->
+    <color name="text_color">#7aa8e1</color>
+    <color name="primary_color">#2c5784</color>
+    <color name="secundary_colour">#004346</color>
+    <color name="third_colour">#fca17d</color>
+
+    <color name="carolina_blue_elbueno">#74B3CE</color>
+    <!-- Pack 2 PASTEL GREEN-->
+    <color name="celadon_green">#baf2bb</color>
+    <color name="celadon_light_green">#baf2d8</color>
+    <color name="columbia_blue">#bad7f2</color>
+    <color name="orchid_pink">#f2bac9</color>
+    <color name="dutch_white">#f2e2ba</color>
+
+    <!-- Pack 3 -->
+
 </resources>

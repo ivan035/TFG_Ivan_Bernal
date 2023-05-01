@@ -5,14 +5,17 @@ import static java.lang.Thread.sleep;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.aprendejugando.DifficultySelection;
+import com.example.aprendejugando.MainMenu;
 import com.example.aprendejugando.R;
 import com.example.aprendejugando.memory.Card;
 import com.example.aprendejugando.memory.MemoryTimer;
@@ -25,22 +28,29 @@ public class MemoryGame extends AppCompatActivity {
 
     private TextView difficulty_text;
     private TextView score_text;
-
+    private TextView game_end_score;
+    private TextView game_end_text;
     private TextView dog_dialogue;
     private ImageView dog_image;
     private ProgressBar time_bar;
     private TextView time_text;
+    private TextView stages_completed_text;
+    private Button to_menu;
 
     private Integer difficulty_level=1;
     public Integer score=0;
     private ArrayList<ImageView> cards_view;
     private StageValue table;
+    public Integer stages_completed=0;
     private ArrayList<Card> currentStage;
     public Integer pairs_found=0;
     private CardsManagment card_manager= null;
-    private MemoryTimer timer;
+    public MemoryTimer timer;
+    //Media player will be needed to play music and sounds
+    private MediaPlayer music;
+    private MediaPlayer mediaPlayer;
+    private MediaPlayer correct;
     private final Integer GAME_TIME=60;
-
 
 
     @Override
@@ -52,8 +62,12 @@ public class MemoryGame extends AppCompatActivity {
         score_text=findViewById(R.id.memory_game_score);
         time_text=findViewById(R.id.memory_game_time_text);
         time_bar=findViewById(R.id.memory_game_time_bar);
+        stages_completed_text=findViewById(R.id.memory_game_stages_completed);
         dog_dialogue=findViewById(R.id.memory_game_dog_dialogue);
         dog_image=findViewById(R.id.memory_game_img_dog);
+        game_end_score = findViewById(R.id.memory_game_end_score);
+        game_end_text = findViewById(R.id.memory_game_end_text);
+        to_menu=findViewById(R.id.memory_game_tomenu_button);
         time_bar.setMax(GAME_TIME);
         time_bar.setProgress(GAME_TIME,true);
         Intent intent = getIntent();
@@ -61,19 +75,18 @@ public class MemoryGame extends AppCompatActivity {
             difficulty_level=intent.getIntExtra(DifficultySelection.DIFFICULTY_SELECTED,0);
         }
         if(difficulty_level==2){
-            difficulty_text.setText("Dificultad: Normal");
+            difficulty_text.setText("Modo: Normal");
         }
         else if(difficulty_level==3){
-            difficulty_text.setText("Dificultad: Experto");
+            difficulty_text.setText("Modo: Experto");
         }
         else{
-            difficulty_text.setText("Dificultad: Facil");
+            difficulty_text.setText("Modo: Facil");
         }
-        createNewStage();
         score_text.setText("Puntuacion: "+ score);
         card_manager= new CardsManagment(null, null, getApplicationContext(),this);
         timer=new MemoryTimer(GAME_TIME,difficulty_level,this);
-        timer.getService().start();
+        game_music();
     }
 
     private ArrayList<ImageView> getCurrentCardsView() {
@@ -128,15 +141,11 @@ public class MemoryGame extends AppCompatActivity {
         if(timer.getTime()<=0){
             return;
         }
-        for (Card card_1:currentStage) {
-            System.out.println(card_1.toString());
-        }
         Integer value= 0;
         if(card_manager.getCard1()==null){
 
             for (Card card_value : currentStage) {
                 if (String.valueOf(card_value.getId()).equalsIgnoreCase(String.valueOf(card.getId()))) {
-                        System.out.println(card_value.getValue());
                         value=card_value.getValue();
                 }
             }
@@ -148,13 +157,14 @@ public class MemoryGame extends AppCompatActivity {
 
             for (Card card_value:currentStage) {
                     if (String.valueOf(card_value.getId()).equalsIgnoreCase(String.valueOf(card.getId()))) {
-                        System.out.println(card_value.getValue());
                         value = card_value.getValue();
                     }
             }
             card_manager.setCard2_value(value);
             card_manager.setCard2(card);
         }
+
+
     }
 
     public void updateScore() {
@@ -222,5 +232,84 @@ public class MemoryGame extends AppCompatActivity {
                 card_view.setVisibility(View.VISIBLE);
             }
         }
+
+        stages_completed_text.setText("Paneles completados: " +stages_completed);
+    }
+
+    public void start_game(View view){
+        createNewStage();
+        stages_completed=0;
+        timer.getService().start();
+        view.setVisibility(View.INVISIBLE);
+    }
+
+    private void blackie_action_lose() {
+        //When the game ends, it changes dog image and text
+        dog_dialogue.setText("!Oh no!, se acabo la partida, no te procupes, has conseguido " + score + " puntos, lo hiciste muy bien");
+        dog_image.setImageResource(R.drawable.blackie_sleep);
+    }
+
+    public void finish_game() {
+        //Interrupts the timer Thread and makes visible game over texts and button to main menu
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                to_menu.setVisibility(View.VISIBLE);
+                game_end_score.setText("PUNTUACION FINAL: " + score + " PUNTOS");
+                blackie_action_lose();
+                game_end_score.setVisibility(View.VISIBLE);
+                game_end_text.setVisibility(View.VISIBLE);
+            }
+        });
+    }
+
+    public void finish_game(View view) {
+        //Ends this activity
+        finish();
+    }
+
+    public void game_music(){
+        if(MainMenu.global_music){
+            music = MediaPlayer.create(this, R.raw.memory_game_music);
+            music.setLooping(true);
+            music.start();
+        }
+    }
+
+    public void flip_sound() {
+        if(mediaPlayer==null){
+            mediaPlayer = MediaPlayer.create(this, R.raw.card_sound);
+            mediaPlayer.start();
+        }
+        else{
+            mediaPlayer.release();
+            mediaPlayer = MediaPlayer.create(this, R.raw.card_sound);
+            mediaPlayer.start();
+        }
+    }
+
+    public void correct_sound(){
+        if(correct==null){
+            correct = MediaPlayer.create(this, R.raw.memory_correct_sound);
+            correct.setVolume(0.4f,04f);
+            correct.start();
+        }
+        else{
+            correct.release();
+            correct = MediaPlayer.create(this, R.raw.memory_correct_sound);
+            correct.setVolume(0.4f,04f);
+            correct.start();
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        //If the user press the "back" button in the mobile, it will stop the music and finish the
+        // activity
+        super.onBackPressed();
+        if(music!=null){
+            music.release();
+        }
+        finish();
     }
 }

@@ -42,6 +42,7 @@ public class MemoryTimer implements Runnable{
                     time=0;
 
                     timer.cancel();
+                    memoryGame.finish_game();
                 }
                 time--;
             }

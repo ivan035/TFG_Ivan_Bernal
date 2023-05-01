@@ -20,13 +20,14 @@
             android:exported="false" />
         <activity
             android:name=".games.MemoryGame"
-            android:exported="false" />
+            android:exported="false"
+            />
         <activity
             android:name=".MainMenu"
             android:exported="false" />
         <activity
             android:name=".TittleScreen"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -38,9 +39,6 @@
                 android:value="" />
         </activity>
 
-        <meta-data
-            android:name="preloaded_fonts"
-            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

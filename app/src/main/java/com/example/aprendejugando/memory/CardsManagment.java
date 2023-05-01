@@ -7,7 +7,6 @@ import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.view.View;
-import android.widget.ImageView;
 
 import com.example.aprendejugando.R;
 import com.example.aprendejugando.games.MemoryGame;
@@ -67,6 +66,7 @@ public class CardsManagment implements Runnable{
         show_card.setDuration(800);
         show_card.start();
         showImageAnimation(card1,card1_value);
+        memorygame.flip_sound();
     }
 
     public void showCard2(){
@@ -75,6 +75,7 @@ public class CardsManagment implements Runnable{
         show_card.setDuration(800);
         show_card.start();
         showImageAnimation(card2,card2_value);
+        memorygame.flip_sound();
         this.service=new Thread(this);
         service.start();
 
@@ -98,8 +99,10 @@ public class CardsManagment implements Runnable{
                     card1.setVisibility(View.INVISIBLE);
                     card2.setVisibility(View.INVISIBLE);
                     memorygame.score+=2;
+                    memorygame.correct_sound();
                     memorygame.updateScore();
                     if(memorygame.pairs_found==4){
+                        memorygame.stages_completed++;
                         memorygame.createNewStage();
                         memorygame.pairs_found=0;
                     }
@@ -138,25 +141,70 @@ public class CardsManagment implements Runnable{
 
     private Drawable getImageValue(Integer value){
         Drawable img=null;
-        switch (value){
-            case 0:
-                img=memorygame.getDrawable(R.drawable.mancha_amarilla);
-                break;
-            case 1:
-                img=memorygame.getDrawable(R.drawable.mancha_roja);
-                break;
-            case 2:
-                img=memorygame.getDrawable(R.drawable.mancha_azul);
-                break;
-            case 3:
-                img=memorygame.getDrawable(R.drawable.mancha_morada);
-                break;
-            case 4:
-                img=memorygame.getDrawable(R.drawable.mancha_verde);
-                break;
-            default:
-                break;
+        if(memorygame.stages_completed==0 || memorygame.stages_completed==3){
+            switch (value){
+                case 0:
+                    img=memorygame.getDrawable(R.drawable.blob_yellow);
+                    break;
+                case 1:
+                    img=memorygame.getDrawable(R.drawable.blob_red);
+                    break;
+                case 2:
+                    img=memorygame.getDrawable(R.drawable.blob_blue);
+                    break;
+                case 3:
+                    img=memorygame.getDrawable(R.drawable.blob_purple);
+                    break;
+                case 4:
+                    img=memorygame.getDrawable(R.drawable.blob_green);
+                    break;
+                default:
+                    break;
+            }
         }
+        else if(memorygame.stages_completed==1 || memorygame.stages_completed==4){
+            switch (value){
+                case 0:
+                    img=memorygame.getDrawable(R.drawable.tree_apple);
+                    break;
+                case 1:
+                    img=memorygame.getDrawable(R.drawable.tree_pink);
+                    break;
+                case 2:
+                    img=memorygame.getDrawable(R.drawable.tree_green);
+                    break;
+                case 3:
+                    img=memorygame.getDrawable(R.drawable.tree_orange);
+                    break;
+                case 4:
+                    img=memorygame.getDrawable(R.drawable.tree_cyan);
+                    break;
+                default:
+                    break;
+            }
+        }
+        else if(memorygame.stages_completed==2 || memorygame.stages_completed==5){
+            switch (value){
+                case 0:
+                    img=memorygame.getDrawable(R.drawable.blob_yellow);
+                    break;
+                case 1:
+                    img=memorygame.getDrawable(R.drawable.blob_red);
+                    break;
+                case 2:
+                    img=memorygame.getDrawable(R.drawable.blob_blue);
+                    break;
+                case 3:
+                    img=memorygame.getDrawable(R.drawable.blob_purple);
+                    break;
+                case 4:
+                    img=memorygame.getDrawable(R.drawable.blob_green);
+                    break;
+                default:
+                    break;
+            }
+        }
+
 
         return img;
     }

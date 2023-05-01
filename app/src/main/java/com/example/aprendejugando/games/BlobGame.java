@@ -3,20 +3,26 @@ package com.example.aprendejugando.games;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.aprendejugando.DifficultySelection;
+import com.example.aprendejugando.MainMenu;
 import com.example.aprendejugando.R;
 import com.example.aprendejugando.blob.Blob_list;
 import com.example.aprendejugando.blob.BlobTimer;
 
 import java.util.ArrayList;
+import java.util.function.ToIntBiFunction;
 
 public class BlobGame extends AppCompatActivity {
 
@@ -42,18 +48,22 @@ public class BlobGame extends AppCompatActivity {
     private ImageView blob11;
     private ImageView blob12;
     private Button to_menu;
+    private ProgressBar time_bar;
 
     //This array will contain a list of all blobs and if they are show
     private ArrayList<Blob_list> list_of_blobs = new ArrayList<Blob_list>();
     //The Timer will be the timer for the game
     private BlobTimer blobTimer;
-    private final Integer GAME_TIME = 40;
+    private final Integer GAME_TIME = 50;
     private Integer difficulty_level = 1;
     private Integer max_blob_cuantity;
     private Integer actual_blobs = 0;
     private Integer score = 0;
     private BlobGame this_game;
     private double starter_blob_add_ammount;
+    //Media player will be needed to play music and sounds
+    private MediaPlayer music;
+    private MediaPlayer blob;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +75,7 @@ public class BlobGame extends AppCompatActivity {
         difficulty_text = findViewById(R.id.blob_difficulty_text);
         score_text = findViewById(R.id.blob_game_score);
         timer_text = findViewById(R.id.blob_game_timer_text);
+        time_bar=findViewById(R.id.blob_game_time_bar);
         blob_count_text = findViewById(R.id.blob_game_blob_counter);
         game_end_score = findViewById(R.id.blob_game_end_score);
         game_end_text = findViewById(R.id.blob_game_end_text);
@@ -80,15 +91,15 @@ public class BlobGame extends AppCompatActivity {
             starter_blob_add_ammount = 0.8;
         }
         if (difficulty_level == 2) {
-            difficulty_text.setText("Dificultad: Normal");
+            difficulty_text.setText("Modo: Normal");
             max_blob_cuantity = 8;
             starter_blob_add_ammount = 1.4;
         } else if (difficulty_level == 3) {
-            difficulty_text.setText("Dificultad: Experto");
+            difficulty_text.setText("Modo: Experto");
             max_blob_cuantity = 5;
             starter_blob_add_ammount = 2.5;
         } else {
-            difficulty_text.setText("Dificultad: Facil");
+            difficulty_text.setText("Modo: Facil");
             max_blob_cuantity = 12;
             starter_blob_add_ammount = 0.5;
         }
@@ -98,6 +109,10 @@ public class BlobGame extends AppCompatActivity {
         score_text.setText("Puntuacion: " + score);
         Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.scale);
         background_image.startAnimation(animation);
+        time_bar.setMax(GAME_TIME);
+        time_bar.setProgress(GAME_TIME);
+        game_music();
+
     }
 
     private void initalizeblobs() {
@@ -181,7 +196,7 @@ public class BlobGame extends AppCompatActivity {
                 switch (blob_id) {
                     case 1:
                         blob1.setTranslationX((int) (Math.random() * 700 + 1));
-                        blob1.setTranslationY((int) (Math.random() * 1000 + 80));
+                        blob1.setTranslationY((int) (Math.random() * 1000 + 350));
                         blob1.setVisibility(View.VISIBLE);
                         View view1 = findViewById(R.id.blob_game_blob1);
                         view1.setAlpha(1);
@@ -189,9 +204,8 @@ public class BlobGame extends AppCompatActivity {
                         actual_blobs++;
                         break;
                     case 2:
-
                         blob2.setTranslationX((int) (Math.random() * 700 + 1));
-                        blob2.setTranslationY((int) (Math.random() * 1000 + 80));
+                        blob2.setTranslationY((int) (Math.random() * 1000 + 350));
                         blob2.setVisibility(View.VISIBLE);
                         View view2 = findViewById(R.id.blob_game_blob2);
                         view2.setAlpha(1);
@@ -199,9 +213,8 @@ public class BlobGame extends AppCompatActivity {
                         actual_blobs++;
                         break;
                     case 3:
-
                         blob3.setTranslationX((int) (Math.random() * 700 + 1));
-                        blob3.setTranslationY((int) (Math.random() * 1000 + 80));
+                        blob3.setTranslationY((int) (Math.random() * 1000 + 350));
                         blob3.setVisibility(View.VISIBLE);
                         View view3 = findViewById(R.id.blob_game_blob3);
                         view3.setAlpha(1);
@@ -209,9 +222,8 @@ public class BlobGame extends AppCompatActivity {
                         actual_blobs++;
                         break;
                     case 4:
-
                         blob4.setTranslationX((int) (Math.random() * 700 + 1));
-                        blob4.setTranslationY((int) (Math.random() * 1000 + 80));
+                        blob4.setTranslationY((int) (Math.random() * 1000 + 350));
                         blob4.setVisibility(View.VISIBLE);
                         View view4 = findViewById(R.id.blob_game_blob4);
                         view4.setAlpha(1);
@@ -219,9 +231,8 @@ public class BlobGame extends AppCompatActivity {
                         actual_blobs++;
                         break;
                     case 5:
-
                         blob5.setTranslationX((int) (Math.random() * 700 + 1));
-                        blob5.setTranslationY((int) (Math.random() * 1000 + 80));
+                        blob5.setTranslationY((int) (Math.random() * 1000 + 350));
                         blob5.setVisibility(View.VISIBLE);
                         View view5 = findViewById(R.id.blob_game_blob5);
                         view5.setAlpha(1);
@@ -230,7 +241,7 @@ public class BlobGame extends AppCompatActivity {
                         break;
                     case 6:
                         blob6.setTranslationX((int) (Math.random() * 700 + 1));
-                        blob6.setTranslationY((int) (Math.random() * 1000 + 80));
+                        blob6.setTranslationY((int) (Math.random() * 1000 + 350));
                         blob6.setVisibility(View.VISIBLE);
                         View view6 = findViewById(R.id.blob_game_blob6);
                         view6.setAlpha(1);
@@ -239,7 +250,7 @@ public class BlobGame extends AppCompatActivity {
                         break;
                     case 7:
                         blob7.setTranslationX((int) (Math.random() * 700 + 1));
-                        blob7.setTranslationY((int) (Math.random() * 1000 + 80));
+                        blob7.setTranslationY((int) (Math.random() * 1000 + 350));
                         blob7.setVisibility(View.VISIBLE);
                         View view7 = findViewById(R.id.blob_game_blob7);
                         view7.setAlpha(1);
@@ -248,7 +259,7 @@ public class BlobGame extends AppCompatActivity {
                         break;
                     case 8:
                         blob8.setTranslationX((int) (Math.random() * 700 + 1));
-                        blob8.setTranslationY((int) (Math.random() * 1000 + 80));
+                        blob8.setTranslationY((int) (Math.random() * 1000 + 350));
                         blob8.setVisibility(View.VISIBLE);
                         View view8 = findViewById(R.id.blob_game_blob8);
                         view8.setAlpha(1);
@@ -257,7 +268,7 @@ public class BlobGame extends AppCompatActivity {
                         break;
                     case 9:
                         blob9.setTranslationX((int) (Math.random() * 700 + 1));
-                        blob9.setTranslationY((int) (Math.random() * 1000 + 80));
+                        blob9.setTranslationY((int) (Math.random() * 1000 + 350));
                         blob9.setVisibility(View.VISIBLE);
                         View view9 = findViewById(R.id.blob_game_blob9);
                         view9.setAlpha(1);
@@ -266,7 +277,7 @@ public class BlobGame extends AppCompatActivity {
                         break;
                     case 10:
                         blob10.setTranslationX((int) (Math.random() * 700 + 1));
-                        blob10.setTranslationY((int) (Math.random() * 1000 + 80));
+                        blob10.setTranslationY((int) (Math.random() * 1000 + 350));
                         blob10.setVisibility(View.VISIBLE);
                         View view10 = findViewById(R.id.blob_game_blob10);
                         view10.setAlpha(1);
@@ -275,7 +286,7 @@ public class BlobGame extends AppCompatActivity {
                         break;
                     case 11:
                         blob11.setTranslationX((int) (Math.random() * 700 + 1));
-                        blob11.setTranslationY((int) (Math.random() * 1000 + 80));
+                        blob11.setTranslationY((int) (Math.random() * 1000 + 350));
                         blob11.setVisibility(View.VISIBLE);
                         View view11 = findViewById(R.id.blob_game_blob11);
                         view11.setAlpha(1);
@@ -284,7 +295,7 @@ public class BlobGame extends AppCompatActivity {
                         break;
                     case 12:
                         blob12.setTranslationX((int) (Math.random() * 700 + 1));
-                        blob12.setTranslationY((int) (Math.random() * 1000 + 80));
+                        blob12.setTranslationY((int) (Math.random() * 1000 + 350));
                         blob12.setVisibility(View.VISIBLE);
                         View view12 = findViewById(R.id.blob_game_blob12);
                         view12.setAlpha(1);
@@ -321,10 +332,11 @@ public class BlobGame extends AppCompatActivity {
         // show to false
         if (blobTimer.getTime() > 0) {
             float alpha = view.getAlpha();
-            alpha = (float) (alpha - 0.2);
+            alpha = (float) (alpha - 0.3);
             view.setAlpha(alpha);
             alpha = view.getAlpha();
             if (alpha <= 0.2) {
+                blob_sound();
                 score++;
                 score_text.setText("Puntuacion: " + score);
                 view.setVisibility(View.INVISIBLE);
@@ -398,9 +410,11 @@ public class BlobGame extends AppCompatActivity {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                timer_text.setText("Tiempo restante: " + time);
+                timer_text.setText(String.valueOf(time));
+                time_bar.setProgress(time);
             }
         });
+
     }
 
     public void finish_game() {
@@ -433,5 +447,39 @@ public class BlobGame extends AppCompatActivity {
     public void finish_game(View view) {
         //Ends this activity
         finish();
+        music.release();
+    }
+
+    public void game_music(){
+        if(MainMenu.global_music){
+            music = MediaPlayer.create(this, R.raw.blob_game_music);
+            music.setLooping(true);
+            music.start();
+        }
+    }
+
+    public void blob_sound(){
+        if(blob==null){
+            blob = MediaPlayer.create(this, R.raw.blob_sound);
+            blob.setVolume(0.5f,0.5f);
+            blob.start();
+        }
+        else{
+            blob.release();
+            blob = MediaPlayer.create(this, R.raw.blob_sound);
+            blob.setVolume(0.5f,0.5f);
+            blob.start();
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        //If the user press the "back" button in the mobile, it will stop the music and finish the
+        // activity
+            super.onBackPressed();
+            if(music!=null){
+                music.release();
+            }
+            finish();
     }
 }
