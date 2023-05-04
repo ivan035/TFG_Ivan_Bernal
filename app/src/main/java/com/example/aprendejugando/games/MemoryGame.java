@@ -12,7 +12,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.aprendejugando.DifficultySelection;
 import com.example.aprendejugando.MainMenu;
@@ -85,7 +84,7 @@ public class MemoryGame extends AppCompatActivity {
         }
         score_text.setText("Puntuacion: "+ score);
         card_manager= new CardsManagment(null, null, getApplicationContext(),this);
-        timer=new MemoryTimer(GAME_TIME,difficulty_level,this);
+        timer=new MemoryTimer(GAME_TIME, this);
         game_music();
     }
 

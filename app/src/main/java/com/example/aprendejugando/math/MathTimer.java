@@ -1,31 +1,30 @@
-package com.example.aprendejugando.memory;
+package com.example.aprendejugando.math;
 
+import com.example.aprendejugando.games.MathGame;
 import com.example.aprendejugando.games.MemoryGame;
 
 import java.util.TimerTask;
 
-public class MemoryTimer implements Runnable{
+public class MathTimer implements Runnable{
 
     private Thread service;
     private int time;
-    private MemoryGame memoryGame;
+    private MathGame mathGame;
 
-    public MemoryTimer(int time, MemoryGame memorygame) {
+    public MathTimer(int time, MathGame mathgame) {
         this.time = time;
         this.service=new Thread(this);
-        this.memoryGame=memorygame;
+        this.mathGame=mathgame;
     }
 
     public Thread getService() {
         return service;
     }
-
+    public void setTime(Integer time) {
+        this.time=time;
+    }
     public int getTime() {
         return time;
-    }
-
-    public void setTime(int time) {
-        this.time = time;
     }
 
     @Override
@@ -35,16 +34,16 @@ public class MemoryTimer implements Runnable{
 
             @Override
             public void run() {
-                memoryGame.updateTimer(time);
-                if(time<=0) {
+
+                if(time<=1) {
                     time=0;
 
                     timer.cancel();
-                    memoryGame.finish_game();
+                    //mathGame.finish_game();
                 }
+                mathGame.updateTimer(time);
                 time--;
             }
         }, 0, 1000);
     }
-
 }

@@ -32,7 +32,13 @@ public class MainMenu extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         if(global_music){
-            music();
+            if(menu_music==null){
+                music();
+            }
+            else{
+                menu_music.release();
+                music();
+            }
         }
     }
 
@@ -59,6 +65,12 @@ public class MainMenu extends AppCompatActivity {
         //We start "DifficultySelection" and give the name as an argument to start that activity
         Intent intent = new Intent(this, DifficultySelection.class);
         intent.putExtra(ACTIVITY_NAME,"Invasion de Manchas");
+        startActivity(intent);
+    }
+    public void startMathGame(View view) {
+        //We start "DifficultySelection" and give the name as an argument to start that activity
+        Intent intent = new Intent(this, DifficultySelection.class);
+        intent.putExtra(ACTIVITY_NAME,"Prueba Matemática");
         startActivity(intent);
     }
 

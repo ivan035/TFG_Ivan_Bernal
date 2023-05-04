@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.aprendejugando.games.MathGame;
 import com.example.aprendejugando.games.MemoryGame;
 import com.example.aprendejugando.games.BlobGame;
 
@@ -118,6 +119,12 @@ public class DifficultySelection extends AppCompatActivity {
         }
         if(game_name.equalsIgnoreCase(getResources().getString(R.string.main_menu_blob_name))){
             Intent intent = new Intent(this, BlobGame.class);
+            intent.putExtra(DIFFICULTY_SELECTED, difficulty);
+            startActivity(intent);
+            finish();
+        }
+        if(game_name.equalsIgnoreCase(getResources().getString(R.string.main_menu_math_quizz_game))){
+            Intent intent = new Intent(this, MathGame.class);
             intent.putExtra(DIFFICULTY_SELECTED, difficulty);
             startActivity(intent);
             finish();
