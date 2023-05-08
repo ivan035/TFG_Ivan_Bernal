@@ -58,8 +58,8 @@ public class DifficultySelection extends AppCompatActivity {
         expert_option.setBackgroundResource(R.drawable.shape_rectangle_option);
 
         easy_option.setTextColor(getColor(R.color.white));
-        normal_option.setTextColor(getColor(R.color.carolina_blue_elbueno));
-        expert_option.setTextColor(getColor(R.color.carolina_blue_elbueno));
+        normal_option.setTextColor(getColor(R.color.carolina_blue));
+        expert_option.setTextColor(getColor(R.color.carolina_blue));
     }
     public void normal_mode(View view) {
         //If user select easy mode, the "difficulty" variable will be set to 2
@@ -72,8 +72,8 @@ public class DifficultySelection extends AppCompatActivity {
         expert_option.setBackgroundResource(R.drawable.shape_rectangle_option);
 
         normal_option.setTextColor(getColor(R.color.white));
-        easy_option.setTextColor(getColor(R.color.carolina_blue_elbueno));
-        expert_option.setTextColor(getColor(R.color.carolina_blue_elbueno));
+        easy_option.setTextColor(getColor(R.color.carolina_blue));
+        expert_option.setTextColor(getColor(R.color.carolina_blue));
     }
     public void expert_mode(View view) {
         //If user select easy mode, the "difficulty" variable will be set to 3
@@ -86,11 +86,12 @@ public class DifficultySelection extends AppCompatActivity {
         normal_option.setBackgroundResource(R.drawable.shape_rectangle_option);
 
         expert_option.setTextColor(getColor(R.color.white));
-        easy_option.setTextColor(getColor(R.color.carolina_blue_elbueno));
-        normal_option.setTextColor(getColor(R.color.carolina_blue_elbueno));
+        easy_option.setTextColor(getColor(R.color.carolina_blue));
+        normal_option.setTextColor(getColor(R.color.carolina_blue));
     }
 
     public void sound(){
+        //It will start a sound whenever an option is choosen
         if(mediaPlayer==null){
             mediaPlayer = MediaPlayer.create(this, R.raw.menu_sound);
             mediaPlayer.start();
@@ -103,7 +104,7 @@ public class DifficultySelection extends AppCompatActivity {
     }
 
     public void start_game(View view) {
-        //When the user start the game we check wich activity it will start by the name and
+        //When the user start the game we check which activity it will start by the name and
         // pass the difficulty value
         MainMenu.menu_music.release();
         if(mediaPlayer!=null){

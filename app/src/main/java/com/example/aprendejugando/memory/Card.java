@@ -1,6 +1,8 @@
 package com.example.aprendejugando.memory;
 
 public class Card {
+    //This class will create a Card object wich has the ID of the card and his value
+
     Integer id;
     Integer value;
 

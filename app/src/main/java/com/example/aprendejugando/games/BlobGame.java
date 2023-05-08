@@ -5,14 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.aprendejugando.DifficultySelection;
@@ -22,7 +20,6 @@ import com.example.aprendejugando.blob.Blob_list;
 import com.example.aprendejugando.blob.BlobTimer;
 
 import java.util.ArrayList;
-import java.util.function.ToIntBiFunction;
 
 public class BlobGame extends AppCompatActivity {
 
@@ -30,9 +27,9 @@ public class BlobGame extends AppCompatActivity {
     private TextView score_text;
     private TextView timer_text;
     private TextView blob_count_text;
-    private TextView dog_dialogue;
+    private TextView blackie_dialogue;
     private TextView game_end_text;
-    private ImageView dog_image;
+    private ImageView blackie_image;
     private ImageView background_image;
     private ImageView blob1;
     private ImageView blob2;
@@ -69,8 +66,8 @@ public class BlobGame extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.blob_game);
         //We match the views needed with our variables
-        dog_dialogue = findViewById(R.id.blob_game_dog_dialogue);
-        dog_image = findViewById(R.id.blob_game_img_dog);
+        blackie_dialogue = findViewById(R.id.blob_game_dog_dialogue);
+        blackie_image = findViewById(R.id.blob_game_img_dog);
         difficulty_text = findViewById(R.id.blob_difficulty_text);
 
         score_text=findViewById(R.id.blob_game_score);
@@ -109,7 +106,7 @@ public class BlobGame extends AppCompatActivity {
             max_blob_cuantity = 12;
             starter_blob_add_ammount = 0.5;
         }
-        initalizeblobs();
+        initalize_blobs();
 
         //Display the actual score to the user and starts the background image animation
         Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.scale);
@@ -117,10 +114,9 @@ public class BlobGame extends AppCompatActivity {
         time_bar.setMax(GAME_TIME);
         time_bar.setProgress(GAME_TIME);
         game_music();
-
     }
 
-    private void initalizeblobs() {
+    private void initalize_blobs() {
         //it matches the views with the blobs and makes them all invisible
         blob1 = findViewById(R.id.blob_game_blob1);
         blob2 = findViewById(R.id.blob_game_blob2);
@@ -190,7 +186,6 @@ public class BlobGame extends AppCompatActivity {
     }
 
     private void make_blob_visible(int blob_id) {
-
         //It will give the desired blob a random position and make it visible.
         //Will also be set as show in the blob list
         //Since this will be executed from the Timer Thread it needs to be a runnableUI Thread
@@ -324,15 +319,15 @@ public class BlobGame extends AppCompatActivity {
     private void blackie_action_lose() {
         //When the game ends, it changes dog image and text
         String blackie_game_over_text = getResources().getString(R.string.blackie_lose_default_text);
-        dog_dialogue.setText(String.format(blackie_game_over_text, score));
-        dog_image.setImageResource(R.drawable.blackie_sleep);
+        blackie_dialogue.setText(String.format(blackie_game_over_text, score));
+        blackie_image.setImageResource(R.drawable.blackie_sleep);
     }
 
     public void clean(View view) {
         //When a blob get clicked it will get their view ID name
         String view_id = getResources().getResourceEntryName(view.getId());
 
-        //If the timer is not over it will make the bloab opacity lower
+        //If the timer is not over it will make the blob opacity lower
         //If the opacity is lower than 0.2 it will add a point an set the score text so player sees it
         // then it compare the ID name with the blobs in the list until it find their position to set
         // show to false
@@ -391,28 +386,28 @@ public class BlobGame extends AppCompatActivity {
         int action = (int) (Math.random() * 7 + 1);
         if (action == 1) {
             String text = getResources().getString(R.string.blob_game_dog_action1);
-            dog_dialogue.setText(text);
-            dog_image.setImageResource(R.drawable.blackie_impressed);
+            blackie_dialogue.setText(text);
+            blackie_image.setImageResource(R.drawable.blackie_impressed);
         }
         if (action == 2) {
             String text = getResources().getString(R.string.blob_game_dog_action2);
-            dog_dialogue.setText(text);
-            dog_image.setImageResource(R.drawable.blackie_happy);
+            blackie_dialogue.setText(text);
+            blackie_image.setImageResource(R.drawable.blackie_happy);
         }
         if (action == 3) {
             String text = getResources().getString(R.string.blob_game_dog_action3);
-            dog_dialogue.setText(text);
-            dog_image.setImageResource(R.drawable.blackie_front);
+            blackie_dialogue.setText(text);
+            blackie_image.setImageResource(R.drawable.blackie_front);
         }
         if (action == 4) {
             String text = getResources().getString(R.string.blob_game_dog_action4);
-            dog_dialogue.setText(text);
-            dog_image.setImageResource(R.drawable.blackie_happy);
+            blackie_dialogue.setText(text);
+            blackie_image.setImageResource(R.drawable.blackie_happy);
         }
         if (action == 5) {
             String text = getResources().getString(R.string.blob_game_dog_action5);
-            dog_dialogue.setText(text);
-            dog_image.setImageResource(R.drawable.blackie_howl);
+            blackie_dialogue.setText(String.format(text,score));
+            blackie_image.setImageResource(R.drawable.blackie_howl);
         }
     }
 
@@ -490,10 +485,10 @@ public class BlobGame extends AppCompatActivity {
     public void onBackPressed() {
         //If the user press the "back" button in the mobile, it will stop the music and finish the
         // activity
-            super.onBackPressed();
-            if(music!=null){
-                music.release();
-            }
-            finish();
+        super.onBackPressed();
+        if(music!=null){
+            music.release();
+        }
+        finish();
     }
 }

@@ -4,6 +4,8 @@ import android.view.View;
 import android.widget.ImageView;
 
 public class LifeManger {
+    //This class will manage the lifes of the math game
+
     private ImageView life_id;
     private Boolean life_lost;
 

@@ -16,7 +16,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/background_main_menu" />
+        app:srcCompat="@drawable/background_main_menu"
+        tools:ignore="ImageContrastCheck" />
 
     <ImageView
         android:id="@+id/difficulty_selection_img_dog"
@@ -65,7 +66,7 @@
         android:fontFamily="sans-serif-condensed"
         android:gravity="center"
         android:text="@string/difficulty_selection_default_dialogue"
-        android:textColor="#000000"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="@+id/difficulty_selection_img_chatbox"
         app:layout_constraintEnd_toEndOf="@+id/difficulty_selection_img_chatbox"
         app:layout_constraintHorizontal_bias="0.337"
@@ -85,11 +86,12 @@
         android:onClick="easy_mode"
         android:soundEffectsEnabled="false"
         android:text="@string/difficulty_easy"
-        android:textColor="@color/carolina_blue_elbueno"
+        android:textColor="@color/carolina_blue"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="@+id/difficulty_selection_game_name"
         app:layout_constraintStart_toStartOf="@+id/difficulty_selection_game_name"
-        app:layout_constraintTop_toBottomOf="@+id/difficulty_selection_game_name" />
+        app:layout_constraintTop_toBottomOf="@+id/difficulty_selection_game_name"
+        tools:ignore="TextContrastCheck" />
 
     <TextView
         android:id="@+id/difficulty_selection_normal_option"
@@ -102,12 +104,13 @@
         android:onClick="normal_mode"
         android:soundEffectsEnabled="false"
         android:text="@string/difficulty_normal"
-        android:textColor="@color/carolina_blue_elbueno"
+        android:textColor="@color/carolina_blue"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="@+id/difficulty_selection_easy_option"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/difficulty_selection_easy_option"
-        app:layout_constraintTop_toBottomOf="@+id/difficulty_selection_easy_option" />
+        app:layout_constraintTop_toBottomOf="@+id/difficulty_selection_easy_option"
+        tools:ignore="TextContrastCheck" />
 
     <TextView
         android:id="@+id/difficulty_selection_expert_option"
@@ -120,11 +123,12 @@
         android:onClick="expert_mode"
         android:soundEffectsEnabled="false"
         android:text="@string/difficulty_hard"
-        android:textColor="@color/carolina_blue_elbueno"
+        android:textColor="@color/carolina_blue"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="@+id/difficulty_selection_normal_option"
         app:layout_constraintStart_toStartOf="@+id/difficulty_selection_normal_option"
-        app:layout_constraintTop_toBottomOf="@+id/difficulty_selection_normal_option" />
+        app:layout_constraintTop_toBottomOf="@+id/difficulty_selection_normal_option"
+        tools:ignore="TextContrastCheck" />
 
     <Button
         android:id="@+id/difficulty_selection_start_button"
@@ -136,6 +140,7 @@
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="@+id/difficulty_selection_expert_option"
         app:layout_constraintStart_toStartOf="@+id/difficulty_selection_expert_option"
-        app:layout_constraintTop_toBottomOf="@+id/difficulty_selection_expert_option" />
+        app:layout_constraintTop_toBottomOf="@+id/difficulty_selection_expert_option"
+        tools:ignore="TextContrastCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,6 +8,8 @@ import java.util.Collections;
 import java.util.List;
 
 public class StageValue {
+    //This class will generate a stage, which is pairing all the cards with a value making sure
+    // that no one repeats
 
     private ArrayList<ImageView> cards_list;
     private Integer[] cards_id_list= new Integer[9];

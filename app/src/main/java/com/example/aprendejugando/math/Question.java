@@ -1,6 +1,7 @@
 package com.example.aprendejugando.math;
 
 public class Question {
+    //This class will create a Question object, wich have the question text and the correct answer
 
     private String text;
     private String answer;

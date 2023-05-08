@@ -13,13 +13,8 @@
     <color name="primary_color">#2c5784</color>
     <color name="secundary_colour">#004346</color>
     <color name="third_colour">#fca17d</color>
-
-    <color name="carolina_blue_elbueno">#74B3CE</color>
-    <!-- Pack 2 PASTEL GREEN-->
-    <color name="celadon_green">#baf2bb</color>
-    <color name="celadon_light_green">#baf2d8</color>
+    <color name="carolina_blue">#74B3CE</color>
     <color name="columbia_blue">#bad7f2</color>
-    <color name="orchid_pink">#f2bac9</color>
     <color name="dutch_white">#f2e2ba</color>
 
     <!-- Pack 3 -->

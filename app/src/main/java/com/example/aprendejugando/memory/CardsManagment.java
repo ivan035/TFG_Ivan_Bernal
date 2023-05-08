@@ -14,6 +14,8 @@ import com.example.aprendejugando.games.MemoryGame;
 import java.util.TimerTask;
 
 public class CardsManagment implements Runnable{
+    //This class will manage the cards and is the class which match them
+
     private MemoryGame memorygame;
     private View card1;
     private View card2;
@@ -35,6 +37,7 @@ public class CardsManagment implements Runnable{
     }
 
     public void setCard1(View card1) {
+        //When we set a card, it will call showCard1
         this.card1 = card1;
         if(card1!=null){
             showCard1();
@@ -46,6 +49,7 @@ public class CardsManagment implements Runnable{
     }
 
     public void setCard2(View card2) {
+        //When we set a card, it will call showCard2
         this.card2 = card2;
         if(card2!=null){
             showCard2();
@@ -61,6 +65,8 @@ public class CardsManagment implements Runnable{
     }
 
     public void showCard1(){
+        //The card 1 will play the animation and reveal the card Image, it will also make the card
+        // flip sound
         ObjectAnimator show_card = (ObjectAnimator) AnimatorInflater.loadAnimator(context, R.animator.memory_animation_show);
         show_card.setTarget(card1);
         show_card.setDuration(800);
@@ -70,6 +76,8 @@ public class CardsManagment implements Runnable{
     }
 
     public void showCard2(){
+        //The card 2 will play the animation and reveal the card Image, it will also make the card
+        // flip sound. Then it will start the runnable to check if the card matches
         ObjectAnimator show_card = (ObjectAnimator) AnimatorInflater.loadAnimator(context, R.animator.memory_animation_show);
         show_card.setTarget(card2);
         show_card.setDuration(800);
@@ -82,6 +90,10 @@ public class CardsManagment implements Runnable{
     }
 
     public void hideCards(){
+        //We start the hide animation of both cards and start it. Then we will check if the cards
+        // matches, if it does, both cards will go Invisible, make the correct sound and update
+        // the score, if the Stage is empty ( 4 matches have been made ) it will create a new one
+
         ObjectAnimator hide_card1 = (ObjectAnimator) AnimatorInflater.loadAnimator(context, R.animator.memory_animation_hide);
         hide_card1.setDuration(800);
         hide_card1.setTarget(card1);
@@ -111,12 +123,16 @@ public class CardsManagment implements Runnable{
         }
         hideImageAnimation(card1);
         hideImageAnimation(card2);
+
+        //If the cards dosnt match they will be set as null, so a new card can be set
         setCard1(null);
         setCard2(null);
     }
 
     @Override
     public void run() {
+        //this will run hide cards method
+
         try {
             sleep(1000);
             memorygame.runOnUiThread(new Runnable() {
@@ -133,6 +149,8 @@ public class CardsManagment implements Runnable{
     }
 
     private boolean cardPairs() {
+        //We check if the card values matches
+
         if(card1_value==card2_value){
             return true;
         }
@@ -140,8 +158,10 @@ public class CardsManagment implements Runnable{
     }
 
     private Drawable getImageValue(Integer value){
+        //This method will set the image displayed on every stage
+
         Drawable img=null;
-        if(memorygame.stages_completed==0 || memorygame.stages_completed==3){
+        if(memorygame.stages_completed%2==0){
             switch (value){
                 case 0:
                     img=memorygame.getDrawable(R.drawable.blob_yellow);
@@ -162,7 +182,7 @@ public class CardsManagment implements Runnable{
                     break;
             }
         }
-        else if(memorygame.stages_completed==1 || memorygame.stages_completed==4){
+        else {
             switch (value){
                 case 0:
                     img=memorygame.getDrawable(R.drawable.tree_apple);
@@ -183,34 +203,13 @@ public class CardsManagment implements Runnable{
                     break;
             }
         }
-        else if(memorygame.stages_completed==2 || memorygame.stages_completed==5){
-            switch (value){
-                case 0:
-                    img=memorygame.getDrawable(R.drawable.blob_yellow);
-                    break;
-                case 1:
-                    img=memorygame.getDrawable(R.drawable.blob_red);
-                    break;
-                case 2:
-                    img=memorygame.getDrawable(R.drawable.blob_blue);
-                    break;
-                case 3:
-                    img=memorygame.getDrawable(R.drawable.blob_purple);
-                    break;
-                case 4:
-                    img=memorygame.getDrawable(R.drawable.blob_green);
-                    break;
-                default:
-                    break;
-            }
-        }
-
 
         return img;
     }
 
     private void showImageAnimation(View card, Integer card_value){
-
+        //The card will show the image when the animation goes on half to make it more interesting
+        // visually
         java.util.Timer timer = new java.util.Timer();
         timer.schedule(new TimerTask() {
             @Override
@@ -233,6 +232,8 @@ public class CardsManagment implements Runnable{
     }
 
     private void hideImageAnimation(View card){
+        //The card will play the show animation in reverse to hide the card
+
         java.util.Timer timer = new java.util.Timer();
         timer.schedule(new TimerTask() {
             @Override

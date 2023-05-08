@@ -177,6 +177,7 @@ public class MemoryGame extends AppCompatActivity {
     }
 
     public void updateScore() {
+        //It will update the score text
         String default_score_text = getString(R.string.global_score);
         score_text.setText(String.format(default_score_text,score));
         pairs_found++;
@@ -184,7 +185,7 @@ public class MemoryGame extends AppCompatActivity {
     }
 
     public void updateTimer(Integer time){
-
+        //It will update the timer text and the timer bar
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -198,7 +199,7 @@ public class MemoryGame extends AppCompatActivity {
     private void blackie_action() {
         //Whenever you match a pair it will throw a random number to change the text and
         //image of the dog
-        //Action has a larger range that it should, so it will change sometimes you clean a blob
+        //Action has a larger range that it should, so it will change just sometimes
         // and not always
         int action = (int) (Math.random() * 7 + 1);
         if (action == 1) {

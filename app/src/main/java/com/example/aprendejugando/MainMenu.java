@@ -3,6 +3,7 @@ package com.example.aprendejugando;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.os.LocaleListCompat;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -36,18 +37,16 @@ public class MainMenu extends AppCompatActivity {
         music_option=findViewById(R.id.main_menu_option_sound);
         language_option = findViewById(R.id.main_menu_lenguage_option_image);
 
-        if(global_music){
-            if(menu_music==null){
-                music();
-            }
-        }
-        else{
+
+
+        if(!global_music){
             music_option.setBackgroundResource(R.drawable.option_sound_background_disabled);
             music_option.setImageDrawable(getDrawable(R.drawable.option_sound_disabled));
         }
-
-        String actual_language = String.valueOf(getResources().getConfiguration().getLocales()).replaceAll("[\\[\\]]", "");
-        System.out.println("el idioma es: "+actual_language);
+        else{
+            music();
+        }
+        String actual_language = String.valueOf(getResources().getConfiguration().getLocales().get(0));
         if(actual_language.equalsIgnoreCase("es")){
             language="es";
             language_option.setImageDrawable(getDrawable(R.drawable.option_spanish));
@@ -104,6 +103,9 @@ public class MainMenu extends AppCompatActivity {
     }
 
     public void music(){
+        //If the music is not loaded it will load it and start it, otherwise it
+        // will release it and start it again
+
         if(menu_music==null){
             menu_music = MediaPlayer.create(this, R.raw.menu_music);
             menu_music.setLooping(true);
@@ -118,6 +120,9 @@ public class MainMenu extends AppCompatActivity {
     }
 
     public void mute_music(View view) {
+        //When the sound button is clicked, it will turn the global config music off, but if
+        // its turned off already it will turn on
+
         if(MainMenu.global_music==true){
             MainMenu.global_music=false;
             music_option.setBackgroundResource(R.drawable.option_sound_background_disabled);
@@ -134,19 +139,21 @@ public class MainMenu extends AppCompatActivity {
 
     }
 
-    public void change_lenguage(View view) {
+    public void change_language(View view) {
+        //When the language button is clicked, it will call setLocal with the desired language
         if(language.equalsIgnoreCase("en")){
-            setLocal(this, "es");
-            System.out.println("cambiando a spanish");
+            setLocal("es");
         }
         else{
-            setLocal(this, "en");
-            System.out.println("cambiando a english");
+            setLocal("en");
         }
+
     }
 
-    public void setLocal(Activity activity, String language){
-        LocaleHelper.setLocale(activity, language);
-        activity.recreate();
+    public void setLocal(String language){
+        //This will change the locale language and restart the activity
+        menu_music.release();
+        LocaleListCompat appLocale = LocaleListCompat.forLanguageTags(language);
+        AppCompatDelegate.setApplicationLocales(appLocale);
     }
 }

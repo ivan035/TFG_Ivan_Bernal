@@ -31,13 +31,13 @@ public class MathGame extends AppCompatActivity {
     private TextView answer3;
     private TextView answer4;
     private TextView score_text;
-    private TextView dog_dialogue;
+    private TextView blackie_dialogue;
     private TextView game_end_text;
     private ImageView life_1;
     private ImageView life_2;
     private ImageView life_3;
     private ImageView life_4;
-    private ImageView dog_image;
+    private ImageView blackie_image;
     private Button back_to_menu_button;
     private ArrayList<TextView> answer_positions= new ArrayList<>();
     private ArrayList<LifeManger> lifes = new ArrayList<>();
@@ -54,29 +54,31 @@ public class MathGame extends AppCompatActivity {
     private MediaPlayer correct;
     private MediaPlayer wrong;
 
-    private Integer GAME_TIME=50;
+    private Integer GAME_TIME = 60;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.math_game);
+
+        //We match the views needed with our variables
         difficulty_text = findViewById(R.id.math_difficulty_text);
 
         time_text = findViewById(R.id.math_game_time_text);
         time_bar = findViewById(R.id.math_game_time_bar);
 
-        question_text = findViewById(R.id.math_game_question_text);
-
+        //Also set the default text to make sure its in the correct language
         String default_score_text = getString(R.string.global_score);
         score_text = findViewById(R.id.math_game_score);
         score_text.setText(String.format(default_score_text,score));
 
+        question_text = findViewById(R.id.math_game_question_text);
         answer1 = findViewById(R.id.math_game_answer_1);
         answer2 = findViewById(R.id.math_game_answer_2);
         answer3 = findViewById(R.id.math_game_answer_3);
         answer4 = findViewById(R.id.math_game_answer_4);
 
-        dog_dialogue = findViewById(R.id.math_game_dog_dialogue);
-        dog_image = findViewById(R.id.math_game_img_dog);
+        blackie_dialogue = findViewById(R.id.math_game_dog_dialogue);
+        blackie_image = findViewById(R.id.math_game_img_dog);
 
         game_end_text = findViewById(R.id.math_game_end_text);
         back_to_menu_button = findViewById(R.id.math_game_tomenu_button);
@@ -85,6 +87,7 @@ public class MathGame extends AppCompatActivity {
         life_3 = findViewById(R.id.math_game_life_3);
         life_4 = findViewById(R.id.math_game_life_4);
 
+        //Initialize all lifes, if the user play in hard mode it will be alife less
         lifes.add(new LifeManger(life_1,false));
         lifes.add(new LifeManger(life_2,false));
         lifes.add(new LifeManger(life_3,false));
@@ -112,15 +115,18 @@ public class MathGame extends AppCompatActivity {
         time_bar.setMax(GAME_TIME);
         time_bar.setProgress(GAME_TIME);
 
+        //Set the position of the answer to an array of textview
         answer_positions.add(answer1);
         answer_positions.add(answer2);
         answer_positions.add(answer3);
         answer_positions.add(answer4);
 
+        //Initialize the game music
         game_music();
     }
 
     public void updateTimer(int time) {
+        //Updates the timer text and time bar
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -132,12 +138,15 @@ public class MathGame extends AppCompatActivity {
 
 
     public void start_game(View view) {
+        //Starts the timer and generates a new question
         timer.getService().start();
         view.setVisibility(View.INVISIBLE);
         nextQuestion();
     }
 
     public void finishGame() {
+        //Game ends and sets the timer to 0, it also will take the string of game over and format
+        // it to show how many points the user got and set visible the go back to menu button
         timer.setTime(0);
         timer.getService().interrupt();
         String game_over = getResources().getString(R.string.global_game_over);
@@ -153,6 +162,7 @@ public class MathGame extends AppCompatActivity {
         });
     }
     private void nextQuestion() {
+        //Generates a new question, update the lifes and shows the question to the user
         updateLifes();
         String default_text = getResources().getString(R.string.math_game_question_text);
         Question question = generateQuestion(difficulty_level);
@@ -161,6 +171,7 @@ public class MathGame extends AppCompatActivity {
     }
 
     private void updateLifes(){
+        //Updates the lifes shown and if the amount of lost lifes is 4 the game ends
         for (LifeManger life :lifes) {
             if(life.getLife_lost()){
                 life.getLife_id().setVisibility(View.INVISIBLE);
@@ -180,7 +191,9 @@ public class MathGame extends AppCompatActivity {
 
 
     private Question generateQuestion(Integer difficulty){
-
+        //Generates a random question with random numbers and the type ( "+", "-" ) depending
+        // on difficulty, it also gets the correct answer and fill the other positions with random
+        // numbers
         Integer number1;
         Integer number2;
         Integer answer;
@@ -209,10 +222,8 @@ public class MathGame extends AppCompatActivity {
             }
         }
 
-
         String question_value = (number1 + type + number2);
         Question question = new Question(question_value,String.valueOf(answer));
-
         Integer correct_answer_position = (int) (Math.random()*4);
         answer_positions.get(correct_answer_position).setText(question.getAnswer());
         answer_positions.get(correct_answer_position).setTextColor(getColor(R.color.selected));
@@ -224,6 +235,7 @@ public class MathGame extends AppCompatActivity {
 
 
     private void fill_random_answers(Integer correct_answer_position, Integer correct_answer){
+        //Fills the rest of the positions with random numbers
         Integer first_number = 0;
         Integer second_number = 0;
 
@@ -233,7 +245,7 @@ public class MathGame extends AppCompatActivity {
                 if(difficulty_level == 1){
                     do {
                         random_number = (int) (Math.random()*50);
-                    }while( (random_number==correct_answer) || (random_number == first_number) ||
+                    }while( (random_number == correct_answer) || (random_number == first_number) ||
                             (random_number == second_number) );
                 }
                 else{
@@ -246,7 +258,7 @@ public class MathGame extends AppCompatActivity {
                 answer_positions.get(i).setText(String.valueOf(random_number));
                 answer_positions.get(i).setTextColor(getColor(R.color.black)); //SOLO PARA TESTEAR
                 if(first_number!=0){
-                    second_number=random_number;
+                    second_number = random_number;
                 }
                 else{
                     first_number = random_number;
@@ -256,9 +268,12 @@ public class MathGame extends AppCompatActivity {
     }
 
     public void check_answer(View answer_card) {
-        if(timer.getTime()>0){
+        //Check if the clicked answer is the correct one,it gives points, update the score and
+        // generate another question if its correct, otherwise it will make the last life invisible
+        // and set that life to lost, calls an blackie_bad_action and generate a new question
+        if(timer.getTime() > 0){
             TextView answer_clicked = (TextView) answer_card;
-            if(answer_clicked.getText()==actual_question.getAnswer()){
+            if(answer_clicked.getText() == actual_question.getAnswer()){
                 correct_sound();
                 score++;
                 updateScore();
@@ -280,6 +295,7 @@ public class MathGame extends AppCompatActivity {
     }
 
     private void updateScore() {
+        //Updates the score text show to the user
         String score_default_text = getResources().getString(R.string.global_score);
         blackie_good_action();
         score_text.setText(String.format(score_default_text,score));
@@ -288,57 +304,58 @@ public class MathGame extends AppCompatActivity {
     private void blackie_good_action() {
         //Whenever you match a pair it will throw a random number to change the text and
         //image of the dog
-        //Action has a larger range that it should, so it will change sometimes you clean a blob
+        //Action has a larger range that it should, so it will change just sometimes
         // and not always
         int action = (int) (Math.random() * 7 + 1);
         if (action == 1) {
-            dog_dialogue.setTextSize(20f);
+            blackie_dialogue.setTextSize(20f);
             String text = getResources().getString(R.string.math_game_dog_action1);
-            dog_dialogue.setText(text);
-            dog_image.setImageResource(R.drawable.blackie_impressed);
+            blackie_dialogue.setText(text);
+            blackie_image.setImageResource(R.drawable.blackie_impressed);
         }
         if (action == 2) {
-            dog_dialogue.setTextSize(20f);
+            blackie_dialogue.setTextSize(20f);
             String text = getResources().getString(R.string.math_game_dog_action2);
-            dog_dialogue.setText(text);
-            dog_image.setImageResource(R.drawable.blackie_happy);
+            blackie_dialogue.setText(text);
+            blackie_image.setImageResource(R.drawable.blackie_happy);
         }
         if (action == 3) {
-            dog_dialogue.setTextSize(20f);
+            blackie_dialogue.setTextSize(20f);
             String text = getResources().getString(R.string.math_game_dog_action3);
-            dog_dialogue.setText(text);
-            dog_image.setImageResource(R.drawable.blackie_front);
+            blackie_dialogue.setText(text);
+            blackie_image.setImageResource(R.drawable.blackie_front);
         }
         if (action == 4) {
-            dog_dialogue.setTextSize(20f);
+            blackie_dialogue.setTextSize(20f);
             String text = getResources().getString(R.string.math_game_dog_action4);
-            dog_dialogue.setText(text);
-            dog_image.setImageResource(R.drawable.blackie_happy);
+            blackie_dialogue.setText(text);
+            blackie_image.setImageResource(R.drawable.blackie_happy);
         }
         if (action == 5) {
-            dog_dialogue.setTextSize(20f);
+            blackie_dialogue.setTextSize(20f);
             String text = getResources().getString(R.string.math_game_dog_action5);
-            dog_dialogue.setText(String.format(text,score));
-            dog_image.setImageResource(R.drawable.blackie_howl);
+            blackie_dialogue.setText(String.format(text,score));
+            blackie_image.setImageResource(R.drawable.blackie_howl);
         }
     }
     private void blackie_bad_action() {
         //When the game ends, it changes dog image and text
-        dog_dialogue.setTextSize(20f);
+        blackie_dialogue.setTextSize(20f);
         String text = getResources().getString(R.string.math_game_dog_bad_action);
-        dog_dialogue.setText(text);
-        dog_image.setImageResource(R.drawable.blackie_sad);
+        blackie_dialogue.setText(text);
+        blackie_image.setImageResource(R.drawable.blackie_sad);
     }
 
     private void blackie_action_lose() {
         //When the game ends, it changes dog image and text
         String blackie_game_over_text = getResources().getString(R.string.blackie_lose_default_text);
-        dog_dialogue.setTextSize(16f);
-        dog_dialogue.setText(String.format(blackie_game_over_text, score));
-        dog_image.setImageResource(R.drawable.blackie_sleep);
+        blackie_dialogue.setTextSize(16f);
+        blackie_dialogue.setText(String.format(blackie_game_over_text, score));
+        blackie_image.setImageResource(R.drawable.blackie_sleep);
     }
 
     public void game_music(){
+        //Starts the music of the game if the global_music option is on
         if(MainMenu.global_music){
             music = MediaPlayer.create(this, R.raw.math_game_music);
             music.setLooping(true);
@@ -347,7 +364,8 @@ public class MathGame extends AppCompatActivity {
     }
 
     public void correct_sound(){
-        if(correct==null){
+        //It will start the correct answer sound
+        if(correct == null){
             correct = MediaPlayer.create(this, R.raw.math_correct_answer);
             correct.setVolume(0.3f,03f);
             correct.start();
@@ -361,7 +379,8 @@ public class MathGame extends AppCompatActivity {
     }
 
     public void wrong_sound(){
-        if(wrong==null){
+        //It will start the wrong answer sound
+        if(wrong == null){
             wrong = MediaPlayer.create(this, R.raw.math_wrong_answer);
             wrong.setVolume(0.3f,03f);
             wrong.start();
@@ -379,14 +398,16 @@ public class MathGame extends AppCompatActivity {
         //If the user press the "back" button in the mobile, it will stop the music and finish the
         // activity
         super.onBackPressed();
-        if(music!=null){
+        if(music != null){
             music.release();
         }
         finish();
     }
 
     public void finish_game(View view){
-        if(music!=null){
+        //If game finish and user clicks the go back to menu button it will stop the music
+        // and finish the activity
+        if(music != null){
             music.release();
         }
         finish();

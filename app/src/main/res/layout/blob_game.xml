@@ -16,7 +16,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/background_title_screen" />
+        app:srcCompat="@drawable/background_title_screen"
+        tools:ignore="ImageContrastCheck" />
 
     <TextView
         android:id="@+id/blob_game_background_ui"
@@ -50,7 +51,7 @@
         android:fontFamily="sans-serif-condensed"
         android:gravity="center"
         android:text="@string/blob_game_default_dialogue"
-        android:textColor="#000000"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="@+id/blob_game_img_chatbox"
         app:layout_constraintEnd_toEndOf="@+id/blob_game_img_chatbox"
         app:layout_constraintHorizontal_bias="0.407"
@@ -88,7 +89,8 @@
         app:layout_constraintBottom_toBottomOf="@+id/blob_game_timer_text"
         app:layout_constraintStart_toStartOf="@+id/blob_game_background_ui"
         app:layout_constraintTop_toTopOf="@+id/blob_game_timer_text"
-        app:layout_constraintVertical_bias="0.454" />
+        app:layout_constraintVertical_bias="0.454"
+        tools:ignore="TextContrastCheck" />
 
     <TextView
         android:id="@+id/blob_difficulty_text"
@@ -107,7 +109,8 @@
         app:layout_constraintBottom_toBottomOf="@+id/blob_game_timer_text"
         app:layout_constraintStart_toEndOf="@+id/blob_game_timer_text"
         app:layout_constraintTop_toTopOf="@+id/blob_game_timer_text"
-        app:layout_constraintVertical_bias="0.49" />
+        app:layout_constraintVertical_bias="0.49"
+        tools:ignore="TextContrastCheck" />
 
     <ImageView
         android:id="@+id/blob_game_blob1"
@@ -281,7 +284,8 @@
         app:layout_constraintBottom_toTopOf="@+id/blob_game_time_bar"
         app:layout_constraintEnd_toEndOf="@+id/blob_game_time_bar"
         app:layout_constraintStart_toStartOf="@+id/blob_game_time_bar"
-        app:layout_constraintTop_toTopOf="@+id/blob_game_background_ui" />
+        app:layout_constraintTop_toTopOf="@+id/blob_game_background_ui"
+        tools:ignore="TextContrastCheck" />
 
     <TextView
         android:id="@+id/blob_game_blob_counter_text"
@@ -298,7 +302,8 @@
         android:textColor="@color/dutch_white"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="@+id/blob_game_time_bar"
-        app:layout_constraintTop_toBottomOf="@+id/blob_game_time_bar" />
+        app:layout_constraintTop_toBottomOf="@+id/blob_game_time_bar"
+        tools:ignore="TextContrastCheck" />
 
     <TextView
         android:id="@+id/blob_game_blob_counter"
@@ -311,7 +316,6 @@
         android:shadowDx="2"
         android:shadowDy="2"
         android:shadowRadius="1"
-        android:text="0/0"
         android:textColor="@color/dutch_white"
         android:textSize="22sp"
         app:layout_constraintBottom_toBottomOf="@+id/blob_game_blob_counter_text"
@@ -390,6 +394,7 @@
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="@+id/blob_game_end_text"
         app:layout_constraintStart_toStartOf="@+id/blob_game_end_text"
-        app:layout_constraintTop_toBottomOf="@+id/blob_game_end_text" />
+        app:layout_constraintTop_toBottomOf="@+id/blob_game_end_text"
+        tools:ignore="VisualLintButtonSize" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

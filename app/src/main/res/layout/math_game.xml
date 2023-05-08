@@ -34,10 +34,10 @@
 
     <ImageView
         android:id="@+id/math_game_img_chatbox"
-        android:layout_width="285dp"
-        android:layout_height="164dp"
+        android:layout_width="298dp"
+        android:layout_height="184dp"
         android:layout_marginEnd="84dp"
-        android:layout_marginBottom="56dp"
+        android:layout_marginBottom="48dp"
         android:contentDescription="@string/image"
         android:rotationY="-176"
         android:scaleX="2"
@@ -49,12 +49,12 @@
 
     <TextView
         android:id="@+id/math_game_dog_dialogue"
-        android:layout_width="199dp"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-condensed"
+        android:layout_width="243dp"
+        android:layout_height="84dp"
+        android:fontFamily="@font/chelsea_market"
         android:gravity="center"
         android:text="@string/math_game_default_dialogue"
-        android:textColor="#000000"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="@+id/math_game_img_chatbox"
         app:layout_constraintEnd_toEndOf="@+id/math_game_img_chatbox"
         app:layout_constraintHorizontal_bias="0.383"
