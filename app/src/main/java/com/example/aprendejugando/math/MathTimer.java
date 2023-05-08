@@ -35,11 +35,11 @@ public class MathTimer implements Runnable{
             @Override
             public void run() {
 
-                if(time<=1) {
+                if(time<=0) {
                     time=0;
 
                     timer.cancel();
-                    //mathGame.finish_game();
+                    mathGame.finishGame();
                 }
                 mathGame.updateTimer(time);
                 time--;

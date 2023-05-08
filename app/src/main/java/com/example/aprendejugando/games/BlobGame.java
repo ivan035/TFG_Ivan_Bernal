@@ -31,7 +31,6 @@ public class BlobGame extends AppCompatActivity {
     private TextView timer_text;
     private TextView blob_count_text;
     private TextView dog_dialogue;
-    private TextView game_end_score;
     private TextView game_end_text;
     private ImageView dog_image;
     private ImageView background_image;
@@ -73,17 +72,21 @@ public class BlobGame extends AppCompatActivity {
         dog_dialogue = findViewById(R.id.blob_game_dog_dialogue);
         dog_image = findViewById(R.id.blob_game_img_dog);
         difficulty_text = findViewById(R.id.blob_difficulty_text);
-        score_text = findViewById(R.id.blob_game_score);
+
+        score_text=findViewById(R.id.blob_game_score);
+        String default_score_text = getString(R.string.global_score);
+        score_text.setText(String.format(default_score_text,0));
+
         timer_text = findViewById(R.id.blob_game_timer_text);
         time_bar=findViewById(R.id.blob_game_time_bar);
         blob_count_text = findViewById(R.id.blob_game_blob_counter);
-        game_end_score = findViewById(R.id.blob_game_end_score);
         game_end_text = findViewById(R.id.blob_game_end_text);
         to_menu=findViewById(R.id.blob_game_tomenu_button);
         background_image = findViewById(R.id.blob_game_img_bg);
 
         //Depending on the difficulty chosen we set the limit of the shown blobs and the
         // starter add_time amount to spawn the blobs ( blob.Timer >> time_to_add_new_blob )
+        String default_mode_text = getString(R.string.global_mode);
         Intent intent = getIntent();
         if (intent != null) {
             difficulty_level = intent.getIntExtra(DifficultySelection.DIFFICULTY_SELECTED, 0);
@@ -91,22 +94,24 @@ public class BlobGame extends AppCompatActivity {
             starter_blob_add_ammount = 0.8;
         }
         if (difficulty_level == 2) {
-            difficulty_text.setText("Modo: Normal");
+            String default_level_text = getString(R.string.difficulty_normal);
+            difficulty_text.setText(default_mode_text + " " + default_level_text);
             max_blob_cuantity = 8;
             starter_blob_add_ammount = 1.4;
         } else if (difficulty_level == 3) {
-            difficulty_text.setText("Modo: Experto");
+            String default_level_text = getString(R.string.difficulty_hard);
+            difficulty_text.setText(default_mode_text + " " + default_level_text);
             max_blob_cuantity = 5;
             starter_blob_add_ammount = 2.5;
         } else {
-            difficulty_text.setText("Modo: Facil");
+            String default_level_text = getString(R.string.difficulty_easy);
+            difficulty_text.setText(default_mode_text + " " + default_level_text);
             max_blob_cuantity = 12;
             starter_blob_add_ammount = 0.5;
         }
         initalizeblobs();
 
         //Display the actual score to the user and starts the background image animation
-        score_text.setText("Puntuacion: " + score);
         Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.scale);
         background_image.startAnimation(animation);
         time_bar.setMax(GAME_TIME);
@@ -196,7 +201,7 @@ public class BlobGame extends AppCompatActivity {
                 switch (blob_id) {
                     case 1:
                         blob1.setTranslationX((int) (Math.random() * 700 + 1));
-                        blob1.setTranslationY((int) (Math.random() * 1000 + 350));
+                        blob1.setTranslationY((int) (Math.random() * 950 + 350));
                         blob1.setVisibility(View.VISIBLE);
                         View view1 = findViewById(R.id.blob_game_blob1);
                         view1.setAlpha(1);
@@ -205,7 +210,7 @@ public class BlobGame extends AppCompatActivity {
                         break;
                     case 2:
                         blob2.setTranslationX((int) (Math.random() * 700 + 1));
-                        blob2.setTranslationY((int) (Math.random() * 1000 + 350));
+                        blob2.setTranslationY((int) (Math.random() * 950 + 350));
                         blob2.setVisibility(View.VISIBLE);
                         View view2 = findViewById(R.id.blob_game_blob2);
                         view2.setAlpha(1);
@@ -214,7 +219,7 @@ public class BlobGame extends AppCompatActivity {
                         break;
                     case 3:
                         blob3.setTranslationX((int) (Math.random() * 700 + 1));
-                        blob3.setTranslationY((int) (Math.random() * 1000 + 350));
+                        blob3.setTranslationY((int) (Math.random() * 950 + 350));
                         blob3.setVisibility(View.VISIBLE);
                         View view3 = findViewById(R.id.blob_game_blob3);
                         view3.setAlpha(1);
@@ -223,7 +228,7 @@ public class BlobGame extends AppCompatActivity {
                         break;
                     case 4:
                         blob4.setTranslationX((int) (Math.random() * 700 + 1));
-                        blob4.setTranslationY((int) (Math.random() * 1000 + 350));
+                        blob4.setTranslationY((int) (Math.random() * 950 + 350));
                         blob4.setVisibility(View.VISIBLE);
                         View view4 = findViewById(R.id.blob_game_blob4);
                         view4.setAlpha(1);
@@ -232,7 +237,7 @@ public class BlobGame extends AppCompatActivity {
                         break;
                     case 5:
                         blob5.setTranslationX((int) (Math.random() * 700 + 1));
-                        blob5.setTranslationY((int) (Math.random() * 1000 + 350));
+                        blob5.setTranslationY((int) (Math.random() * 950 + 350));
                         blob5.setVisibility(View.VISIBLE);
                         View view5 = findViewById(R.id.blob_game_blob5);
                         view5.setAlpha(1);
@@ -241,7 +246,7 @@ public class BlobGame extends AppCompatActivity {
                         break;
                     case 6:
                         blob6.setTranslationX((int) (Math.random() * 700 + 1));
-                        blob6.setTranslationY((int) (Math.random() * 1000 + 350));
+                        blob6.setTranslationY((int) (Math.random() * 950 + 350));
                         blob6.setVisibility(View.VISIBLE);
                         View view6 = findViewById(R.id.blob_game_blob6);
                         view6.setAlpha(1);
@@ -250,7 +255,7 @@ public class BlobGame extends AppCompatActivity {
                         break;
                     case 7:
                         blob7.setTranslationX((int) (Math.random() * 700 + 1));
-                        blob7.setTranslationY((int) (Math.random() * 1000 + 350));
+                        blob7.setTranslationY((int) (Math.random() * 950 + 350));
                         blob7.setVisibility(View.VISIBLE);
                         View view7 = findViewById(R.id.blob_game_blob7);
                         view7.setAlpha(1);
@@ -259,7 +264,7 @@ public class BlobGame extends AppCompatActivity {
                         break;
                     case 8:
                         blob8.setTranslationX((int) (Math.random() * 700 + 1));
-                        blob8.setTranslationY((int) (Math.random() * 1000 + 350));
+                        blob8.setTranslationY((int) (Math.random() * 950 + 350));
                         blob8.setVisibility(View.VISIBLE);
                         View view8 = findViewById(R.id.blob_game_blob8);
                         view8.setAlpha(1);
@@ -268,7 +273,7 @@ public class BlobGame extends AppCompatActivity {
                         break;
                     case 9:
                         blob9.setTranslationX((int) (Math.random() * 700 + 1));
-                        blob9.setTranslationY((int) (Math.random() * 1000 + 350));
+                        blob9.setTranslationY((int) (Math.random() * 950 + 350));
                         blob9.setVisibility(View.VISIBLE);
                         View view9 = findViewById(R.id.blob_game_blob9);
                         view9.setAlpha(1);
@@ -277,7 +282,7 @@ public class BlobGame extends AppCompatActivity {
                         break;
                     case 10:
                         blob10.setTranslationX((int) (Math.random() * 700 + 1));
-                        blob10.setTranslationY((int) (Math.random() * 1000 + 350));
+                        blob10.setTranslationY((int) (Math.random() * 950 + 350));
                         blob10.setVisibility(View.VISIBLE);
                         View view10 = findViewById(R.id.blob_game_blob10);
                         view10.setAlpha(1);
@@ -286,7 +291,7 @@ public class BlobGame extends AppCompatActivity {
                         break;
                     case 11:
                         blob11.setTranslationX((int) (Math.random() * 700 + 1));
-                        blob11.setTranslationY((int) (Math.random() * 1000 + 350));
+                        blob11.setTranslationY((int) (Math.random() * 950 + 350));
                         blob11.setVisibility(View.VISIBLE);
                         View view11 = findViewById(R.id.blob_game_blob11);
                         view11.setAlpha(1);
@@ -295,7 +300,7 @@ public class BlobGame extends AppCompatActivity {
                         break;
                     case 12:
                         blob12.setTranslationX((int) (Math.random() * 700 + 1));
-                        blob12.setTranslationY((int) (Math.random() * 1000 + 350));
+                        blob12.setTranslationY((int) (Math.random() * 950 + 350));
                         blob12.setVisibility(View.VISIBLE);
                         View view12 = findViewById(R.id.blob_game_blob12);
                         view12.setAlpha(1);
@@ -318,7 +323,8 @@ public class BlobGame extends AppCompatActivity {
 
     private void blackie_action_lose() {
         //When the game ends, it changes dog image and text
-        dog_dialogue.setText("!Oh no!, se acabo la partida, no te procupes, has conseguido " + score + " puntos, lo hiciste muy bien");
+        String blackie_game_over_text = getResources().getString(R.string.blackie_lose_default_text);
+        dog_dialogue.setText(String.format(blackie_game_over_text, score));
         dog_image.setImageResource(R.drawable.blackie_sleep);
     }
 
@@ -338,7 +344,8 @@ public class BlobGame extends AppCompatActivity {
             if (alpha <= 0.2) {
                 blob_sound();
                 score++;
-                score_text.setText("Puntuacion: " + score);
+                String default_score_text = getString(R.string.global_score);
+                score_text.setText(String.format(default_score_text,score));
                 view.setVisibility(View.INVISIBLE);
                 if (view_id.equalsIgnoreCase(getResources().getResourceEntryName(blob1.getId()))) {
                     list_of_blobs.get(0).setAdded_already(false);
@@ -383,23 +390,28 @@ public class BlobGame extends AppCompatActivity {
         // and not always
         int action = (int) (Math.random() * 7 + 1);
         if (action == 1) {
-            dog_dialogue.setText("!! Bien hecho !!");
+            String text = getResources().getString(R.string.blob_game_dog_action1);
+            dog_dialogue.setText(text);
             dog_image.setImageResource(R.drawable.blackie_impressed);
         }
         if (action == 2) {
-            dog_dialogue.setText("Se te da muy bien");
+            String text = getResources().getString(R.string.blob_game_dog_action2);
+            dog_dialogue.setText(text);
             dog_image.setImageResource(R.drawable.blackie_happy);
         }
         if (action == 3) {
-            dog_dialogue.setText("Lo tienes todo controlado");
+            String text = getResources().getString(R.string.blob_game_dog_action3);
+            dog_dialogue.setText(text);
             dog_image.setImageResource(R.drawable.blackie_front);
         }
         if (action == 4) {
-            dog_dialogue.setText("! Animo, sigue asi !");
+            String text = getResources().getString(R.string.blob_game_dog_action4);
+            dog_dialogue.setText(text);
             dog_image.setImageResource(R.drawable.blackie_happy);
         }
         if (action == 5) {
-            dog_dialogue.setText("Wow, ya tienes " + score + " puntos");
+            String text = getResources().getString(R.string.blob_game_dog_action5);
+            dog_dialogue.setText(text);
             dog_image.setImageResource(R.drawable.blackie_howl);
         }
     }
@@ -427,9 +439,9 @@ public class BlobGame extends AppCompatActivity {
             public void run() {
                 blackie_action_lose();
                 hide_all_blobs();
+                String game_over = getResources().getString(R.string.global_game_over);
+                game_end_text.setText(String.format(game_over,score));
                 to_menu.setVisibility(View.VISIBLE);
-                game_end_score.setText("PUNTUACION FINAL: " + score + " PUNTOS");
-                game_end_score.setVisibility(View.VISIBLE);
                 game_end_text.setVisibility(View.VISIBLE);
             }
         });
@@ -446,8 +458,10 @@ public class BlobGame extends AppCompatActivity {
 
     public void finish_game(View view) {
         //Ends this activity
+        if(music!=null){
+            music.release();
+        }
         finish();
-        music.release();
     }
 
     public void game_music(){

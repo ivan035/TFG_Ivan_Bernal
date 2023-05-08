@@ -123,7 +123,7 @@ public class DifficultySelection extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
-        if(game_name.equalsIgnoreCase(getResources().getString(R.string.main_menu_math_quizz_game))){
+        if(game_name.equalsIgnoreCase(getResources().getString(R.string.main_menu_math_game))){
             Intent intent = new Intent(this, MathGame.class);
             intent.putExtra(DIFFICULTY_SELECTED, difficulty);
             startActivity(intent);

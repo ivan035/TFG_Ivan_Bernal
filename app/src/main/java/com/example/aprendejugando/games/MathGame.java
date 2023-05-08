@@ -3,24 +3,22 @@ package com.example.aprendejugando.games;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import com.example.aprendejugando.MainMenu;
 import com.example.aprendejugando.R;
 import com.example.aprendejugando.DifficultySelection;
 import com.example.aprendejugando.math.LifeManger;
 import com.example.aprendejugando.math.MathTimer;
 import com.example.aprendejugando.math.Question;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Set;
 
 
 public class MathGame extends AppCompatActivity {
@@ -34,11 +32,13 @@ public class MathGame extends AppCompatActivity {
     private TextView answer4;
     private TextView score_text;
     private TextView dog_dialogue;
+    private TextView game_end_text;
     private ImageView life_1;
     private ImageView life_2;
     private ImageView life_3;
     private ImageView life_4;
     private ImageView dog_image;
+    private Button back_to_menu_button;
     private ArrayList<TextView> answer_positions= new ArrayList<>();
     private ArrayList<LifeManger> lifes = new ArrayList<>();
     private Integer lifes_lost=0;
@@ -49,6 +49,10 @@ public class MathGame extends AppCompatActivity {
 
     private MathTimer timer;
     private Question actual_question=new Question(null,null);
+
+    private MediaPlayer music;
+    private MediaPlayer correct;
+    private MediaPlayer wrong;
 
     private Integer GAME_TIME=50;
     @Override
@@ -61,7 +65,10 @@ public class MathGame extends AppCompatActivity {
         time_bar = findViewById(R.id.math_game_time_bar);
 
         question_text = findViewById(R.id.math_game_question_text);
+
+        String default_score_text = getString(R.string.global_score);
         score_text = findViewById(R.id.math_game_score);
+        score_text.setText(String.format(default_score_text,score));
 
         answer1 = findViewById(R.id.math_game_answer_1);
         answer2 = findViewById(R.id.math_game_answer_2);
@@ -71,6 +78,8 @@ public class MathGame extends AppCompatActivity {
         dog_dialogue = findViewById(R.id.math_game_dog_dialogue);
         dog_image = findViewById(R.id.math_game_img_dog);
 
+        game_end_text = findViewById(R.id.math_game_end_text);
+        back_to_menu_button = findViewById(R.id.math_game_tomenu_button);
         life_1 = findViewById(R.id.math_game_life_1);
         life_2 = findViewById(R.id.math_game_life_2);
         life_3 = findViewById(R.id.math_game_life_3);
@@ -81,19 +90,23 @@ public class MathGame extends AppCompatActivity {
         lifes.add(new LifeManger(life_3,false));
         lifes.add(new LifeManger(life_4,false));
 
+        String default_mode_text = getString(R.string.global_mode);
         Intent intent = getIntent();
         if(intent!=null){
             difficulty_level = intent.getIntExtra(DifficultySelection.DIFFICULTY_SELECTED,0);
         }
         if(difficulty_level == 2){
-            difficulty_text.setText("Modo: Normal");
+            String default_level_text = getString(R.string.difficulty_normal);
+            difficulty_text.setText(default_mode_text + " " + default_level_text);
         }
         else if(difficulty_level == 3){
-            difficulty_text.setText("Modo: Dificil");
+            String default_level_text = getString(R.string.difficulty_hard);
+            difficulty_text.setText(default_mode_text + " " + default_level_text);
             lifes.get(3).setLife_lost(true);
         }
         else{
-            difficulty_text.setText("Modo: Facil");
+            String default_level_text = getString(R.string.difficulty_easy);
+            difficulty_text.setText(default_mode_text + " " + default_level_text);
         }
         timer = new MathTimer(GAME_TIME,this);
         time_bar.setMax(GAME_TIME);
@@ -104,7 +117,7 @@ public class MathGame extends AppCompatActivity {
         answer_positions.add(answer3);
         answer_positions.add(answer4);
 
-
+        game_music();
     }
 
     public void updateTimer(int time) {
@@ -124,12 +137,27 @@ public class MathGame extends AppCompatActivity {
         nextQuestion();
     }
 
+    public void finishGame() {
+        timer.setTime(0);
+        timer.getService().interrupt();
+        String game_over = getResources().getString(R.string.global_game_over);
+
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                game_end_text.setText(String.format(game_over,score));
+                game_end_text.setVisibility(View.VISIBLE);
+                back_to_menu_button.setVisibility(View.VISIBLE);
+                blackie_action_lose();
+            }
+        });
+    }
     private void nextQuestion() {
         updateLifes();
         String default_text = getResources().getString(R.string.math_game_question_text);
         Question question = generateQuestion(difficulty_level);
         actual_question=question;
-        question_text.setText(default_text + " " + question.getText());
+        question_text.setText(String.format(default_text,actual_question.getText()));
     }
 
     private void updateLifes(){
@@ -150,10 +178,6 @@ public class MathGame extends AppCompatActivity {
         }
     }
 
-    private void finishGame() {
-        timer.getService().interrupt();
-        timer.setTime(0);
-    }
 
     private Question generateQuestion(Integer difficulty){
 
@@ -200,30 +224,32 @@ public class MathGame extends AppCompatActivity {
 
 
     private void fill_random_answers(Integer correct_answer_position, Integer correct_answer){
-        Integer first_random_number=0;
-        Integer second_random_number=0;
+        Integer first_number = 0;
+        Integer second_number = 0;
+
         for (int i = 0; i < answer_positions.size(); i++) {
             if(correct_answer_position != i){
                 Integer random_number;
                 if(difficulty_level == 1){
                     do {
                         random_number = (int) (Math.random()*50);
-                    }while(random_number==correct_answer && random_number != first_random_number && random_number != second_random_number);
-
+                    }while( (random_number==correct_answer) || (random_number == first_number) ||
+                            (random_number == second_number) );
                 }
                 else{
                     do {
                         random_number = (int) (Math.random()*99);
-                    }while(random_number == correct_answer && random_number != first_random_number && random_number != second_random_number);
+                    }while( (random_number == correct_answer) || (random_number == first_number) ||
+                            (random_number == second_number) );
                 }
 
                 answer_positions.get(i).setText(String.valueOf(random_number));
                 answer_positions.get(i).setTextColor(getColor(R.color.black)); //SOLO PARA TESTEAR
-                if(first_random_number!=0){
-                    second_random_number=random_number;
+                if(first_number!=0){
+                    second_number=random_number;
                 }
                 else{
-                    first_random_number = random_number;
+                    first_number = random_number;
                 }
             }
         }
@@ -233,6 +259,7 @@ public class MathGame extends AppCompatActivity {
         if(timer.getTime()>0){
             TextView answer_clicked = (TextView) answer_card;
             if(answer_clicked.getText()==actual_question.getAnswer()){
+                correct_sound();
                 score++;
                 updateScore();
                 nextQuestion();
@@ -244,6 +271,8 @@ public class MathGame extends AppCompatActivity {
                         heart_position++;
                     }
                 }
+                blackie_bad_action();
+                wrong_sound();
                 lifes.get(heart_position - 1).setLife_lost(true);
                 nextQuestion();
             }
@@ -252,40 +281,114 @@ public class MathGame extends AppCompatActivity {
 
     private void updateScore() {
         String score_default_text = getResources().getString(R.string.global_score);
-        blackie_action();
-        score_text.setText(score_default_text + " " + score);
+        blackie_good_action();
+        score_text.setText(String.format(score_default_text,score));
     }
 
-    private void blackie_action() {
+    private void blackie_good_action() {
         //Whenever you match a pair it will throw a random number to change the text and
         //image of the dog
         //Action has a larger range that it should, so it will change sometimes you clean a blob
         // and not always
         int action = (int) (Math.random() * 7 + 1);
         if (action == 1) {
+            dog_dialogue.setTextSize(20f);
             String text = getResources().getString(R.string.math_game_dog_action1);
             dog_dialogue.setText(text);
             dog_image.setImageResource(R.drawable.blackie_impressed);
         }
         if (action == 2) {
+            dog_dialogue.setTextSize(20f);
             String text = getResources().getString(R.string.math_game_dog_action2);
             dog_dialogue.setText(text);
             dog_image.setImageResource(R.drawable.blackie_happy);
         }
         if (action == 3) {
+            dog_dialogue.setTextSize(20f);
             String text = getResources().getString(R.string.math_game_dog_action3);
             dog_dialogue.setText(text);
             dog_image.setImageResource(R.drawable.blackie_front);
         }
         if (action == 4) {
+            dog_dialogue.setTextSize(20f);
             String text = getResources().getString(R.string.math_game_dog_action4);
             dog_dialogue.setText(text);
             dog_image.setImageResource(R.drawable.blackie_happy);
         }
         if (action == 5) {
+            dog_dialogue.setTextSize(20f);
             String text = getResources().getString(R.string.math_game_dog_action5);
             dog_dialogue.setText(String.format(text,score));
             dog_image.setImageResource(R.drawable.blackie_howl);
         }
+    }
+    private void blackie_bad_action() {
+        //When the game ends, it changes dog image and text
+        dog_dialogue.setTextSize(20f);
+        String text = getResources().getString(R.string.math_game_dog_bad_action);
+        dog_dialogue.setText(text);
+        dog_image.setImageResource(R.drawable.blackie_sad);
+    }
+
+    private void blackie_action_lose() {
+        //When the game ends, it changes dog image and text
+        String blackie_game_over_text = getResources().getString(R.string.blackie_lose_default_text);
+        dog_dialogue.setTextSize(16f);
+        dog_dialogue.setText(String.format(blackie_game_over_text, score));
+        dog_image.setImageResource(R.drawable.blackie_sleep);
+    }
+
+    public void game_music(){
+        if(MainMenu.global_music){
+            music = MediaPlayer.create(this, R.raw.math_game_music);
+            music.setLooping(true);
+            music.start();
+        }
+    }
+
+    public void correct_sound(){
+        if(correct==null){
+            correct = MediaPlayer.create(this, R.raw.math_correct_answer);
+            correct.setVolume(0.3f,03f);
+            correct.start();
+        }
+        else{
+            correct.release();
+            correct = MediaPlayer.create(this, R.raw.math_correct_answer);
+            correct.setVolume(0.3f,03f);
+            correct.start();
+        }
+    }
+
+    public void wrong_sound(){
+        if(wrong==null){
+            wrong = MediaPlayer.create(this, R.raw.math_wrong_answer);
+            wrong.setVolume(0.3f,03f);
+            wrong.start();
+        }
+        else{
+            wrong.release();
+            wrong = MediaPlayer.create(this, R.raw.math_wrong_answer);
+            wrong.setVolume(0.3f,03f);
+            wrong.start();
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        //If the user press the "back" button in the mobile, it will stop the music and finish the
+        // activity
+        super.onBackPressed();
+        if(music!=null){
+            music.release();
+        }
+        finish();
+    }
+
+    public void finish_game(View view){
+        if(music!=null){
+            music.release();
+        }
+        finish();
     }
 }

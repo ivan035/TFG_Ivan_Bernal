@@ -117,7 +117,7 @@
         android:gravity="center"
         android:onClick="startMathGame"
         android:padding="13dp"
-        android:text="@string/main_menu_math_quizz_game"
+        android:text="@string/main_menu_math_game"
         android:textColor="@color/carolina_blue_elbueno"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="@+id/main_menu_sauce_invasion_button2"
@@ -157,5 +157,38 @@
         app:layout_constraintEnd_toEndOf="@+id/main_menu_tittle_txt"
         app:srcCompat="@drawable/option_sound_enabled"
         tools:ignore="RedundantDescriptionCheck" />
+
+    <TextView
+        android:id="@+id/main_menu_lenguage_option_text"
+        android:layout_width="145dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="160dp"
+        android:background="@drawable/option_lenguage"
+        android:fontFamily="@font/chelsea_market"
+        android:gravity="start|right|center_vertical"
+        android:onClick="change_lenguage"
+        android:paddingStart="6dp"
+        android:text="@string/global_language_option"
+        android:textColor="@color/black"
+        android:textSize="19sp"
+        app:layout_constraintBottom_toBottomOf="@+id/main_menu_option_sound"
+        app:layout_constraintEnd_toStartOf="@+id/main_menu_option_sound"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/main_menu_tittle_txt"
+        app:layout_constraintTop_toTopOf="@+id/main_menu_option_sound"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/main_menu_lenguage_option_image"
+        android:layout_width="48dp"
+        android:layout_height="45dp"
+        android:onClick="change_lenguage"
+        android:padding="4dp"
+        app:layout_constraintBottom_toBottomOf="@+id/main_menu_lenguage_option_text"
+        app:layout_constraintEnd_toEndOf="@+id/main_menu_lenguage_option_text"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/main_menu_lenguage_option_text"
+        app:layout_constraintTop_toTopOf="@+id/main_menu_lenguage_option_text"
+        app:srcCompat="@drawable/option_english" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

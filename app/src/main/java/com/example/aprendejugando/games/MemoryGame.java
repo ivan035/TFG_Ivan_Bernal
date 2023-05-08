@@ -27,7 +27,6 @@ public class MemoryGame extends AppCompatActivity {
 
     private TextView difficulty_text;
     private TextView score_text;
-    private TextView game_end_score;
     private TextView game_end_text;
     private TextView dog_dialogue;
     private ImageView dog_image;
@@ -58,31 +57,42 @@ public class MemoryGame extends AppCompatActivity {
         setContentView(R.layout.memory_game);
         //We match the views needed with our variables
         difficulty_text=findViewById(R.id.memory_difficulty_text);
-        score_text=findViewById(R.id.memory_game_score);
+
         time_text=findViewById(R.id.memory_game_time_text);
         time_bar=findViewById(R.id.memory_game_time_bar);
+
         stages_completed_text=findViewById(R.id.memory_game_stages_completed);
+        String default_stages_text = getString(R.string.memory_game_table_stage);
+        stages_completed_text.setText(String.format(default_stages_text,0));
+
+        score_text=findViewById(R.id.memory_game_score);
+        String default_score_text = getString(R.string.global_score);
+        score_text.setText(String.format(default_score_text,0));
+
         dog_dialogue=findViewById(R.id.memory_game_dog_dialogue);
         dog_image=findViewById(R.id.memory_game_img_dog);
-        game_end_score = findViewById(R.id.memory_game_end_score);
         game_end_text = findViewById(R.id.memory_game_end_text);
         to_menu=findViewById(R.id.memory_game_tomenu_button);
         time_bar.setMax(GAME_TIME);
         time_bar.setProgress(GAME_TIME,true);
+
+        String default_mode_text = getString(R.string.global_mode);
         Intent intent = getIntent();
         if(intent!=null){
             difficulty_level=intent.getIntExtra(DifficultySelection.DIFFICULTY_SELECTED,0);
         }
         if(difficulty_level==2){
-            difficulty_text.setText("Modo: Normal");
+            String default_level_text = getString(R.string.difficulty_normal);
+            difficulty_text.setText(default_mode_text + " " + default_level_text);
         }
         else if(difficulty_level==3){
-            difficulty_text.setText("Modo: Experto");
+            String default_level_text = getString(R.string.difficulty_hard);
+            difficulty_text.setText(default_mode_text + " " + default_level_text);
         }
         else{
-            difficulty_text.setText("Modo: Facil");
+            String default_level_text = getString(R.string.difficulty_easy);
+            difficulty_text.setText(default_mode_text + " " + default_level_text);
         }
-        score_text.setText("Puntuacion: "+ score);
         card_manager= new CardsManagment(null, null, getApplicationContext(),this);
         timer=new MemoryTimer(GAME_TIME, this);
         game_music();
@@ -167,7 +177,8 @@ public class MemoryGame extends AppCompatActivity {
     }
 
     public void updateScore() {
-        score_text.setText("Puntuacion: "+score);
+        String default_score_text = getString(R.string.global_score);
+        score_text.setText(String.format(default_score_text,score));
         pairs_found++;
         blackie_action();
     }
@@ -191,23 +202,28 @@ public class MemoryGame extends AppCompatActivity {
         // and not always
         int action = (int) (Math.random() * 7 + 1);
         if (action == 1) {
-            dog_dialogue.setText("!! Bien hecho !!");
+            String text = getResources().getString(R.string.memory_game_dog_action1);
+            dog_dialogue.setText(text);
             dog_image.setImageResource(R.drawable.blackie_impressed);
         }
         if (action == 2) {
-            dog_dialogue.setText("Dos cartas menos");
+            String text = getResources().getString(R.string.memory_game_dog_action2);
+            dog_dialogue.setText(text);
             dog_image.setImageResource(R.drawable.blackie_happy);
         }
         if (action == 3) {
-            dog_dialogue.setText("Lo tienes todo controlado");
+            String text = getResources().getString(R.string.memory_game_dog_action3);
+            dog_dialogue.setText(text);
             dog_image.setImageResource(R.drawable.blackie_front);
         }
         if (action == 4) {
-            dog_dialogue.setText("! Animo, sigue asi !");
+            String text = getResources().getString(R.string.memory_game_dog_action4);
+            dog_dialogue.setText(text);
             dog_image.setImageResource(R.drawable.blackie_happy);
         }
         if (action == 5) {
-            dog_dialogue.setText("Wow, ya tienes " + score + " puntos");
+            String text = getResources().getString(R.string.memory_game_dog_action5);
+            dog_dialogue.setText(String.format(text,score));
             dog_image.setImageResource(R.drawable.blackie_howl);
         }
     }
@@ -216,23 +232,23 @@ public class MemoryGame extends AppCompatActivity {
         cards_view=getCurrentCardsView();
         table=new StageValue(cards_view);
         currentStage=table.create_stage();
-        if(difficulty_level==1){
+        if(difficulty_level == 1){
             for (ImageView card_view: cards_view) {
                 card_view.setVisibility(View.VISIBLE);
             }
         }
-        if(difficulty_level==2){
+        if(difficulty_level == 2){
             for (ImageView card_view: cards_view) {
                 card_view.setVisibility(View.VISIBLE);
             }
         }
-        if(difficulty_level==3){
+        if(difficulty_level == 3){
             for (ImageView card_view: cards_view) {
                 card_view.setVisibility(View.VISIBLE);
             }
         }
-
-        stages_completed_text.setText("Paneles completados: " +stages_completed);
+        String default_stages_text = getString(R.string.memory_game_table_stage);
+        stages_completed_text.setText(String.format(default_stages_text,stages_completed));
     }
 
     public void start_game(View view){
@@ -244,7 +260,8 @@ public class MemoryGame extends AppCompatActivity {
 
     private void blackie_action_lose() {
         //When the game ends, it changes dog image and text
-        dog_dialogue.setText("!Oh no!, se acabo la partida, no te procupes, has conseguido " + score + " puntos, lo hiciste muy bien");
+        String blackie_game_over_text = getResources().getString(R.string.blackie_lose_default_text);
+        dog_dialogue.setText(String.format(blackie_game_over_text, score));
         dog_image.setImageResource(R.drawable.blackie_sleep);
     }
 
@@ -254,9 +271,9 @@ public class MemoryGame extends AppCompatActivity {
             @Override
             public void run() {
                 to_menu.setVisibility(View.VISIBLE);
-                game_end_score.setText("PUNTUACION FINAL: " + score + " PUNTOS");
+                String game_over = getResources().getString(R.string.global_game_over);
+                game_end_text.setText(String.format(game_over, score));
                 blackie_action_lose();
-                game_end_score.setVisibility(View.VISIBLE);
                 game_end_text.setVisibility(View.VISIBLE);
             }
         });
@@ -264,6 +281,9 @@ public class MemoryGame extends AppCompatActivity {
 
     public void finish_game(View view) {
         //Ends this activity
+        if(music!=null){
+            music.release();
+        }
         finish();
     }
 

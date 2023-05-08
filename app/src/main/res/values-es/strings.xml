@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Global Strings -->
+    <string name="app_name">Aprende Jugando</string>
+    <string name="global_app_name">Aprende Jugando</string>
+    <string name="main_menu_select_activity_text">SELECCIONA UNA ACTIVIDAD</string>
+    <string name="start_screen_button_text">PULSA LA PANTALLA</string>
+    <string name="global_score">Puntuación: %d</string>
+    <string name="global_mode">Modo:</string>
+    <string name="global_start_time">00</string>
+    <string name="global_back_to_menu_button">volver al menu</string>
+    <string name="global_language_option">Idioma</string>
+
+    <!-- DifficultySelection Strings -->
+    <string name="empty_activity_name">Juego:</string>
+    <string name="difficulty_easy">Fácil</string>
+    <string name="difficulty_normal">Normal</string>
+    <string name="difficulty_hard">Difícil</string>
+
+    <!-- Games Strings -->
+    <string name="main_menu_memory_name">Memoria</string>
+    <string name="main_menu_blob_name">Invasion de manchas</string>
+    <string name="main_menu_math_game">prueba matemática</string>
+    <string name="memory_game_table_stage">Paneles completados: %d</string>
+    <string name="math_game_question_text">¿ Cuanto es %s ?</string>
+    <string name="math_game_lifes">Vidas:</string>
+    <string name="blob_game_blobs_acumulated">Manchas acumuladas:</string>
+
+    <!-- StartGame Strings -->
+    <string name="blob_game_start_text">Pulsa la pantalla para comenzar el juego</string>
+
+    <!-- EndGame Strings -->
+    <string name="global_game_over">JUEGO TERMINADO \nPuntuacion final: %d puntos!</string>
+
+    <!-- Content description "Speach" -->
+    <string name="image">image</string>
+    <string name="button">button</string>
+    <string name="difficulty_selection_start_game">Comenzar juego</string>
+    <string name="music_button">music option button</string>
+    <string name="math_game_answer1">respuesta 1</string>
+    <string name="math_game_answer2">respuesta 2</string>
+    <string name="math_game_answer3">respuesta 3</string>
+    <string name="math_game_answer4">respuesta 4</string>
+    <string name="blackie_content_description">dog image</string>
+
+    <!-- Dog dialogues-->
+    <string name="main_menu_default_dialogue">Hola, me llamo Blackie, te acompañare en esta aventura!\nA que jugamos hoy ?</string>
+    <string name="difficulty_selection_default_dialogue">Elige la dificultad del juego</string>
+    <string name="memory_game_default_dialogue">Pulsa una carta para revelarla. Al encontrar dos iguales ganaras 2 puntos, buena suerte!</string>
+    <string name="blob_game_default_dialogue">Toca la mancha para limpiarla. Intenta que no se acumulen y consigue tantos puntos como puedas!</string>
+    <string name="math_game_default_dialogue">Intenta responder las preguntas tan rapido como puedas, pero cuidado, no falles porque se agotaran las vidas !!</string>
+    <string name="blackie_lose_default_text">!Oh no!, se acabo la partida, no te procupes, has conseguido %d puntos, lo hiciste muy bien"</string>
+
+    <!-- Dog dialogues- MemoryGame-->
+    <string name="memory_game_dog_action1">!! Bien hecho !!</string>
+    <string name="memory_game_dog_action2">Dos cartas menos</string>
+    <string name="memory_game_dog_action3">Lo tienes todo controlado</string>
+    <string name="memory_game_dog_action4">! Animo, sigue asi !</string>
+    <string name="memory_game_dog_action5">Wow, ya tienes %d puntos !!</string>
+
+    <!-- Dog dialogues- BlobGame-->
+    <string name="blob_game_dog_action1">!! Bien hecho !!</string>
+    <string name="blob_game_dog_action2">Se te da muy bien</string>
+    <string name="blob_game_dog_action3">Lo tienes todo controlado</string>
+    <string name="blob_game_dog_action4">! Animo, sigue asi !</string>
+    <string name="blob_game_dog_action5">Wow, ya tienes %d puntos !!</string>
+
+    <!-- Dog dialogues- MathGame-->
+    <string name="math_game_dog_action1">Que bien, ¡ acertaste ! </string>
+    <string name="math_game_dog_action2">! Animo, sigue asi !</string>
+    <string name="math_game_dog_action3">Que bien se te dan las matematicas</string>
+    <string name="math_game_dog_action4">Has acertado !</string>
+    <string name="math_game_dog_action5">Wow ya tienes %d puntos !!</string>
+    <string name="math_game_dog_bad_action">Oooops, respuesta incorrecta</string>
+
+</resources>
