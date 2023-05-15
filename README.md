@@ -2,63 +2,79 @@
 
 ## Aprende Jugando
 
-Kenko es una aplicación de Android que sirve para gestionar citas médicas. Su principal objetivo es facilitar al usuario esas gestiones. Además, se podra utilizar en los distintos países que dispone en la app. Por ultimo, proporciona a los usuarios un mapa para conocer la localización exacta del centro sin tener que salir de la aplicación.
+Aprende Jugando es una aplicación de Android. Con esta se intenta dar a los mas pequeños una posibilidad de aprender mientras se divierten. Blackie, la mascota, puede ayudar y guiarlos por la aplicacion
+para facilitar su uso
 
 ## Tutorial
 
-### Login
-La aplicacion se iniciara en el login, si no dispone de usuario por favor siga los pasos que aparecen en el punto 1, si ya dispone de un usuario siga las intrucciones del punto 2. 
-
-1. En primer lugar, escriba un correo valido que no esté ya registrado, después escriba una contraseña que contenga letras y números para poder registrarse de forma correcta. Cuando haya escrito en los dos campos, por favor pulse el botón de registrar.
-
-    Se mostrará una pantalla en la cual se deberá de rellenar todos los campos sobre los datos del usuario. Una vez rellenado todos los campos presione el botón y ya habrá terminado el proceso de registro.
-
-    En el caso de que quiera cancelar el proceso de registro puede retroceder a la pantalla anterior.  
-
-2. En primer lugar escriba un correo valido, además de la contraseña que le corresponda y pulse acceder.
-
+### Inicio
+El inicio de la aplicacion es bastante simple, es una pantalla en la que habra que pulsar para entrar al juego, para mejorar el aspecto visual, no se podra acceder de nuevo a esta pantalla si te encuentras
+    ya dentro del juego.
+    
 ### Menu 
 
-Dispondrá de 2 opciones. La opción de centros médicos sirve para la solicitar citas médicas. Mientras que la segunda opción, la cual es gestión, sirve para la visualización, actualización y eliminación de las citas que hay registradas previamente.
+En el menu estan disponibles tres opciones:
+    - Memoria
+    - Invasion de manchas
+    - Prueba matemática
+*Tras pulsar cualquiera de los tres botones del menú se accedera a la pantalla de elección de dificultad
 
-#### Centro medico 
+También están los botones de Configuración:
+- El de sonido, que quitará solo la música de fondo del menu y juegos ( No los efectos de sonido )
+- El de idioma, que puede alternar entre Inglés y Español
 
-* Se mostrará 4 imágenes de 4 países distintos, para poder seleccionar el país deseado presione el país.
+#### Elección de dificultad
 
-* Después, se mostrará una lista de las ciudades que hay disponibles en ese país. Para seleccionar la ciudad deseada, presione la tarjeta de la ciudad que desea. 
+En la pantalla de elección de dificultad, se puede elegir la dificultad entre:
+- Fácil
+- Normal
+- Dificil
 
-* A continuación, se mostrará otra lista, pero de centros médicos disponibles que hay en esa ciudad. Para seleccionar el centro médico deseado, presione la tarjeta de ese hospital.
+*La dificultad cambiara que tan complejo es el juego que se vaya a jugar
 
-* Por último, aparece una pantalla en la que podrá rellenar y registrar los datos restantes de la cita.
+Tras elegir la dificultad se debe pulsar al boton "comenzar juego" para iniciar la actividad
 
-##### Registrar cita
+### Juegos
 
-* En esta pantalla como anteriormente se ha mencionado, aparecen varias opciones. En primer lugar, aparecerá un botón en la que mostrará un mapa con la localización del hospital, además si presiona el icono donde indica el hospital aparece en la parte inferior derecha unos botones en los cuales le redirigirá a google maps.
+Hay tres juegos, el cual se accederá dependiendo que boton se puldo en el menú de inicio
 
-* Después habrá un despegable en la que se podrá seleccionar la especialidad deseada. Seguido de dos botones, uno para seleccionar la fecha y otro para seleccionar la hora. Cuanto tenga todos los datos, pulse el boton solicitar para registrar la cita.
+#### Memoria
 
-#### Gestionar citas
+Tras iniciar el juego habrá que pulsar la pantalla para comenzarlo.
 
-Una vez seleccionado el botón de gestión del menú principal, aparecerá un segundo menú con tres opciones disponibles: visualizar, modificar y eliminar.
+El juego consiste en encontrar parejas pulsando las cartas que aparecen en el panel, tras pulsar una carta se desvelará que imagen es, después se pulsara una segunda carta, si las cartas
+coinciden se ganaran puntos, de lo contrario las cartas se volveran a esconder.
 
-##### Visualizar próximas citas
+##### Dificultad
 
-* Se mostrará las 3 próximas citas que hay disponibles en los días entre hoy y pasado mañana. 
+La dificultad en este juego cambia segun la elección:
+- Fácil: Solo hay 8 cartas en vez de 9
+- Normal y Dificil: Habra una carta que sobre, cambiando de color para confundir al jugador
 
-#### Modificar citas
+#### Invasion de manchas
 
-* Se mostrará un despegable de las citas que hay disponibles a partir de hoy. Seleccione la cita deseada y presione el botón para continuar.
+Tras iniciar el juego habrá que pulsar la pantalla para comenzarlo.
 
-##### Registro de la cita modificada
+El juego consiste en pulsar la pantalla para limpiar las manchas que aparecen, si se te acumulan un numero determinado de manchas, o se acaba el tiempo, el juego acaba
+Cuanto más tiempo haya transcurrido, mas rápido saldrán las manchas
 
-1. Si desea modificar la especialidad solo cambie la opción que hay seleccionada en el despegable y a continuación presione el botón de modificar para actualizar su cita.
+##### Dificultad
 
-2. Si desea modificar la hora presione el botón de hora y elija la hora que desea, a continuación, presione el botón de modificar para actualizar su cita. 
+La dificultad en este juego cambia segun la elección:
+- Fácil: Las manchas tardan mucho en salir, y la cantidad limite de acumular manchas se ajusta a 12
+- Normal: Las manchas tardan menos en salir, la cantidad limite de acumular manchas se ajusta a 8
+- Dificil: Las manchas tardan poco en salir, la cantidad limite de acumular manchas se ajusta a 5
 
-3. Si desea modificar la fecha presione el botón de fecha y elija la fecha que desea, a continuación, presione el botón de modificar para actualizar su cita.
+#### Prueba matemática
 
-* En caso de que quiera hacer varias modificaciones, haga los cambios necesarios y cuando este todo correcto presione el botón de modificar para actualizar su cita. 
+Tras iniciar el juego habrá que pulsar la pantalla para comenzarlo.
 
-#### Eliminar citas
+El juego trata de resolver a la pregunta matemática lo mas rápido posible, al fallar pierdes una vida habra que pulsar la opción correcta de las 4 que se muestran, 
+    si pierdes todas las vidas o se acaba el tiempo el juego acaba. Se comienza con 3 vidas
 
-* Seleccione en el despegable la cita que desee eliminar, después presione el botón de eliminar para eliminarla.
+##### Dificultad
+
+La dificultad en este juego cambia segun la elección:
+- Fácil: Las preguntas pueden llegar a sumar numeros desde 0 hasta 25 haciendo un total de 50, se comienza con 4 vidas
+- Normal: Las preguntas pueden llegar a sumar o restar numeros desde 0 hasta 50 haciendo un total de 100, sin numeros negativos, se comienza con 4 vidas
+- Dificil: Las preguntas pueden llegar a sumar o restar numeros desde 0 hasta 50 haciendo un total de 100, sin numeros negativos, se comienza con 3 vidas
