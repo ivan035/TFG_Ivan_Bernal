@@ -34,10 +34,10 @@
 
     <ImageView
         android:id="@+id/math_game_img_chatbox"
-        android:layout_width="298dp"
-        android:layout_height="184dp"
-        android:layout_marginEnd="84dp"
-        android:layout_marginBottom="48dp"
+        android:layout_width="290dp"
+        android:layout_height="170dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginBottom="60dp"
         android:contentDescription="@string/image"
         android:rotationY="-176"
         android:scaleX="2"
@@ -65,8 +65,8 @@
 
     <ImageView
         android:id="@+id/math_game_img_dog"
-        android:layout_width="203dp"
-        android:layout_height="113dp"
+        android:layout_width="190dp"
+        android:layout_height="120dp"
         android:contentDescription="@string/blackie_content_description"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -179,6 +179,7 @@
         android:gravity="center"
         android:onClick="check_answer"
         android:soundEffectsEnabled="false"
+        android:textColor="@color/black"
         android:textSize="31sp"
         app:layout_constraintEnd_toEndOf="@+id/math_game_question_text"
         app:layout_constraintTop_toBottomOf="@+id/math_game_question_text" />
@@ -196,6 +197,7 @@
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         android:soundEffectsEnabled="false"
+        android:textColor="@color/black"
         android:textSize="31sp"
         app:layout_constraintBottom_toBottomOf="@+id/math_game_answer_1"
         app:layout_constraintStart_toEndOf="@+id/math_game_answer_1"
@@ -213,6 +215,7 @@
         android:gravity="center"
         android:onClick="check_answer"
         android:soundEffectsEnabled="false"
+        android:textColor="@color/black"
         android:textSize="31sp"
         app:layout_constraintEnd_toEndOf="@+id/math_game_answer_1"
         app:layout_constraintHorizontal_bias="0.0"
@@ -230,6 +233,7 @@
         android:gravity="center"
         android:onClick="check_answer"
         android:soundEffectsEnabled="false"
+        android:textColor="@color/black"
         android:textSize="31sp"
         app:layout_constraintEnd_toEndOf="@+id/math_game_answer_2"
         app:layout_constraintHorizontal_bias="0.0"

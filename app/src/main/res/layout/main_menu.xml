@@ -21,10 +21,10 @@
 
     <ImageView
         android:id="@+id/main_menu_img_chatbox"
-        android:layout_width="293dp"
-        android:layout_height="160dp"
-        android:layout_marginEnd="84dp"
-        android:layout_marginBottom="48dp"
+        android:layout_width="290dp"
+        android:layout_height="170dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginBottom="60dp"
         android:contentDescription="@string/image"
         android:rotationY="-176"
         android:scaleX="2"
@@ -36,8 +36,8 @@
 
     <ImageView
         android:id="@+id/main_menu_img_dog"
-        android:layout_width="203dp"
-        android:layout_height="113dp"
+        android:layout_width="190dp"
+        android:layout_height="120dp"
         android:contentDescription="@string/blackie_content_description"
         android:onClick="pet_blackie"
         android:soundEffectsEnabled="false"

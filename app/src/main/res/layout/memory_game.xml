@@ -167,6 +167,7 @@
         android:contentDescription="@string/image"
         android:onClick="flip"
         android:soundEffectsEnabled="false"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/memory_card8"
         app:layout_constraintStart_toEndOf="@+id/memory_card8"
         app:layout_constraintTop_toTopOf="@+id/memory_card8"
@@ -175,8 +176,8 @@
 
     <ImageView
         android:id="@+id/memory_game_img_dog"
-        android:layout_width="203dp"
-        android:layout_height="113dp"
+        android:layout_width="190dp"
+        android:layout_height="120dp"
         android:contentDescription="@string/blackie_content_description"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -185,10 +186,10 @@
 
     <ImageView
         android:id="@+id/memory_game_img_chatbox"
-        android:layout_width="276dp"
-        android:layout_height="148dp"
-        android:layout_marginEnd="84dp"
-        android:layout_marginBottom="56dp"
+        android:layout_width="290dp"
+        android:layout_height="170dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginBottom="60dp"
         android:contentDescription="@string/image"
         android:rotationY="-176"
         android:scaleX="2"
@@ -201,17 +202,17 @@
     <TextView
         android:id="@+id/memory_game_dog_dialogue"
         android:layout_width="199dp"
-        android:layout_height="65dp"
-        android:fontFamily="sans-serif-condensed"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/chelsea_market"
         android:gravity="center"
         android:text="@string/memory_game_default_dialogue"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="@+id/memory_game_img_chatbox"
         app:layout_constraintEnd_toEndOf="@+id/memory_game_img_chatbox"
-        app:layout_constraintHorizontal_bias="0.363"
+        app:layout_constraintHorizontal_bias="0.417"
         app:layout_constraintStart_toStartOf="@+id/memory_game_img_chatbox"
         app:layout_constraintTop_toTopOf="@+id/memory_game_img_chatbox"
-        app:layout_constraintVertical_bias="0.349"
+        app:layout_constraintVertical_bias="0.336"
         tools:ignore="TextSizeCheck" />
 
     <TextView

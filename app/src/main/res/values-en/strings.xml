@@ -24,13 +24,13 @@
     <string name="math_game_question_text">¿ Whats %s ?</string>
     <string name="memory_game_table_stage">Stages completed: %d</string>
     <string name="math_game_lifes">Lifes:</string>
-    <string name="blob_game_blobs_acumulated">Blobs acumulated:</string>
+    <string name="blob_game_blobs_acumulated">Blobs accumulated:</string>
 
     <!-- StartGame Strings -->
     <string name="blob_game_start_text">Touch the screen to start the game</string>
 
     <!-- EndGame Strings -->
-    <string name="global_game_over">GAME ENDED \nFinal score: %d points!</string>
+    <string name="global_game_over">GAME ENDED \n ¡ Final score: %d points !</string>
 
     <!-- Content description "Speach" -->
     <string name="image">image</string>
@@ -44,32 +44,36 @@
     <string name="blackie_content_description">dog image</string>
 
     <!-- Dog dialogues-->
-    <string name="main_menu_default_dialogue">Hey, im Blackie, I will follow you in this adventure!\nWhat do you want to play ?</string>
+    <string name="main_menu_default_dialogue">Hey, im Blackie, I will follow you in this adventure\n ¿ What do you want to play ?</string>
     <string name="difficulty_selection_default_dialogue">Choose the game difficulty</string>
-    <string name="memory_game_default_dialogue">Touch a card to reveal it. You will get 2 points if you find a pair, good luck!</string>
-    <string name="blob_game_default_dialogue">Touch the blob to clean it. Try not to acumulate them and get as many points as you can!</string>
-    <string name="math_game_default_dialogue">Try to answer as fast as you can, but be careful, everytime you fail you will lose a life !!</string>
-    <string name="blackie_lose_default_text">!Oh no!, game ended, dont worry, you got %d points, you did it great"</string>
+    <string name="memory_game_default_dialogue">Touch a card to reveal it. You will get 2 points if you find a pair, ¡ good luck !</string>
+    <string name="blob_game_default_dialogue">Touch the blob to clean it Try not to accumulate them and get as many points as you can!</string>
+    <string name="math_game_default_dialogue">"Try to answer as fast as you can, but be careful, everytime you fail you will lose a life "</string>
+    <string name="blackie_lose_default_text">¡Oh no!, game ended, don\'t worry, you got %d points, you did it great"</string>
 
     <!-- Dog dialogues- MemoryGame-->
-    <string name="memory_game_dog_action1">!! Well done !!</string>
-    <string name="memory_game_dog_action2">two cards less</string>
+    <string name="memory_game_dog_action1">¡¡ Well done !!</string>
+    <string name="memory_game_dog_action2">Two cards less</string>
     <string name="memory_game_dog_action3">You got this</string>
-    <string name="memory_game_dog_action4">! Cheers, keep it like that !</string>
-    <string name="memory_game_dog_action5">Wow you have %d points already !!</string>
+    <string name="memory_game_dog_action4">¡ Cheers, keep it like that !</string>
+    <string name="memory_game_dog_action5">¡¡ Wow you have %d points already !!</string>
 
     <!-- Dog dialogues- BlobGame-->
-    <string name="blob_game_dog_action1">!! Well done !!</string>
+    <string name="blob_game_dog_action1">¡¡ Well done !!</string>
     <string name="blob_game_dog_action2">You are good at this</string>
     <string name="blob_game_dog_action3">You got this</string>
-    <string name="blob_game_dog_action4">! Cheers, keep it like that !</string>
-    <string name="blob_game_dog_action5">Wow you have %d points already !!</string>
+    <string name="blob_game_dog_action4">¡ Cheers, keep it like that !</string>
+    <string name="blob_game_dog_action5">¡¡ Wow you have %d points already !!</string>
 
     <!-- Dog dialogues- MathGame-->
     <string name="math_game_dog_action1">Wow, ¡ you nailed it ! </string>
-    <string name="math_game_dog_action2">! Cheers, keep it like that !</string>
+    <string name="math_game_dog_action2">¡ Cheers, keep it like that !</string>
     <string name="math_game_dog_action3">You are so good in maths</string>
-    <string name="math_game_dog_action4">You got it right !</string>
-    <string name="math_game_dog_action5">Wow you have %d points already !!</string>
+    <string name="math_game_dog_action4">¡ You got it right !</string>
+    <string name="math_game_dog_action5">¡¡ Wow you have %d points already !!</string>
     <string name="math_game_dog_bad_action">Oooops, wrong answer</string>
+    <string name="main_menu_pet1">¡ Stop tickling me !</string>
+    <string name="main_menu_pet2">Goof Goof</string>
+    <string name="main_menu_pet3">¿ Do you want to play a game ?</string>
+    <string name="main_menu_pet4">Im tired of playing ¿ shall we take a break ?</string>
 </resources>

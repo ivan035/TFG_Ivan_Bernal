@@ -226,7 +226,6 @@ public class MathGame extends AppCompatActivity {
         Question question = new Question(question_value,String.valueOf(answer));
         Integer correct_answer_position = (int) (Math.random()*4);
         answer_positions.get(correct_answer_position).setText(question.getAnswer());
-        answer_positions.get(correct_answer_position).setTextColor(getColor(R.color.selected));
         fill_random_answers(correct_answer_position,Integer.valueOf(answer));
 
         return question;
@@ -256,7 +255,6 @@ public class MathGame extends AppCompatActivity {
                 }
 
                 answer_positions.get(i).setText(String.valueOf(random_number));
-                answer_positions.get(i).setTextColor(getColor(R.color.black)); //SOLO PARA TESTEAR
                 if(first_number!=0){
                     second_number = random_number;
                 }

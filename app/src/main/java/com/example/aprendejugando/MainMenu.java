@@ -69,14 +69,30 @@ public class MainMenu extends AppCompatActivity {
 
     public void pet_blackie(View view) {
         //If the dog image is clicked, we change the dog image and his text
-        int action =(int) (Math.random()*2+1);
-        if (action==1){
-            dog_dialogue.setText("Me haces cosquillas!");
-            dog_image.setImageResource(R.drawable.blackie_happy);
-        }
-        else{
-            dog_dialogue.setText("Goof Goof");
-            dog_image.setImageResource(R.drawable.blackie_talking);
+        int action =(int) (Math.random()*3+1);
+        switch (action) {
+            case 1:
+                String text = getResources().getString(R.string.main_menu_pet1);
+                dog_dialogue.setText(text);
+                dog_image.setImageResource(R.drawable.blackie_angry);
+                break;
+            case 2:
+                String text2 = getResources().getString(R.string.main_menu_pet2);
+                dog_dialogue.setText(text2);
+                dog_image.setImageResource(R.drawable.blackie_talking);
+                break;
+            case 3:
+                String text3 = getResources().getString(R.string.main_menu_pet3);
+                dog_dialogue.setText(text3);
+                dog_image.setImageResource(R.drawable.blackie_happy);
+                break;
+            case 4:
+                String text4 = getResources().getString(R.string.main_menu_pet4);
+                dog_dialogue.setText(text4);
+                dog_image.setImageResource(R.drawable.blackie_sleep);
+                break;
+            default:
+                break;
         }
     }
 

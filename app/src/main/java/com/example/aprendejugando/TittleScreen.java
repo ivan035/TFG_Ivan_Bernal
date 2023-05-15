@@ -1,6 +1,8 @@
 package com.example.aprendejugando;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.os.LocaleListCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +14,14 @@ public class TittleScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tittle_screen);
+
+        String actual_language = String.valueOf(getResources().getConfiguration().getLocales().get(0));
+        if(actual_language.equalsIgnoreCase("es")){
+            setLocal("es");
+        }
+        else{
+            setLocal("en");
+        }
     }
 
     public void StartGame(View view) {
@@ -20,5 +30,11 @@ public class TittleScreen extends AppCompatActivity {
         Intent intent = new Intent(this, MainMenu.class);
         startActivity(intent);
         finish();
+    }
+
+    public void setLocal(String language){
+        //This will change the locale language and restart the activity
+        LocaleListCompat appLocale = LocaleListCompat.forLanguageTags(language);
+        AppCompatDelegate.setApplicationLocales(appLocale);
     }
 }
