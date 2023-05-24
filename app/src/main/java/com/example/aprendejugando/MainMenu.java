@@ -163,7 +163,6 @@ public class MainMenu extends AppCompatActivity {
         else{
             setLocal("en");
         }
-
     }
 
     public void setLocal(String language){
