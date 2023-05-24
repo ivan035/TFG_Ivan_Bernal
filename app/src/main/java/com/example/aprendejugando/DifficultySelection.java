@@ -47,7 +47,6 @@ public class DifficultySelection extends AppCompatActivity {
         dog_dialogue.setText(getString(R.string.difficulty_selection_default_dialogue));
     }
 
-
     public void easy_mode(View view) {
         //If user select easy mode, the "difficulty" variable will be set to 1
         //It will also change the easy button color and set the others to the starter color

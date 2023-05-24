@@ -67,6 +67,12 @@ public class MainMenu extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        menu_music.release();
+    }
+
     public void pet_blackie(View view) {
         //If the dog image is clicked, we change the dog image and his text
         int action =(int) (Math.random()*3+1);
@@ -101,6 +107,7 @@ public class MainMenu extends AppCompatActivity {
         Intent intent = new Intent(this, DifficultySelection.class);
         String game = getResources().getString(R.string.main_menu_memory_name);
         intent.putExtra(ACTIVITY_NAME,game);
+        menu_music.release();
         startActivity(intent);
     }
     public void startBlobGame(View view) {
@@ -108,6 +115,7 @@ public class MainMenu extends AppCompatActivity {
         Intent intent = new Intent(this, DifficultySelection.class);
         String game = getResources().getString(R.string.main_menu_blob_name);
         intent.putExtra(ACTIVITY_NAME,game);
+        menu_music.release();
         startActivity(intent);
     }
     public void startMathGame(View view) {
@@ -115,6 +123,7 @@ public class MainMenu extends AppCompatActivity {
         Intent intent = new Intent(this, DifficultySelection.class);
         String game = getResources().getString(R.string.main_menu_math_game);
         intent.putExtra(ACTIVITY_NAME,game);
+        menu_music.release();
         startActivity(intent);
     }
 
@@ -154,6 +163,7 @@ public class MainMenu extends AppCompatActivity {
         }
 
     }
+
 
     public void change_language(View view) {
         //When the language button is clicked, it will call setLocal with the desired language

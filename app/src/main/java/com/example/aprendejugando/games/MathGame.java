@@ -125,6 +125,28 @@ public class MathGame extends AppCompatActivity {
         game_music();
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if(music!=null){
+            music.release();
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(MainMenu.global_music){
+            if(music==null){
+                game_music();
+            }
+            else{
+                music.release();
+                game_music();
+            }
+        }
+    }
+
     public void updateTimer(int time) {
         //Updates the timer text and time bar
         runOnUiThread(new Runnable() {

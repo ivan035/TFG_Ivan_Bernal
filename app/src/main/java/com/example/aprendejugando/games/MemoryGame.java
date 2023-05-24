@@ -98,6 +98,28 @@ public class MemoryGame extends AppCompatActivity {
         game_music();
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if(music!=null){
+            music.release();
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(MainMenu.global_music){
+            if(music==null){
+                game_music();
+            }
+            else{
+                music.release();
+                game_music();
+            }
+        }
+    }
+
     private ArrayList<ImageView> getCurrentCardsView() {
         ArrayList<ImageView> cards= new ArrayList<>();
         ImageView card1 = findViewById(R.id.memory_card1);
